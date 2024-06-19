@@ -1,6 +1,3 @@
-1. get odds in backend
-   .
-   .
-   .
-2. find arbs
-3. make it look good
+1. use example response to test arb/+EV finding.
+2. make it live
+3. smarter algos, read papers
