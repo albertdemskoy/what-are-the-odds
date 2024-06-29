@@ -1,5 +1,5 @@
 use std::io;
-use odds_interface::api_requests::get_sports;
+use odds_interface::{api_requests::{get_odds_for_sport_aus, get_sports}};
 
 mod odds_interface;
 
@@ -12,18 +12,23 @@ fn main() {
         println!("o:   odds for a sport of your chosing");
 
         
-        let mut choice = String::new();
+        let mut operation_choice = String::new();
 
         io::stdin()
-            .read_line(&mut choice)
+            .read_line(&mut operation_choice)
             .expect("Failed to read line");
-        choice = choice.trim().to_string();
+        operation_choice = operation_choice.trim().to_string();
 
-        if choice == "s" {
-            let sports = get_sports().expect("Failed to get sports");
+        if operation_choice == "s" {
+            let mut sports = get_sports().expect("Failed to get sports");
             println!("{sports:#?}")
+        } else if operation_choice == "o" {
+            let events = get_odds_for_sport_aus("./src/sportodds.json");
+            for event in events {
+                event.get_best_odds_pair();
+            }
         } else {
-            println!("{choice:#?} is not a valid choice!")
+            println!("{operation_choice:#?} is not a valid choice!")
         }
 
         num_inputs -= 1;
