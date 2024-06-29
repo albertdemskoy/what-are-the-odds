@@ -3,8 +3,8 @@ use reqwest::header::HeaderMap;
 
 #[derive(Deserialize, Debug)]
 pub struct ApiKeyUsage {
-    requests_used: i32,
-    requests_remaining: i32
+    pub requests_used: i32,
+    pub requests_remaining: i32
 }
 
 fn get_typed_header(headers : &HeaderMap, header_name: &str) -> Option<i32> {
@@ -18,7 +18,7 @@ fn get_typed_header(headers : &HeaderMap, header_name: &str) -> Option<i32> {
     return Some(string_val.parse::<i32>().unwrap());
 }
 
-fn get_key_usage(headers: &HeaderMap) -> Option<ApiKeyUsage> {
+pub fn get_key_usage_from_headers(headers: &HeaderMap) -> Option<ApiKeyUsage> {
 
     let requests_used_header_name = "x-requests-used";
     let requests_remaining_header_name = "x-requests-remaining";
