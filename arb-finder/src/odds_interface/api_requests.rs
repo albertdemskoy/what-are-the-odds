@@ -2,11 +2,11 @@ use std::fs;
 
 use reqwest::Error;
 
-use super::response_types::{Event, Sport};
+use super::{event::Event, Sport};
 use super::{API_KEY, ODDS_HOST_BASE};
 
 // todo: these should return the actual type
-pub fn get_odds_for_sport_aus(sport : &str) -> Vec<Event> {
+pub fn get_odds_for_sport_aus(filepath: &str) -> Vec<Event> {
     // let odds_endpoint = format!("/sports/{sport}/odds/");
     // let full_url =  ODDS_HOST_BASE.to_owned() + &odds_endpoint;
 
@@ -23,7 +23,7 @@ pub fn get_odds_for_sport_aus(sport : &str) -> Vec<Event> {
 
     // return Ok(res.json::<Vec<Event>>().unwrap());
 
-    let file_str = fs::read_to_string("../exampleresponses/sportodds.json").expect("Unable to read file");
+    let file_str = fs::read_to_string(filepath).expect("Unable to read file");
     return serde_json::from_str::<Vec<Event>>(&file_str).expect("JSON was not well-formatted");
 }
 

@@ -226,11 +226,11 @@
             "outcomes": [
               {
                 "name": "Dallas Cowboys",
-                "price": 225
+                "price": -275
               },
               {
                 "name": "Tampa Bay Buccaneers",
-                "price": -275
+                "price": 225
               }
             ]
           },
