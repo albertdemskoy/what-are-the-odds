@@ -1,10 +1,35 @@
 use serde::Deserialize;
+use chrono::{DateTime, Utc};
+
 use super::odds::Odds;
+
+#[derive(Deserialize, Debug, Clone)]
+pub struct Bookmaker {
+    pub key: String,
+    title: String,
+    last_update: DateTime<Utc>,
+    pub markets: Vec<Market>
+}
+
+impl Bookmaker {
+    pub fn get_enabled_markets(&self) -> Vec<Market> {
+        let to_exclude = ["lay".to_string()];
+        return self.markets.clone()
+            .into_iter()
+            .filter(|x| !to_exclude.contains(&x.key))
+            .collect();
+    }
+}
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Market {
     pub key: String,
     pub outcomes: Vec<Outcome>,
+}
+
+pub struct BookieStat {
+    pub key: String,
+    pub vig: f64
 }
 
 impl Market {
