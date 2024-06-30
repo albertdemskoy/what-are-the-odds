@@ -1,10 +1,10 @@
+use std::collections::HashSet;
+
 use serde::Deserialize;
 use chrono::{DateTime, Utc};
 
-use crate::odds_interface::event;
-
 use super::odds::{Odds, is_arb};
-use super::market::Market;
+use super::market::{BookieStat, Bookmaker, Market};
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Event {
@@ -16,14 +16,31 @@ pub struct Event {
     bookmakers: Vec<Bookmaker>
 }
 
-#[derive(Deserialize, Debug, Clone)]
-pub struct Bookmaker {
-    key: String,
-    title: String,
-    last_update: DateTime<Utc>,
-    markets: Vec<Market>
+pub fn get_bookie_keys(events: &Vec<Event>) -> HashSet<String> {
+    let mut bookie_name_set = HashSet::new();
+    for event in events {
+        bookie_name_set.extend(event.get_all_bookies())
+    }
+    return bookie_name_set;
 }
 
+pub fn get_average_bookie_vig(events: &Vec<Event>, bookie_name: &str) -> BookieStat {   
+    let mut all_markets: Vec<Market> = Vec::new();
+    for event in events {
+        for bookmaker in &event.bookmakers {
+            if (bookmaker.key == bookie_name) {
+                all_markets.append(&mut bookmaker.get_enabled_markets());
+            }
+        }
+    }
+
+    let total_vig = all_markets.iter().fold(0.0, |sum, market| sum + market.get_vig());
+
+    return BookieStat {
+        key: bookie_name.to_string(),
+        vig: total_vig/(all_markets.len() as f64)
+    };
+}
 
 impl Event {
     pub fn get_best_odds_pair(&self) {
@@ -45,20 +62,12 @@ impl Event {
         println!("is arb? {0}", is_arb(best_home_odds, best_away_odds));
     }
 
-    pub fn get_vigs(&self) {
+    pub fn get_all_bookies(&self) -> HashSet<String> {
+        let mut bookie_name_set = HashSet::new();
         for bookmaker in &self.bookmakers {
-            for market in &bookmaker.markets {
-                if (market.key.contains("lay")) {continue;}
-
-                let vig = market.get_vig();
-                println!("Vig of {0} for {1} vs {2} in {3}: {4}", 
-                bookmaker.key, 
-                self.home_team, 
-                self.away_team, 
-                market.key, 
-                vig);
-            }
-        }   
+            bookie_name_set.insert(bookmaker.key.to_string());
+        }
+        return bookie_name_set;
     }
 
     fn get_best_odds_for_team(&self, team_name: &str) -> (String, Odds) {

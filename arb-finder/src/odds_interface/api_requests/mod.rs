@@ -3,7 +3,7 @@ use std::fs;
 use reqwest::{Error, blocking::Response};
 use util::{get_key_usage_from_headers, ApiKeyUsage};
 
-use super::{event::Event, Sport};
+use super::{event::Event, sport::Sport};
 use super::{API_KEY, ODDS_HOST_BASE};
 
 pub mod util;
