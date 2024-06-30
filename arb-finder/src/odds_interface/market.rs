@@ -52,6 +52,7 @@ impl Market {
         return Some(self.true_probability_estimate(&outcome_odds));
     }
 
+    // https://cran.r-project.org/web/packages/implied/vignettes/introduction.html
     pub fn true_probability_estimate(&self, odds: &Odds) -> f64 {
         let margin = self.total_probability() - 1.0;
         let n = self.outcomes.len() as f64;
