@@ -5,8 +5,9 @@
     3. include draw possibilities later
     4. expand markets
 3.  incorporate database??
-4.  Smarter algorithms
+4.  unit testing once the basics are down and it becomes a bit stable
+5.  Smarter algorithms
     1.  identify slack bookies
     2.  spot potential opportunities to watch to make more efficient
-5.  make it live
-6.  smarter algos, read papers
+6.  make it live
+7.  smarter algos, read papers

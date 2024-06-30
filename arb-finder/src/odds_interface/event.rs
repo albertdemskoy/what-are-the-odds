@@ -1,7 +1,10 @@
 use serde::Deserialize;
 use chrono::{DateTime, Utc};
 
+use crate::odds_interface::event;
+
 use super::odds::{Odds, is_arb};
+use super::market::Market;
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Event {
@@ -21,17 +24,6 @@ pub struct Bookmaker {
     markets: Vec<Market>
 }
 
-#[derive(Deserialize, Debug, Clone)]
-pub struct Market {
-    key: String,
-    outcomes: Vec<Outcome>
-}
-
-#[derive(Deserialize, Debug, Clone)]
-pub struct Outcome {
-    name: String,
-    price: Odds,
-}
 
 impl Event {
     pub fn get_best_odds_pair(&self) {
@@ -51,6 +43,22 @@ impl Event {
             best_away_bookie);
 
         println!("is arb? {0}", is_arb(best_home_odds, best_away_odds));
+    }
+
+    pub fn get_vigs(&self) {
+        for bookmaker in &self.bookmakers {
+            for market in &bookmaker.markets {
+                if (market.key.contains("lay")) {continue;}
+
+                let vig = market.get_vig();
+                println!("Vig of {0} for {1} vs {2} in {3}: {4}", 
+                bookmaker.key, 
+                self.home_team, 
+                self.away_team, 
+                market.key, 
+                vig);
+            }
+        }   
     }
 
     fn get_best_odds_for_team(&self, team_name: &str) -> (String, Odds) {

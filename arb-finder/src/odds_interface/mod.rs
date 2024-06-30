@@ -1,6 +1,7 @@
 pub mod api_requests;
 pub mod odds;
 pub mod event;
+pub mod market;
 
 
 const ODDS_HOST_BASE : &str = "https://api.the-odds-api.com/v4/";
