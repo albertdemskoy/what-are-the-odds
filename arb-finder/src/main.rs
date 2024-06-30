@@ -1,5 +1,5 @@
 use std::{fs, io};
-use odds_interface::{api_requests::{get_example_odds_file, get_key_usage, get_odds_for_sport_aus, get_sports}, event::{get_average_bookie_vig, get_bookie_keys}};
+use odds_interface::{api_requests::{get_example_odds_file, get_key_usage, get_odds_for_sport_aus, get_sports}, bookiestat::{get_average_bookie_vig, get_bookie_keys}};
 
 mod odds_interface;
 
