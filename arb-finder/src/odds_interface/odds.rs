@@ -34,6 +34,10 @@ impl Odds {
             Odds::Decimal(x) => *x
         }        
     }
+
+    pub fn implied_probability(&self) -> f64 {
+        return 1.0/self.get_decimal();
+    }
 }
 
 impl ops::Add<Odds> for Odds{

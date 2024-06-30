@@ -15,7 +15,7 @@ pub fn get_odds_for_sport_aus(sport: &str) -> reqwest::Result<String> {
 
     let params = [
         ("apiKey", API_KEY),
-        ("regions", "au")
+        ("regions", "au,us,eu")
     ];
 
     let url = reqwest::Url::parse_with_params(&full_url, &params).unwrap();

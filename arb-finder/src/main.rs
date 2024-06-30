@@ -1,7 +1,21 @@
-use std::io;
+use std::{fs, io};
 use odds_interface::api_requests::{get_example_odds_file, get_key_usage, get_odds_for_sport_aus, get_sports};
 
 mod odds_interface;
+
+fn get_sport_key_json(sport_key: &str) -> String {
+    return format!("./src/example_responses/{sport_key}_odds.json");
+}
+
+fn get_trimmed_input() -> String {
+    let mut operation_choice = String::new();
+    io::stdin()
+            .read_line(&mut operation_choice)
+            .expect("Failed to read line");
+    
+    operation_choice = operation_choice.trim().to_string();
+    return operation_choice;
+}
 
 fn main() {
     let mut num_inputs = 6;
@@ -11,17 +25,17 @@ fn main() {
         println!("a:   best odds pair testing");
         println!("s:   print in-season sports");
         println!("o:   odds for a sport of your chosing");
+        println!("v:   bookie vigs for event");
 
         
-        let mut operation_choice = String::new();
-
-        io::stdin()
-            .read_line(&mut operation_choice)
-            .expect("Failed to read line");
-        operation_choice = operation_choice.trim().to_string();
+        let mut operation_choice = get_trimmed_input();
 
         if operation_choice == "a" {
-            let events = get_example_odds_file("./src/soccerodds.json");
+            println!("Enter sport key:");
+            let sport_key = get_trimmed_input();
+
+            let filename = get_sport_key_json(&sport_key);
+            let events = get_example_odds_file(&filename);
             for event in events {
                 event.get_best_odds_pair();
             }
@@ -31,14 +45,22 @@ fn main() {
         }  else if operation_choice == "o" {
             println!("write your sport key of choice");
 
-            let mut sport_key = String::new();
-            io::stdin()
-            .read_line(&mut sport_key)
-            .expect("Failed to read line");
-            sport_key = sport_key.trim().to_string();
-
+            let sport_key = get_trimmed_input();
             let event_raw = get_odds_for_sport_aus(&sport_key).expect("Failed to get odds for");
-            println!("{event_raw:?}")
+            println!("{event_raw:?}");
+
+            let filename = format!("./src/example_responses/{sport_key}_odds.json");
+
+            fs::write(filename, event_raw);
+        } else if operation_choice == "v" {
+            println!("Enter sport key:");
+            let sport_key = get_trimmed_input();
+
+            let filename = get_sport_key_json(&sport_key);
+            let events = get_example_odds_file(&filename);
+            for event in events {
+                event.get_vigs();
+            }
         } else {
             println!("{operation_choice:#?} is not a valid choice!")
         }
