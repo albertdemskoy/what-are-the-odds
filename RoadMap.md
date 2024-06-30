@@ -4,6 +4,7 @@
     2. basic infrastructure down with h2h markets
     3. include draw possibilities later
     4. expand markets
+    5. per-sport weighting of book sharpness (redo wisdom of the crowd analysis)
 3.  incorporate database??
 4.  unit testing once the basics are down and it becomes a bit stable
 5.  Smarter algorithms

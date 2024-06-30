@@ -22,7 +22,6 @@ fn main() {
     while num_inputs > 0 {
         println!("Available operations:");
         println!("==========================");
-        println!("a:   best odds pair testing");
         println!("s:   print in-season sports");
         println!("o:   odds for a sport of your chosing");
         println!("v:   bookie vigs for event");
@@ -30,16 +29,7 @@ fn main() {
         
         let mut operation_choice = get_trimmed_input();
 
-        if operation_choice == "a" {
-            println!("Enter sport key:");
-            let sport_key = get_trimmed_input();
-
-            let filename = get_sport_key_json(&sport_key);
-            let events = get_example_odds_file(&filename);
-            for event in events {
-                event.get_best_odds_pair();
-            }
-        } else if operation_choice == "s" {
+        if operation_choice == "s" {
             let sports = get_sports().expect("Failed to get sports");
             println!("{sports:#?}")
         }  else if operation_choice == "o" {

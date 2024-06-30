@@ -13,10 +13,10 @@ pub struct Bookmaker {
 
 impl Bookmaker {
     pub fn get_enabled_markets(&self) -> Vec<Market> {
-        let to_exclude = ["lay".to_string()];
+        let to_exclude = "lay".to_string();
         return self.markets.clone()
             .into_iter()
-            .filter(|x| !to_exclude.contains(&x.key))
+            .filter(|x| !x.key.contains(&to_exclude))
             .collect();
     }
 }
@@ -25,11 +25,6 @@ impl Bookmaker {
 pub struct Market {
     pub key: String,
     pub outcomes: Vec<Outcome>,
-}
-
-pub struct BookieStat {
-    pub key: String,
-    pub vig: f64
 }
 
 impl Market {
@@ -41,6 +36,31 @@ impl Market {
 
     pub fn total_probability(&self) -> f64 {
         return self.outcomes.iter().fold(0.0, |sum, outcome| sum + outcome.implied_probability());
+    }
+
+    pub fn true_probability_for_outcome(&self, odds: &Odds) -> f64 {
+        let margin = self.total_probability() - 1.0;
+        let n = self.outcomes.len() as f64;
+        let raw_odds = odds.get_decimal();
+
+        return (n - margin * raw_odds)/(n * raw_odds);
+    }
+
+    pub fn true_probability_estimate(&self, odds: &Odds) -> f64 {
+        let margin = self.total_probability() - 1.0;
+        let n = self.outcomes.len() as f64;
+        let raw_odds = odds.get_decimal();
+
+        return (n - margin * raw_odds)/(n * raw_odds);
+    }
+
+    pub fn true_probability_estimates(&self) -> Vec<f64> {
+        let margin = self.total_probability() - 1.0;
+        let n = self.outcomes.len() as f64;
+        return  self.outcomes
+            .iter()
+            .map(|outcome| self.true_probability_estimate(&outcome.price))
+            .collect();
     }
 }
 
