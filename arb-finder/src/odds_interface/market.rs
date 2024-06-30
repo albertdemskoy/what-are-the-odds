@@ -38,12 +38,18 @@ impl Market {
         return self.outcomes.iter().fold(0.0, |sum, outcome| sum + outcome.implied_probability());
     }
 
-    pub fn true_probability_for_outcome(&self, odds: &Odds) -> f64 {
-        let margin = self.total_probability() - 1.0;
-        let n = self.outcomes.len() as f64;
-        let raw_odds = odds.get_decimal();
+    pub fn true_probability_for_outcome(&self, outcome_key: &str) -> Option<f64> {
+        let found_outcome = self.outcomes
+            .iter()
+            .find(|outcome| (*outcome).name == outcome_key); 
 
-        return (n - margin * raw_odds)/(n * raw_odds);
+        let outcome = match found_outcome {
+            Some(x) => x,
+            None => return None
+        };
+
+        let outcome_odds = outcome.price;
+        return Some(self.true_probability_estimate(&outcome_odds));
     }
 
     pub fn true_probability_estimate(&self, odds: &Odds) -> f64 {

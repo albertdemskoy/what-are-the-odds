@@ -4,7 +4,7 @@ use serde::Deserialize;
 use chrono::{DateTime, Utc};
 
 use super::odds::Odds;
-use super::market::{BookieStat, Bookmaker, Market};
+use super::market::{Bookmaker};
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Event {
@@ -30,7 +30,7 @@ impl Event {
         return bookies
             .iter()
             .filter(|bookie| self.get_bookie_probability(bookie, outcome_key).is_some())
-            .fold(0.0, |sum, bookie_key| sum + self.get_bookie_probability(bookie_key, outcome_key))
+            .fold(0.0, |sum, bookie_key| sum + self.get_bookie_probability(bookie_key, outcome_key).unwrap())
             /(bookies.len() as f64);
     }
 
@@ -41,15 +41,14 @@ impl Event {
             None => return None
         };
 
-        let markets = bookie_object.markets
+        let markets = &bookie_object.markets;
+        let h2h_market_key = "h2h";
         let h2h_market = match markets.iter().find(|&x| x.key == h2h_market_key) {
             Some(x) => x,
             None => return None
         };
 
-        return h2h_market.true_probability_estimate();
-
-        return 0.0
+        return h2h_market.true_probability_for_outcome(outcome);
     }
 
     fn get_best_odds_for_outcome(&self, outcome_key: &str) -> (String, Odds) {
