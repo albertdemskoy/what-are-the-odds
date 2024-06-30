@@ -1,4 +1,5 @@
 pub mod api_requests;
+pub mod bookiestat;
 pub mod odds;
 pub mod event;
 pub mod market;

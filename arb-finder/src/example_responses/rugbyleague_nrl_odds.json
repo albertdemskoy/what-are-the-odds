@@ -1,430 +1,24 @@
 [
   {
-    "id": "1b155dfb41950a9ad8653b1f66001c55",
-    "sport_key": "rugbyleague_nrl",
-    "sport_title": "NRL",
-    "commence_time": "2024-06-30T04:00:00Z",
-    "home_team": "St George Illawarra Dragons",
-    "away_team": "Dolphins",
-    "bookmakers": [
-      {
-        "key": "sportsbet",
-        "title": "SportsBet",
-        "last_update": "2024-06-30T00:57:08Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:08Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.94 },
-              { "name": "St George Illawarra Dragons", "price": 1.9 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "bovada",
-        "title": "Bovada",
-        "last_update": "2024-06-30T00:56:50Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:50Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.94 },
-              { "name": "St George Illawarra Dragons", "price": 1.92 },
-              { "name": "Draw", "price": 24.0 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "betclic",
-        "title": "Betclic",
-        "last_update": "2024-06-30T00:57:01Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:01Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.9 },
-              { "name": "St George Illawarra Dragons", "price": 1.82 },
-              { "name": "Draw", "price": 22.0 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "marathonbet",
-        "title": "Marathon Bet",
-        "last_update": "2024-06-30T00:56:44Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:44Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.96 },
-              { "name": "St George Illawarra Dragons", "price": 1.92 },
-              { "name": "Draw", "price": 23.0 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "superbook",
-        "title": "SuperBook",
-        "last_update": "2024-06-30T00:57:23Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:23Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.95 },
-              { "name": "St George Illawarra Dragons", "price": 1.83 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "tab",
-        "title": "TAB",
-        "last_update": "2024-06-30T00:57:24Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:24Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.9 },
-              { "name": "St George Illawarra Dragons", "price": 1.9 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "neds",
-        "title": "Neds",
-        "last_update": "2024-06-30T00:57:16Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.9 },
-              { "name": "St George Illawarra Dragons", "price": 1.9 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "ladbrokes_au",
-        "title": "Ladbrokes",
-        "last_update": "2024-06-30T00:57:16Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.9 },
-              { "name": "St George Illawarra Dragons", "price": 1.9 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "bluebet",
-        "title": "BlueBet",
-        "last_update": "2024-06-30T00:57:01Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:01Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.9 },
-              { "name": "St George Illawarra Dragons", "price": 1.9 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "tabtouch",
-        "title": "TABtouch",
-        "last_update": "2024-06-30T00:56:35Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:35Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.89 },
-              { "name": "St George Illawarra Dragons", "price": 1.91 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "unibet",
-        "title": "Unibet",
-        "last_update": "2024-06-30T00:57:10Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:10Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.89 },
-              { "name": "St George Illawarra Dragons", "price": 1.91 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "betrivers",
-        "title": "BetRivers",
-        "last_update": "2024-06-30T00:57:20Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:20Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.89 },
-              { "name": "St George Illawarra Dragons", "price": 1.91 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "mybookieag",
-        "title": "MyBookie.ag",
-        "last_update": "2024-06-30T00:56:32Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:32Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 2.0 },
-              { "name": "St George Illawarra Dragons", "price": 1.9 },
-              { "name": "Draw", "price": 23.01 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "playup",
-        "title": "PlayUp",
-        "last_update": "2024-06-30T00:56:13Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:13Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.9 },
-              { "name": "St George Illawarra Dragons", "price": 1.9 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "betr_au",
-        "title": "Betr",
-        "last_update": "2024-06-30T00:56:45Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:45Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.97 },
-              { "name": "St George Illawarra Dragons", "price": 1.83 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "pointsbetau",
-        "title": "PointsBet (AU)",
-        "last_update": "2024-06-30T00:57:18Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:18Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.9 },
-              { "name": "St George Illawarra Dragons", "price": 1.9 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "nordicbet",
-        "title": "Nordic Bet",
-        "last_update": "2024-06-30T00:56:54Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:54Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.98 },
-              { "name": "St George Illawarra Dragons", "price": 1.95 },
-              { "name": "Draw", "price": 22.0 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "betfair_ex_au",
-        "title": "Betfair",
-        "last_update": "2024-06-30T00:56:42Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:42Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 2.0 },
-              { "name": "St George Illawarra Dragons", "price": 1.96 }
-            ]
-          },
-          {
-            "key": "h2h_lay",
-            "last_update": "2024-06-30T00:56:42Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 2.04 },
-              { "name": "St George Illawarra Dragons", "price": 1.99 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "topsport",
-        "title": "TopSport",
-        "last_update": "2024-06-30T00:57:10Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:10Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.87 },
-              { "name": "St George Illawarra Dragons", "price": 1.93 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "lowvig",
-        "title": "LowVig.ag",
-        "last_update": "2024-06-30T00:56:54Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:54Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.87 },
-              { "name": "St George Illawarra Dragons", "price": 1.95 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "pinnacle",
-        "title": "Pinnacle",
-        "last_update": "2024-06-30T00:57:23Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:23Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.93 },
-              { "name": "St George Illawarra Dragons", "price": 1.9 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "betus",
-        "title": "BetUS",
-        "last_update": "2024-06-30T00:56:39Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:39Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.83 },
-              { "name": "St George Illawarra Dragons", "price": 1.83 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "matchbook",
-        "title": "Matchbook",
-        "last_update": "2024-06-30T00:57:08Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:08Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 1.95 },
-              { "name": "St George Illawarra Dragons", "price": 1.87 }
-            ]
-          },
-          {
-            "key": "h2h_lay",
-            "last_update": "2024-06-30T00:57:08Z",
-            "outcomes": [
-              { "name": "Dolphins", "price": 2.16 },
-              { "name": "St George Illawarra Dragons", "price": 2.06 }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "a16d5db024e52c4a0a2f9059f2717f29",
     "sport_key": "rugbyleague_nrl",
     "sport_title": "NRL",
-    "commence_time": "2024-06-30T06:05:00Z",
+    "commence_time": "2024-06-30T06:06:00Z",
     "home_team": "Penrith Panthers",
     "away_team": "North Queensland Cowboys",
     "bookmakers": [
       {
-        "key": "sportsbet",
-        "title": "SportsBet",
-        "last_update": "2024-06-30T00:57:08Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:08Z",
-            "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.9 },
-              { "name": "Penrith Panthers", "price": 1.26 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "superbook",
-        "title": "SuperBook",
-        "last_update": "2024-06-30T00:57:23Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:23Z",
-            "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 4.1 },
-              { "name": "Penrith Panthers", "price": 1.22 }
-            ]
-          }
-        ]
-      },
-      {
         "key": "bovada",
         "title": "Bovada",
-        "last_update": "2024-06-30T00:56:50Z",
+        "last_update": "2024-06-30T07:14:39Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:50Z",
+            "last_update": "2024-06-30T07:14:39Z",
             "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.9 },
-              { "name": "Penrith Panthers", "price": 1.27 },
-              { "name": "Draw", "price": 24.0 }
+              { "name": "North Queensland Cowboys", "price": 2.0 },
+              { "name": "Penrith Panthers", "price": 1.94 },
+              { "name": "Draw", "price": 13.0 }
             ]
           }
         ]
@@ -432,31 +26,15 @@
       {
         "key": "betclic",
         "title": "Betclic",
-        "last_update": "2024-06-30T00:57:01Z",
+        "last_update": "2024-06-30T07:16:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:01Z",
+            "last_update": "2024-06-30T07:16:37Z",
             "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.4 },
-              { "name": "Penrith Panthers", "price": 1.28 },
-              { "name": "Draw", "price": 28.0 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "marathonbet",
-        "title": "Marathon Bet",
-        "last_update": "2024-06-30T00:56:44Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:44Z",
-            "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 4.15 },
-              { "name": "Penrith Panthers", "price": 1.25 },
-              { "name": "Draw", "price": 31.0 }
+              { "name": "North Queensland Cowboys", "price": 1.87 },
+              { "name": "Penrith Panthers", "price": 2.22 },
+              { "name": "Draw", "price": 8.25 }
             ]
           }
         ]
@@ -464,44 +42,14 @@
       {
         "key": "tab",
         "title": "TAB",
-        "last_update": "2024-06-30T00:57:24Z",
+        "last_update": "2024-06-30T07:17:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:24Z",
+            "last_update": "2024-06-30T07:17:37Z",
             "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.7 },
-              { "name": "Penrith Panthers", "price": 1.28 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "neds",
-        "title": "Neds",
-        "last_update": "2024-06-30T00:57:16Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
-            "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.5 },
-              { "name": "Penrith Panthers", "price": 1.3 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "ladbrokes_au",
-        "title": "Ladbrokes",
-        "last_update": "2024-06-30T00:57:16Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
-            "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.5 },
-              { "name": "Penrith Panthers", "price": 1.3 }
+              { "name": "North Queensland Cowboys", "price": 2.0 },
+              { "name": "Penrith Panthers", "price": 1.8 }
             ]
           }
         ]
@@ -509,14 +57,14 @@
       {
         "key": "bluebet",
         "title": "BlueBet",
-        "last_update": "2024-06-30T00:57:01Z",
+        "last_update": "2024-06-30T07:06:47Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:01Z",
+            "last_update": "2024-06-30T07:06:47Z",
             "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.7 },
-              { "name": "Penrith Panthers", "price": 1.28 }
+              { "name": "North Queensland Cowboys", "price": 2.2 },
+              { "name": "Penrith Panthers", "price": 1.65 }
             ]
           }
         ]
@@ -524,14 +72,14 @@
       {
         "key": "tabtouch",
         "title": "TABtouch",
-        "last_update": "2024-06-30T00:56:35Z",
+        "last_update": "2024-06-30T07:17:18Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:35Z",
+            "last_update": "2024-06-30T07:17:18Z",
             "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.65 },
-              { "name": "Penrith Panthers", "price": 1.28 }
+              { "name": "North Queensland Cowboys", "price": 1.88 },
+              { "name": "Penrith Panthers", "price": 1.82 }
             ]
           }
         ]
@@ -539,29 +87,14 @@
       {
         "key": "unibet",
         "title": "Unibet",
-        "last_update": "2024-06-30T00:57:10Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:10Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.65 },
-              { "name": "Penrith Panthers", "price": 1.28 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "betrivers",
-        "title": "BetRivers",
-        "last_update": "2024-06-30T00:57:20Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:20Z",
-            "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.65 },
-              { "name": "Penrith Panthers", "price": 1.28 }
+              { "name": "North Queensland Cowboys", "price": 1.91 },
+              { "name": "Penrith Panthers", "price": 1.83 }
             ]
           }
         ]
@@ -569,30 +102,14 @@
       {
         "key": "mybookieag",
         "title": "MyBookie.ag",
-        "last_update": "2024-06-30T00:56:32Z",
+        "last_update": "2024-06-30T07:17:48Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:32Z",
+            "last_update": "2024-06-30T07:17:48Z",
             "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.71 },
-              { "name": "Penrith Panthers", "price": 1.3 },
-              { "name": "Draw", "price": 30.26 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "playup",
-        "title": "PlayUp",
-        "last_update": "2024-06-30T00:56:13Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:13Z",
-            "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.7 },
-              { "name": "Penrith Panthers", "price": 1.28 }
+              { "name": "North Queensland Cowboys", "price": 1.95 },
+              { "name": "Penrith Panthers", "price": 1.75 }
             ]
           }
         ]
@@ -600,14 +117,14 @@
       {
         "key": "betr_au",
         "title": "Betr",
-        "last_update": "2024-06-30T00:56:45Z",
+        "last_update": "2024-06-30T07:17:23Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:45Z",
+            "last_update": "2024-06-30T07:17:23Z",
             "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.6 },
-              { "name": "Penrith Panthers", "price": 1.29 }
+              { "name": "North Queensland Cowboys", "price": 1.83 },
+              { "name": "Penrith Panthers", "price": 1.96 }
             ]
           }
         ]
@@ -615,30 +132,14 @@
       {
         "key": "pointsbetau",
         "title": "PointsBet (AU)",
-        "last_update": "2024-06-30T00:57:18Z",
+        "last_update": "2024-06-30T07:17:16Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:18Z",
+            "last_update": "2024-06-30T07:17:16Z",
             "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 4.0 },
-              { "name": "Penrith Panthers", "price": 1.25 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "nordicbet",
-        "title": "Nordic Bet",
-        "last_update": "2024-06-30T00:56:54Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:54Z",
-            "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.8 },
-              { "name": "Penrith Panthers", "price": 1.3 },
-              { "name": "Draw", "price": 30.0 }
+              { "name": "North Queensland Cowboys", "price": 1.98 },
+              { "name": "Penrith Panthers", "price": 1.82 }
             ]
           }
         ]
@@ -646,105 +147,22 @@
       {
         "key": "betfair_ex_au",
         "title": "Betfair",
-        "last_update": "2024-06-30T00:56:42Z",
+        "last_update": "2024-06-30T07:17:26Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:42Z",
+            "last_update": "2024-06-30T07:17:26Z",
             "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 4.1 },
-              { "name": "Penrith Panthers", "price": 1.31 }
+              { "name": "North Queensland Cowboys", "price": 2.28 },
+              { "name": "Penrith Panthers", "price": 1.59 }
             ]
           },
           {
             "key": "h2h_lay",
-            "last_update": "2024-06-30T00:56:42Z",
+            "last_update": "2024-06-30T07:17:26Z",
             "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 4.3 },
-              { "name": "Penrith Panthers", "price": 1.33 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "topsport",
-        "title": "TopSport",
-        "last_update": "2024-06-30T00:57:10Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:10Z",
-            "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.6 },
-              { "name": "Penrith Panthers", "price": 1.28 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "lowvig",
-        "title": "LowVig.ag",
-        "last_update": "2024-06-30T00:56:54Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:54Z",
-            "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.85 },
-              { "name": "Penrith Panthers", "price": 1.29 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "pinnacle",
-        "title": "Pinnacle",
-        "last_update": "2024-06-30T00:57:23Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:23Z",
-            "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.68 },
-              { "name": "Penrith Panthers", "price": 1.28 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "betus",
-        "title": "BetUS",
-        "last_update": "2024-06-30T00:56:39Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:39Z",
-            "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.3 },
-              { "name": "Penrith Panthers", "price": 1.28 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "matchbook",
-        "title": "Matchbook",
-        "last_update": "2024-06-30T00:57:08Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:08Z",
-            "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 3.95 },
-              { "name": "Penrith Panthers", "price": 1.26 }
-            ]
-          },
-          {
-            "key": "h2h_lay",
-            "last_update": "2024-06-30T00:57:08Z",
-            "outcomes": [
-              { "name": "North Queensland Cowboys", "price": 4.9 },
-              { "name": "Penrith Panthers", "price": 1.34 }
+              { "name": "North Queensland Cowboys", "price": 2.7 },
+              { "name": "Penrith Panthers", "price": 1.78 }
             ]
           }
         ]
@@ -762,14 +180,14 @@
       {
         "key": "sportsbet",
         "title": "SportsBet",
-        "last_update": "2024-06-30T00:57:08Z",
+        "last_update": "2024-06-30T07:17:46Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:08Z",
+            "last_update": "2024-06-30T07:17:46Z",
             "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.23 },
-              { "name": "Wests Tigers", "price": 4.2 }
+              { "name": "Sydney Roosters", "price": 1.17 },
+              { "name": "Wests Tigers", "price": 4.9 }
             ]
           }
         ]
@@ -777,14 +195,14 @@
       {
         "key": "superbook",
         "title": "SuperBook",
-        "last_update": "2024-06-30T00:57:23Z",
+        "last_update": "2024-06-30T07:17:28Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:23Z",
+            "last_update": "2024-06-30T07:17:28Z",
             "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.18 },
-              { "name": "Wests Tigers", "price": 4.5 }
+              { "name": "Sydney Roosters", "price": 1.17 },
+              { "name": "Wests Tigers", "price": 4.75 }
             ]
           }
         ]
@@ -792,14 +210,14 @@
       {
         "key": "bovada",
         "title": "Bovada",
-        "last_update": "2024-06-30T00:56:50Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:50Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.23 },
-              { "name": "Wests Tigers", "price": 4.4 },
+              { "name": "Sydney Roosters", "price": 1.21 },
+              { "name": "Wests Tigers", "price": 4.7 },
               { "name": "Draw", "price": 29.0 }
             ]
           }
@@ -808,15 +226,15 @@
       {
         "key": "betclic",
         "title": "Betclic",
-        "last_update": "2024-06-30T00:57:01Z",
+        "last_update": "2024-06-30T07:16:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:01Z",
+            "last_update": "2024-06-30T07:16:37Z",
             "outcomes": [
               { "name": "Sydney Roosters", "price": 1.18 },
-              { "name": "Wests Tigers", "price": 4.4 },
-              { "name": "Draw", "price": 25.0 }
+              { "name": "Wests Tigers", "price": 4.2 },
+              { "name": "Draw", "price": 28.0 }
             ]
           }
         ]
@@ -824,15 +242,15 @@
       {
         "key": "marathonbet",
         "title": "Marathon Bet",
-        "last_update": "2024-06-30T00:56:44Z",
+        "last_update": "2024-06-30T07:16:53Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:44Z",
+            "last_update": "2024-06-30T07:16:53Z",
             "outcomes": [
               { "name": "Sydney Roosters", "price": 1.19 },
-              { "name": "Wests Tigers", "price": 4.85 },
-              { "name": "Draw", "price": 36.0 }
+              { "name": "Wests Tigers", "price": 4.75 },
+              { "name": "Draw", "price": 41.0 }
             ]
           }
         ]
@@ -840,14 +258,14 @@
       {
         "key": "tab",
         "title": "TAB",
-        "last_update": "2024-06-30T00:57:24Z",
+        "last_update": "2024-06-30T07:17:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:24Z",
+            "last_update": "2024-06-30T07:17:37Z",
             "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.2 },
-              { "name": "Wests Tigers", "price": 4.5 }
+              { "name": "Sydney Roosters", "price": 1.18 },
+              { "name": "Wests Tigers", "price": 4.8 }
             ]
           }
         ]
@@ -855,56 +273,11 @@
       {
         "key": "neds",
         "title": "Neds",
-        "last_update": "2024-06-30T00:57:16Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
-            "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.22 },
-              { "name": "Wests Tigers", "price": 4.25 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "ladbrokes_au",
-        "title": "Ladbrokes",
-        "last_update": "2024-06-30T00:57:16Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
-            "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.22 },
-              { "name": "Wests Tigers", "price": 4.25 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "bluebet",
-        "title": "BlueBet",
-        "last_update": "2024-06-30T00:57:01Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:01Z",
-            "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.2 },
-              { "name": "Wests Tigers", "price": 4.5 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "playup",
-        "title": "PlayUp",
-        "last_update": "2024-06-30T00:56:13Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:13Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
               { "name": "Sydney Roosters", "price": 1.2 },
               { "name": "Wests Tigers", "price": 4.6 }
@@ -913,16 +286,61 @@
         ]
       },
       {
-        "key": "betr_au",
-        "title": "Betr",
-        "last_update": "2024-06-30T00:56:45Z",
+        "key": "ladbrokes_au",
+        "title": "Ladbrokes",
+        "last_update": "2024-06-30T07:17:46Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:45Z",
+            "last_update": "2024-06-30T07:17:46Z",
             "outcomes": [
               { "name": "Sydney Roosters", "price": 1.2 },
-              { "name": "Wests Tigers", "price": 4.55 }
+              { "name": "Wests Tigers", "price": 4.6 }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "bluebet",
+        "title": "BlueBet",
+        "last_update": "2024-06-30T07:17:32Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2024-06-30T07:17:32Z",
+            "outcomes": [
+              { "name": "Sydney Roosters", "price": 1.18 },
+              { "name": "Wests Tigers", "price": 4.8 }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "playup",
+        "title": "PlayUp",
+        "last_update": "2024-06-30T07:17:20Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2024-06-30T07:17:20Z",
+            "outcomes": [
+              { "name": "Sydney Roosters", "price": 1.18 },
+              { "name": "Wests Tigers", "price": 5.15 }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "betr_au",
+        "title": "Betr",
+        "last_update": "2024-06-30T07:17:23Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2024-06-30T07:17:23Z",
+            "outcomes": [
+              { "name": "Sydney Roosters", "price": 1.22 },
+              { "name": "Wests Tigers", "price": 4.3 }
             ]
           }
         ]
@@ -930,11 +348,11 @@
       {
         "key": "pointsbetau",
         "title": "PointsBet (AU)",
-        "last_update": "2024-06-30T00:57:18Z",
+        "last_update": "2024-06-30T07:17:16Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:18Z",
+            "last_update": "2024-06-30T07:17:16Z",
             "outcomes": [
               { "name": "Sydney Roosters", "price": 1.2 },
               { "name": "Wests Tigers", "price": 4.5 }
@@ -945,11 +363,11 @@
       {
         "key": "nordicbet",
         "title": "Nordic Bet",
-        "last_update": "2024-06-30T00:56:54Z",
+        "last_update": "2024-06-30T07:17:12Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:54Z",
+            "last_update": "2024-06-30T07:17:12Z",
             "outcomes": [
               { "name": "Sydney Roosters", "price": 1.22 },
               { "name": "Wests Tigers", "price": 4.8 },
@@ -961,22 +379,22 @@
       {
         "key": "betfair_ex_au",
         "title": "Betfair",
-        "last_update": "2024-06-30T00:56:42Z",
+        "last_update": "2024-06-30T07:17:26Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:42Z",
+            "last_update": "2024-06-30T07:17:26Z",
             "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.25 },
-              { "name": "Wests Tigers", "price": 4.7 }
+              { "name": "Sydney Roosters", "price": 1.2 },
+              { "name": "Wests Tigers", "price": 5.8 }
             ]
           },
           {
             "key": "h2h_lay",
-            "last_update": "2024-06-30T00:56:42Z",
+            "last_update": "2024-06-30T07:17:26Z",
             "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.27 },
-              { "name": "Wests Tigers", "price": 5.4 }
+              { "name": "Sydney Roosters", "price": 1.21 },
+              { "name": "Wests Tigers", "price": 6.4 }
             ]
           }
         ]
@@ -984,14 +402,14 @@
       {
         "key": "tabtouch",
         "title": "TABtouch",
-        "last_update": "2024-06-30T00:56:35Z",
+        "last_update": "2024-06-30T07:17:18Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:35Z",
+            "last_update": "2024-06-30T07:17:18Z",
             "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.22 },
-              { "name": "Wests Tigers", "price": 4.35 }
+              { "name": "Sydney Roosters", "price": 1.2 },
+              { "name": "Wests Tigers", "price": 4.5 }
             ]
           }
         ]
@@ -999,14 +417,14 @@
       {
         "key": "betrivers",
         "title": "BetRivers",
-        "last_update": "2024-06-30T00:57:20Z",
+        "last_update": "2024-06-30T07:17:24Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:20Z",
+            "last_update": "2024-06-30T07:17:24Z",
             "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.22 },
-              { "name": "Wests Tigers", "price": 4.35 }
+              { "name": "Sydney Roosters", "price": 1.2 },
+              { "name": "Wests Tigers", "price": 4.5 }
             ]
           }
         ]
@@ -1014,14 +432,14 @@
       {
         "key": "unibet",
         "title": "Unibet",
-        "last_update": "2024-06-30T00:57:10Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:10Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.22 },
-              { "name": "Wests Tigers", "price": 4.35 }
+              { "name": "Sydney Roosters", "price": 1.2 },
+              { "name": "Wests Tigers", "price": 4.5 }
             ]
           }
         ]
@@ -1029,14 +447,14 @@
       {
         "key": "topsport",
         "title": "TopSport",
-        "last_update": "2024-06-30T00:57:10Z",
+        "last_update": "2024-06-30T07:17:17Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:10Z",
+            "last_update": "2024-06-30T07:17:17Z",
             "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.21 },
-              { "name": "Wests Tigers", "price": 4.4 }
+              { "name": "Sydney Roosters", "price": 1.18 },
+              { "name": "Wests Tigers", "price": 4.8 }
             ]
           }
         ]
@@ -1044,14 +462,14 @@
       {
         "key": "lowvig",
         "title": "LowVig.ag",
-        "last_update": "2024-06-30T00:56:54Z",
+        "last_update": "2024-06-30T07:17:22Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:54Z",
+            "last_update": "2024-06-30T07:17:22Z",
             "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.22 },
-              { "name": "Wests Tigers", "price": 4.6 }
+              { "name": "Sydney Roosters", "price": 1.18 },
+              { "name": "Wests Tigers", "price": 4.93 }
             ]
           }
         ]
@@ -1059,15 +477,15 @@
       {
         "key": "mybookieag",
         "title": "MyBookie.ag",
-        "last_update": "2024-06-30T00:56:32Z",
+        "last_update": "2024-06-30T07:17:48Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:32Z",
+            "last_update": "2024-06-30T07:17:48Z",
             "outcomes": [
-              { "name": "Sydney Roosters", "price": 1.2 },
-              { "name": "Wests Tigers", "price": 4.92 },
-              { "name": "Draw", "price": 30.02 }
+              { "name": "Sydney Roosters", "price": 1.22 },
+              { "name": "Wests Tigers", "price": 4.58 },
+              { "name": "Draw", "price": 31.69 }
             ]
           }
         ]
@@ -1075,14 +493,14 @@
       {
         "key": "pinnacle",
         "title": "Pinnacle",
-        "last_update": "2024-06-30T00:57:23Z",
+        "last_update": "2024-06-30T07:17:08Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:23Z",
+            "last_update": "2024-06-30T07:17:08Z",
             "outcomes": [
               { "name": "Sydney Roosters", "price": 1.22 },
-              { "name": "Wests Tigers", "price": 4.27 }
+              { "name": "Wests Tigers", "price": 4.39 }
             ]
           }
         ]
@@ -1090,11 +508,11 @@
       {
         "key": "betus",
         "title": "BetUS",
-        "last_update": "2024-06-30T00:56:39Z",
+        "last_update": "2024-06-30T07:17:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:39Z",
+            "last_update": "2024-06-30T07:17:37Z",
             "outcomes": [
               { "name": "Sydney Roosters", "price": 1.23 },
               { "name": "Wests Tigers", "price": 3.7 }
@@ -1115,11 +533,11 @@
       {
         "key": "sportsbet",
         "title": "SportsBet",
-        "last_update": "2024-06-30T00:57:08Z",
+        "last_update": "2024-06-30T07:17:46Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:08Z",
+            "last_update": "2024-06-30T07:17:46Z",
             "outcomes": [
               { "name": "Parramatta Eels", "price": 1.98 },
               { "name": "South Sydney Rabbitohs", "price": 1.86 }
@@ -1130,11 +548,11 @@
       {
         "key": "bovada",
         "title": "Bovada",
-        "last_update": "2024-06-30T00:56:50Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:50Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
               { "name": "Parramatta Eels", "price": 1.93 },
               { "name": "South Sydney Rabbitohs", "price": 1.91 },
@@ -1146,15 +564,15 @@
       {
         "key": "marathonbet",
         "title": "Marathon Bet",
-        "last_update": "2024-06-30T00:56:44Z",
+        "last_update": "2024-06-30T07:16:53Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:44Z",
+            "last_update": "2024-06-30T07:16:53Z",
             "outcomes": [
-              { "name": "Parramatta Eels", "price": 1.96 },
-              { "name": "South Sydney Rabbitohs", "price": 1.92 },
-              { "name": "Draw", "price": 23.0 }
+              { "name": "Parramatta Eels", "price": 1.95 },
+              { "name": "South Sydney Rabbitohs", "price": 1.93 },
+              { "name": "Draw", "price": 22.0 }
             ]
           }
         ]
@@ -1162,14 +580,14 @@
       {
         "key": "superbook",
         "title": "SuperBook",
-        "last_update": "2024-06-30T00:57:23Z",
+        "last_update": "2024-06-30T07:17:28Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:23Z",
+            "last_update": "2024-06-30T07:17:28Z",
             "outcomes": [
-              { "name": "Parramatta Eels", "price": 1.87 },
-              { "name": "South Sydney Rabbitohs", "price": 1.91 }
+              { "name": "Parramatta Eels", "price": 1.83 },
+              { "name": "South Sydney Rabbitohs", "price": 1.95 }
             ]
           }
         ]
@@ -1177,14 +595,14 @@
       {
         "key": "betclic",
         "title": "Betclic",
-        "last_update": "2024-06-30T00:57:01Z",
+        "last_update": "2024-06-30T07:16:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:01Z",
+            "last_update": "2024-06-30T07:16:37Z",
             "outcomes": [
-              { "name": "Parramatta Eels", "price": 1.8 },
-              { "name": "South Sydney Rabbitohs", "price": 1.8 },
+              { "name": "Parramatta Eels", "price": 1.75 },
+              { "name": "South Sydney Rabbitohs", "price": 1.85 },
               { "name": "Draw", "price": 22.0 }
             ]
           }
@@ -1193,15 +611,15 @@
       {
         "key": "mybookieag",
         "title": "MyBookie.ag",
-        "last_update": "2024-06-30T00:56:32Z",
+        "last_update": "2024-06-30T07:17:48Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:32Z",
+            "last_update": "2024-06-30T07:17:48Z",
             "outcomes": [
-              { "name": "Parramatta Eels", "price": 1.88 },
-              { "name": "South Sydney Rabbitohs", "price": 1.91 },
-              { "name": "Draw", "price": 21.8 }
+              { "name": "Parramatta Eels", "price": 1.83 },
+              { "name": "South Sydney Rabbitohs", "price": 1.97 },
+              { "name": "Draw", "price": 21.75 }
             ]
           }
         ]
@@ -1209,14 +627,14 @@
       {
         "key": "tab",
         "title": "TAB",
-        "last_update": "2024-06-30T00:57:24Z",
+        "last_update": "2024-06-30T07:17:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:24Z",
+            "last_update": "2024-06-30T07:17:37Z",
             "outcomes": [
-              { "name": "Parramatta Eels", "price": 1.9 },
-              { "name": "South Sydney Rabbitohs", "price": 1.9 }
+              { "name": "Parramatta Eels", "price": 1.8 },
+              { "name": "South Sydney Rabbitohs", "price": 2.0 }
             ]
           }
         ]
@@ -1224,11 +642,11 @@
       {
         "key": "betus",
         "title": "BetUS",
-        "last_update": "2024-06-30T00:56:39Z",
+        "last_update": "2024-06-30T07:17:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:39Z",
+            "last_update": "2024-06-30T07:17:37Z",
             "outcomes": [
               { "name": "Parramatta Eels", "price": 1.83 },
               { "name": "South Sydney Rabbitohs", "price": 1.83 }
@@ -1239,11 +657,11 @@
       {
         "key": "pointsbetau",
         "title": "PointsBet (AU)",
-        "last_update": "2024-06-30T00:57:18Z",
+        "last_update": "2024-06-30T07:17:16Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:18Z",
+            "last_update": "2024-06-30T07:17:16Z",
             "outcomes": [
               { "name": "Parramatta Eels", "price": 1.9 },
               { "name": "South Sydney Rabbitohs", "price": 1.9 }
@@ -1254,11 +672,11 @@
       {
         "key": "neds",
         "title": "Neds",
-        "last_update": "2024-06-30T00:57:16Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
               { "name": "Parramatta Eels", "price": 1.9 },
               { "name": "South Sydney Rabbitohs", "price": 1.9 }
@@ -1269,11 +687,11 @@
       {
         "key": "ladbrokes_au",
         "title": "Ladbrokes",
-        "last_update": "2024-06-30T00:57:16Z",
+        "last_update": "2024-06-30T07:17:46Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
+            "last_update": "2024-06-30T07:17:46Z",
             "outcomes": [
               { "name": "Parramatta Eels", "price": 1.9 },
               { "name": "South Sydney Rabbitohs", "price": 1.9 }
@@ -1284,22 +702,37 @@
       {
         "key": "betfair_ex_au",
         "title": "Betfair",
-        "last_update": "2024-06-30T00:56:42Z",
+        "last_update": "2024-06-30T07:17:26Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:42Z",
+            "last_update": "2024-06-30T07:17:26Z",
             "outcomes": [
-              { "name": "Parramatta Eels", "price": 1.4 },
-              { "name": "South Sydney Rabbitohs", "price": 1.4 }
+              { "name": "Parramatta Eels", "price": 1.49 },
+              { "name": "South Sydney Rabbitohs", "price": 1.44 }
             ]
           },
           {
             "key": "h2h_lay",
-            "last_update": "2024-06-30T00:56:42Z",
+            "last_update": "2024-06-30T07:17:26Z",
             "outcomes": [
               { "name": "Parramatta Eels", "price": 3.7 },
               { "name": "South Sydney Rabbitohs", "price": 3.2 }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "bluebet",
+        "title": "BlueBet",
+        "last_update": "2024-06-30T07:17:32Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2024-06-30T07:17:32Z",
+            "outcomes": [
+              { "name": "Parramatta Eels", "price": 1.9 },
+              { "name": "South Sydney Rabbitohs", "price": 1.9 }
             ]
           }
         ]
@@ -1317,11 +750,11 @@
       {
         "key": "sportsbet",
         "title": "SportsBet",
-        "last_update": "2024-06-30T00:57:08Z",
+        "last_update": "2024-06-30T07:17:46Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:08Z",
+            "last_update": "2024-06-30T07:17:46Z",
             "outcomes": [
               { "name": "Cronulla Sutherland Sharks", "price": 1.37 },
               { "name": "Gold Coast Titans", "price": 3.11 }
@@ -1332,11 +765,11 @@
       {
         "key": "marathonbet",
         "title": "Marathon Bet",
-        "last_update": "2024-06-30T00:56:44Z",
+        "last_update": "2024-06-30T07:16:53Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:44Z",
+            "last_update": "2024-06-30T07:16:53Z",
             "outcomes": [
               { "name": "Cronulla Sutherland Sharks", "price": 1.4 },
               { "name": "Gold Coast Titans", "price": 3.1 },
@@ -1348,11 +781,11 @@
       {
         "key": "bovada",
         "title": "Bovada",
-        "last_update": "2024-06-30T00:56:50Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:50Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
               { "name": "Cronulla Sutherland Sharks", "price": 1.42 },
               { "name": "Gold Coast Titans", "price": 3.0 },
@@ -1364,11 +797,11 @@
       {
         "key": "superbook",
         "title": "SuperBook",
-        "last_update": "2024-06-30T00:57:23Z",
+        "last_update": "2024-06-30T07:17:28Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:23Z",
+            "last_update": "2024-06-30T07:17:28Z",
             "outcomes": [
               { "name": "Cronulla Sutherland Sharks", "price": 1.33 },
               { "name": "Gold Coast Titans", "price": 3.2 }
@@ -1379,13 +812,13 @@
       {
         "key": "betclic",
         "title": "Betclic",
-        "last_update": "2024-06-30T00:57:01Z",
+        "last_update": "2024-06-30T07:16:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:01Z",
+            "last_update": "2024-06-30T07:16:37Z",
             "outcomes": [
-              { "name": "Cronulla Sutherland Sharks", "price": 1.3 },
+              { "name": "Cronulla Sutherland Sharks", "price": 1.28 },
               { "name": "Gold Coast Titans", "price": 3.0 },
               { "name": "Draw", "price": 20.0 }
             ]
@@ -1395,14 +828,14 @@
       {
         "key": "tab",
         "title": "TAB",
-        "last_update": "2024-06-30T00:57:24Z",
+        "last_update": "2024-06-30T07:17:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:24Z",
+            "last_update": "2024-06-30T07:17:37Z",
             "outcomes": [
-              { "name": "Cronulla Sutherland Sharks", "price": 1.38 },
-              { "name": "Gold Coast Titans", "price": 3.0 }
+              { "name": "Cronulla Sutherland Sharks", "price": 1.4 },
+              { "name": "Gold Coast Titans", "price": 2.9 }
             ]
           }
         ]
@@ -1410,15 +843,15 @@
       {
         "key": "mybookieag",
         "title": "MyBookie.ag",
-        "last_update": "2024-06-30T00:56:32Z",
+        "last_update": "2024-06-30T07:17:48Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:32Z",
+            "last_update": "2024-06-30T07:17:48Z",
             "outcomes": [
               { "name": "Cronulla Sutherland Sharks", "price": 1.33 },
-              { "name": "Gold Coast Titans", "price": 3.25 },
-              { "name": "Draw", "price": 23.41 }
+              { "name": "Gold Coast Titans", "price": 3.26 },
+              { "name": "Draw", "price": 23.45 }
             ]
           }
         ]
@@ -1426,11 +859,11 @@
       {
         "key": "betus",
         "title": "BetUS",
-        "last_update": "2024-06-30T00:56:39Z",
+        "last_update": "2024-06-30T07:17:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:39Z",
+            "last_update": "2024-06-30T07:17:37Z",
             "outcomes": [
               { "name": "Cronulla Sutherland Sharks", "price": 1.4 },
               { "name": "Gold Coast Titans", "price": 2.75 }
@@ -1441,14 +874,14 @@
       {
         "key": "pointsbetau",
         "title": "PointsBet (AU)",
-        "last_update": "2024-06-30T00:57:18Z",
+        "last_update": "2024-06-30T07:17:16Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:18Z",
+            "last_update": "2024-06-30T07:17:16Z",
             "outcomes": [
-              { "name": "Cronulla Sutherland Sharks", "price": 1.32 },
-              { "name": "Gold Coast Titans", "price": 3.4 }
+              { "name": "Cronulla Sutherland Sharks", "price": 1.35 },
+              { "name": "Gold Coast Titans", "price": 3.1 }
             ]
           }
         ]
@@ -1456,11 +889,11 @@
       {
         "key": "neds",
         "title": "Neds",
-        "last_update": "2024-06-30T00:57:16Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
               { "name": "Cronulla Sutherland Sharks", "price": 1.36 },
               { "name": "Gold Coast Titans", "price": 3.1 }
@@ -1471,11 +904,11 @@
       {
         "key": "ladbrokes_au",
         "title": "Ladbrokes",
-        "last_update": "2024-06-30T00:57:16Z",
+        "last_update": "2024-06-30T07:17:46Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
+            "last_update": "2024-06-30T07:17:46Z",
             "outcomes": [
               { "name": "Cronulla Sutherland Sharks", "price": 1.36 },
               { "name": "Gold Coast Titans", "price": 3.1 }
@@ -1486,224 +919,37 @@
       {
         "key": "betfair_ex_au",
         "title": "Betfair",
-        "last_update": "2024-06-30T00:56:42Z",
+        "last_update": "2024-06-30T07:17:26Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:42Z",
+            "last_update": "2024-06-30T07:17:26Z",
             "outcomes": [
-              { "name": "Cronulla Sutherland Sharks", "price": 1.13 },
+              { "name": "Cronulla Sutherland Sharks", "price": 1.24 },
               { "name": "Gold Coast Titans", "price": 1.9 }
             ]
           },
           {
             "key": "h2h_lay",
-            "last_update": "2024-06-30T00:56:42Z",
+            "last_update": "2024-06-30T07:17:26Z",
             "outcomes": [
               { "name": "Cronulla Sutherland Sharks", "price": 3.15 },
               { "name": "Gold Coast Titans", "price": 6.0 }
             ]
           }
         ]
-      }
-    ]
-  },
-  {
-    "id": "363baf8314538c30467e79216427567a",
-    "sport_key": "rugbyleague_nrl",
-    "sport_title": "NRL",
-    "commence_time": "2024-07-05T10:00:00Z",
-    "home_team": "Brisbane Broncos",
-    "away_team": "Penrith Panthers",
-    "bookmakers": [
-      {
-        "key": "sportsbet",
-        "title": "SportsBet",
-        "last_update": "2024-06-30T00:57:08Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:08Z",
-            "outcomes": [
-              { "name": "Brisbane Broncos", "price": 2.33 },
-              { "name": "Penrith Panthers", "price": 1.61 }
-            ]
-          }
-        ]
       },
       {
-        "key": "marathonbet",
-        "title": "Marathon Bet",
-        "last_update": "2024-06-30T00:56:44Z",
+        "key": "bluebet",
+        "title": "BlueBet",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:44Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
-              { "name": "Brisbane Broncos", "price": 2.36 },
-              { "name": "Penrith Panthers", "price": 1.64 },
-              { "name": "Draw", "price": 24.0 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "bovada",
-        "title": "Bovada",
-        "last_update": "2024-06-30T00:56:50Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:50Z",
-            "outcomes": [
-              { "name": "Brisbane Broncos", "price": 2.33 },
-              { "name": "Penrith Panthers", "price": 1.64 },
-              { "name": "Draw", "price": 25.0 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "superbook",
-        "title": "SuperBook",
-        "last_update": "2024-06-30T00:57:23Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:23Z",
-            "outcomes": [
-              { "name": "Brisbane Broncos", "price": 2.2 },
-              { "name": "Penrith Panthers", "price": 1.65 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "betclic",
-        "title": "Betclic",
-        "last_update": "2024-06-30T00:57:01Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:01Z",
-            "outcomes": [
-              { "name": "Brisbane Broncos", "price": 2.1 },
-              { "name": "Penrith Panthers", "price": 1.58 },
-              { "name": "Draw", "price": 18.0 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "tab",
-        "title": "TAB",
-        "last_update": "2024-06-30T00:57:24Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:24Z",
-            "outcomes": [
-              { "name": "Brisbane Broncos", "price": 2.2 },
-              { "name": "Penrith Panthers", "price": 1.65 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "mybookieag",
-        "title": "MyBookie.ag",
-        "last_update": "2024-06-30T00:56:32Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:32Z",
-            "outcomes": [
-              { "name": "Brisbane Broncos", "price": 2.23 },
-              { "name": "Penrith Panthers", "price": 1.66 },
-              { "name": "Draw", "price": 20.71 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "betus",
-        "title": "BetUS",
-        "last_update": "2024-06-30T00:56:39Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:39Z",
-            "outcomes": [
-              { "name": "Brisbane Broncos", "price": 2.21 },
-              { "name": "Penrith Panthers", "price": 1.62 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "ladbrokes_au",
-        "title": "Ladbrokes",
-        "last_update": "2024-06-30T00:57:16Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
-            "outcomes": [
-              { "name": "Brisbane Broncos", "price": 2.33 },
-              { "name": "Penrith Panthers", "price": 1.61 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "neds",
-        "title": "Neds",
-        "last_update": "2024-06-30T00:57:16Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
-            "outcomes": [
-              { "name": "Brisbane Broncos", "price": 2.33 },
-              { "name": "Penrith Panthers", "price": 1.61 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "pointsbetau",
-        "title": "PointsBet (AU)",
-        "last_update": "2024-06-30T00:57:18Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:18Z",
-            "outcomes": [
-              { "name": "Brisbane Broncos", "price": 2.35 },
-              { "name": "Penrith Panthers", "price": 1.6 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "betfair_ex_au",
-        "title": "Betfair",
-        "last_update": "2024-06-30T00:56:42Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:42Z",
-            "outcomes": [
-              { "name": "Brisbane Broncos", "price": 1.5 },
-              { "name": "Penrith Panthers", "price": 1.08 }
-            ]
-          },
-          {
-            "key": "h2h_lay",
-            "last_update": "2024-06-30T00:56:42Z",
-            "outcomes": [
-              { "name": "Brisbane Broncos", "price": 5.0 },
-              { "name": "Penrith Panthers", "price": 2.7 }
+              { "name": "Cronulla Sutherland Sharks", "price": 1.4 },
+              { "name": "Gold Coast Titans", "price": 2.9 }
             ]
           }
         ]
@@ -1721,11 +967,11 @@
       {
         "key": "sportsbet",
         "title": "SportsBet",
-        "last_update": "2024-06-30T00:57:08Z",
+        "last_update": "2024-06-30T07:17:46Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:08Z",
+            "last_update": "2024-06-30T07:17:46Z",
             "outcomes": [
               { "name": "Canterbury Bulldogs", "price": 1.49 },
               { "name": "New Zealand Warriors", "price": 2.65 }
@@ -1736,15 +982,15 @@
       {
         "key": "marathonbet",
         "title": "Marathon Bet",
-        "last_update": "2024-06-30T00:56:44Z",
+        "last_update": "2024-06-30T07:16:53Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:44Z",
+            "last_update": "2024-06-30T07:16:53Z",
             "outcomes": [
-              { "name": "Canterbury Bulldogs", "price": 1.45 },
-              { "name": "New Zealand Warriors", "price": 2.9 },
-              { "name": "Draw", "price": 25.0 }
+              { "name": "Canterbury Bulldogs", "price": 1.46 },
+              { "name": "New Zealand Warriors", "price": 2.89 },
+              { "name": "Draw", "price": 22.0 }
             ]
           }
         ]
@@ -1752,15 +998,15 @@
       {
         "key": "bovada",
         "title": "Bovada",
-        "last_update": "2024-06-30T00:56:50Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:50Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
               { "name": "Canterbury Bulldogs", "price": 1.44 },
               { "name": "New Zealand Warriors", "price": 2.88 },
-              { "name": "Draw", "price": 24.0 }
+              { "name": "Draw", "price": 23.0 }
             ]
           }
         ]
@@ -1768,11 +1014,11 @@
       {
         "key": "superbook",
         "title": "SuperBook",
-        "last_update": "2024-06-30T00:57:23Z",
+        "last_update": "2024-06-30T07:17:28Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:23Z",
+            "last_update": "2024-06-30T07:17:28Z",
             "outcomes": [
               { "name": "Canterbury Bulldogs", "price": 1.42 },
               { "name": "New Zealand Warriors", "price": 2.8 }
@@ -1783,11 +1029,11 @@
       {
         "key": "betclic",
         "title": "Betclic",
-        "last_update": "2024-06-30T00:57:01Z",
+        "last_update": "2024-06-30T07:16:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:01Z",
+            "last_update": "2024-06-30T07:16:37Z",
             "outcomes": [
               { "name": "Canterbury Bulldogs", "price": 1.35 },
               { "name": "New Zealand Warriors", "price": 2.7 },
@@ -1799,14 +1045,14 @@
       {
         "key": "tab",
         "title": "TAB",
-        "last_update": "2024-06-30T00:57:24Z",
+        "last_update": "2024-06-30T07:17:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:24Z",
+            "last_update": "2024-06-30T07:17:37Z",
             "outcomes": [
-              { "name": "Canterbury Bulldogs", "price": 1.45 },
-              { "name": "New Zealand Warriors", "price": 2.75 }
+              { "name": "Canterbury Bulldogs", "price": 1.48 },
+              { "name": "New Zealand Warriors", "price": 2.6 }
             ]
           }
         ]
@@ -1814,11 +1060,11 @@
       {
         "key": "betus",
         "title": "BetUS",
-        "last_update": "2024-06-30T00:56:39Z",
+        "last_update": "2024-06-30T07:17:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:39Z",
+            "last_update": "2024-06-30T07:17:37Z",
             "outcomes": [
               { "name": "Canterbury Bulldogs", "price": 1.44 },
               { "name": "New Zealand Warriors", "price": 2.67 }
@@ -1829,11 +1075,11 @@
       {
         "key": "mybookieag",
         "title": "MyBookie.ag",
-        "last_update": "2024-06-30T00:56:32Z",
+        "last_update": "2024-06-30T07:17:48Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:32Z",
+            "last_update": "2024-06-30T07:17:48Z",
             "outcomes": [
               { "name": "Canterbury Bulldogs", "price": 1.42 },
               { "name": "New Zealand Warriors", "price": 2.86 },
@@ -1845,11 +1091,11 @@
       {
         "key": "pointsbetau",
         "title": "PointsBet (AU)",
-        "last_update": "2024-06-30T00:57:18Z",
+        "last_update": "2024-06-30T07:17:16Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:18Z",
+            "last_update": "2024-06-30T07:17:16Z",
             "outcomes": [
               { "name": "Canterbury Bulldogs", "price": 1.5 },
               { "name": "New Zealand Warriors", "price": 2.6 }
@@ -1860,14 +1106,14 @@
       {
         "key": "ladbrokes_au",
         "title": "Ladbrokes",
-        "last_update": "2024-06-30T00:57:16Z",
+        "last_update": "2024-06-30T07:17:46Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
+            "last_update": "2024-06-30T07:17:46Z",
             "outcomes": [
-              { "name": "Canterbury Bulldogs", "price": 1.5 },
-              { "name": "New Zealand Warriors", "price": 2.65 }
+              { "name": "Canterbury Bulldogs", "price": 1.46 },
+              { "name": "New Zealand Warriors", "price": 2.75 }
             ]
           }
         ]
@@ -1875,14 +1121,14 @@
       {
         "key": "neds",
         "title": "Neds",
-        "last_update": "2024-06-30T00:57:16Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
-              { "name": "Canterbury Bulldogs", "price": 1.5 },
-              { "name": "New Zealand Warriors", "price": 2.65 }
+              { "name": "Canterbury Bulldogs", "price": 1.46 },
+              { "name": "New Zealand Warriors", "price": 2.75 }
             ]
           }
         ]
@@ -1890,22 +1136,37 @@
       {
         "key": "betfair_ex_au",
         "title": "Betfair",
-        "last_update": "2024-06-30T00:56:42Z",
+        "last_update": "2024-06-30T07:17:26Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:42Z",
+            "last_update": "2024-06-30T07:17:26Z",
             "outcomes": [
-              { "name": "Canterbury Bulldogs", "price": 1.2 },
+              { "name": "Canterbury Bulldogs", "price": 1.27 },
               { "name": "New Zealand Warriors", "price": 1.6 }
             ]
           },
           {
             "key": "h2h_lay",
-            "last_update": "2024-06-30T00:56:42Z",
+            "last_update": "2024-06-30T07:17:26Z",
             "outcomes": [
               { "name": "Canterbury Bulldogs", "price": 2.8 },
               { "name": "New Zealand Warriors", "price": 5.3 }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "bluebet",
+        "title": "BlueBet",
+        "last_update": "2024-06-30T07:17:32Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2024-06-30T07:17:32Z",
+            "outcomes": [
+              { "name": "Canterbury Bulldogs", "price": 1.48 },
+              { "name": "New Zealand Warriors", "price": 2.6 }
             ]
           }
         ]
@@ -1923,11 +1184,11 @@
       {
         "key": "sportsbet",
         "title": "SportsBet",
-        "last_update": "2024-06-30T00:57:08Z",
+        "last_update": "2024-06-30T07:17:46Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:08Z",
+            "last_update": "2024-06-30T07:17:46Z",
             "outcomes": [
               { "name": "Melbourne Storm", "price": 1.29 },
               { "name": "Wests Tigers", "price": 3.63 }
@@ -1938,11 +1199,11 @@
       {
         "key": "marathonbet",
         "title": "Marathon Bet",
-        "last_update": "2024-06-30T00:56:44Z",
+        "last_update": "2024-06-30T07:16:53Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:44Z",
+            "last_update": "2024-06-30T07:16:53Z",
             "outcomes": [
               { "name": "Melbourne Storm", "price": 1.3 },
               { "name": "Wests Tigers", "price": 3.7 },
@@ -1954,11 +1215,11 @@
       {
         "key": "bovada",
         "title": "Bovada",
-        "last_update": "2024-06-30T00:56:50Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:50Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
               { "name": "Melbourne Storm", "price": 1.3 },
               { "name": "Wests Tigers", "price": 3.65 },
@@ -1970,11 +1231,11 @@
       {
         "key": "superbook",
         "title": "SuperBook",
-        "last_update": "2024-06-30T00:57:23Z",
+        "last_update": "2024-06-30T07:17:28Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:23Z",
+            "last_update": "2024-06-30T07:17:28Z",
             "outcomes": [
               { "name": "Melbourne Storm", "price": 1.26 },
               { "name": "Wests Tigers", "price": 3.7 }
@@ -1985,11 +1246,11 @@
       {
         "key": "betclic",
         "title": "Betclic",
-        "last_update": "2024-06-30T00:57:01Z",
+        "last_update": "2024-06-30T07:16:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:01Z",
+            "last_update": "2024-06-30T07:16:37Z",
             "outcomes": [
               { "name": "Melbourne Storm", "price": 1.22 },
               { "name": "Wests Tigers", "price": 3.3 },
@@ -2001,11 +1262,11 @@
       {
         "key": "tab",
         "title": "TAB",
-        "last_update": "2024-06-30T00:57:24Z",
+        "last_update": "2024-06-30T07:17:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:24Z",
+            "last_update": "2024-06-30T07:17:37Z",
             "outcomes": [
               { "name": "Melbourne Storm", "price": 1.3 },
               { "name": "Wests Tigers", "price": 3.5 }
@@ -2016,11 +1277,11 @@
       {
         "key": "betus",
         "title": "BetUS",
-        "last_update": "2024-06-30T00:56:39Z",
+        "last_update": "2024-06-30T07:17:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:39Z",
+            "last_update": "2024-06-30T07:17:37Z",
             "outcomes": [
               { "name": "Melbourne Storm", "price": 1.3 },
               { "name": "Wests Tigers", "price": 3.18 }
@@ -2031,11 +1292,11 @@
       {
         "key": "mybookieag",
         "title": "MyBookie.ag",
-        "last_update": "2024-06-30T00:56:32Z",
+        "last_update": "2024-06-30T07:17:48Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:32Z",
+            "last_update": "2024-06-30T07:17:48Z",
             "outcomes": [
               { "name": "Melbourne Storm", "price": 1.26 },
               { "name": "Wests Tigers", "price": 3.71 },
@@ -2047,11 +1308,11 @@
       {
         "key": "ladbrokes_au",
         "title": "Ladbrokes",
-        "last_update": "2024-06-30T00:57:16Z",
+        "last_update": "2024-06-30T07:17:46Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
+            "last_update": "2024-06-30T07:17:46Z",
             "outcomes": [
               { "name": "Melbourne Storm", "price": 1.3 },
               { "name": "Wests Tigers", "price": 3.5 }
@@ -2062,11 +1323,11 @@
       {
         "key": "neds",
         "title": "Neds",
-        "last_update": "2024-06-30T00:57:16Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
               { "name": "Melbourne Storm", "price": 1.3 },
               { "name": "Wests Tigers", "price": 3.5 }
@@ -2077,193 +1338,14 @@
       {
         "key": "pointsbetau",
         "title": "PointsBet (AU)",
-        "last_update": "2024-06-30T00:57:18Z",
+        "last_update": "2024-06-30T07:17:16Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:18Z",
+            "last_update": "2024-06-30T07:17:16Z",
             "outcomes": [
               { "name": "Melbourne Storm", "price": 1.28 },
               { "name": "Wests Tigers", "price": 3.7 }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "981ba73308d5d4fc0573f9cf7f0e5552",
-    "sport_key": "rugbyleague_nrl",
-    "sport_title": "NRL",
-    "commence_time": "2024-07-06T09:35:00Z",
-    "home_team": "North Queensland Cowboys",
-    "away_team": "Manly Warringah Sea Eagles",
-    "bookmakers": [
-      {
-        "key": "sportsbet",
-        "title": "SportsBet",
-        "last_update": "2024-06-30T00:57:08Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:08Z",
-            "outcomes": [
-              { "name": "Manly Warringah Sea Eagles", "price": 2.0 },
-              { "name": "North Queensland Cowboys", "price": 1.85 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "marathonbet",
-        "title": "Marathon Bet",
-        "last_update": "2024-06-30T00:56:44Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:44Z",
-            "outcomes": [
-              { "name": "Manly Warringah Sea Eagles", "price": 2.04 },
-              { "name": "North Queensland Cowboys", "price": 1.84 },
-              { "name": "Draw", "price": 24.0 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "bovada",
-        "title": "Bovada",
-        "last_update": "2024-06-30T00:56:50Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:50Z",
-            "outcomes": [
-              { "name": "Manly Warringah Sea Eagles", "price": 2.01 },
-              { "name": "North Queensland Cowboys", "price": 1.83 },
-              { "name": "Draw", "price": 25.0 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "superbook",
-        "title": "SuperBook",
-        "last_update": "2024-06-30T00:57:23Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:23Z",
-            "outcomes": [
-              { "name": "Manly Warringah Sea Eagles", "price": 2.0 },
-              { "name": "North Queensland Cowboys", "price": 1.8 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "betclic",
-        "title": "Betclic",
-        "last_update": "2024-06-30T00:57:01Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:01Z",
-            "outcomes": [
-              { "name": "Manly Warringah Sea Eagles", "price": 1.88 },
-              { "name": "North Queensland Cowboys", "price": 1.72 },
-              { "name": "Draw", "price": 22.0 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "tab",
-        "title": "TAB",
-        "last_update": "2024-06-30T00:57:24Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:24Z",
-            "outcomes": [
-              { "name": "Manly Warringah Sea Eagles", "price": 2.0 },
-              { "name": "North Queensland Cowboys", "price": 1.8 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "betus",
-        "title": "BetUS",
-        "last_update": "2024-06-30T00:56:39Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:39Z",
-            "outcomes": [
-              { "name": "Manly Warringah Sea Eagles", "price": 1.85 },
-              { "name": "North Queensland Cowboys", "price": 1.82 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "mybookieag",
-        "title": "MyBookie.ag",
-        "last_update": "2024-06-30T00:56:32Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:56:32Z",
-            "outcomes": [
-              { "name": "Manly Warringah Sea Eagles", "price": 1.98 },
-              { "name": "North Queensland Cowboys", "price": 1.81 },
-              { "name": "Draw", "price": 23.55 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "pointsbetau",
-        "title": "PointsBet (AU)",
-        "last_update": "2024-06-30T00:57:18Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:18Z",
-            "outcomes": [
-              { "name": "Manly Warringah Sea Eagles", "price": 1.95 },
-              { "name": "North Queensland Cowboys", "price": 1.85 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "neds",
-        "title": "Neds",
-        "last_update": "2024-06-30T00:57:16Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
-            "outcomes": [
-              { "name": "Manly Warringah Sea Eagles", "price": 1.95 },
-              { "name": "North Queensland Cowboys", "price": 1.85 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "ladbrokes_au",
-        "title": "Ladbrokes",
-        "last_update": "2024-06-30T00:57:16Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
-            "outcomes": [
-              { "name": "Manly Warringah Sea Eagles", "price": 1.95 },
-              { "name": "North Queensland Cowboys", "price": 1.85 }
             ]
           }
         ]
@@ -2281,14 +1363,14 @@
       {
         "key": "sportsbet",
         "title": "SportsBet",
-        "last_update": "2024-06-30T00:57:08Z",
+        "last_update": "2024-06-30T07:17:46Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:08Z",
+            "last_update": "2024-06-30T07:17:46Z",
             "outcomes": [
-              { "name": "St George Illawarra Dragons", "price": 4.45 },
-              { "name": "Sydney Roosters", "price": 1.21 }
+              { "name": "St George Illawarra Dragons", "price": 4.0 },
+              { "name": "Sydney Roosters", "price": 1.25 }
             ]
           }
         ]
@@ -2296,14 +1378,14 @@
       {
         "key": "marathonbet",
         "title": "Marathon Bet",
-        "last_update": "2024-06-30T00:56:44Z",
+        "last_update": "2024-06-30T07:16:53Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:44Z",
+            "last_update": "2024-06-30T07:16:53Z",
             "outcomes": [
-              { "name": "St George Illawarra Dragons", "price": 4.25 },
-              { "name": "Sydney Roosters", "price": 1.24 },
+              { "name": "St George Illawarra Dragons", "price": 4.15 },
+              { "name": "Sydney Roosters", "price": 1.25 },
               { "name": "Draw", "price": 29.0 }
             ]
           }
@@ -2312,13 +1394,13 @@
       {
         "key": "bovada",
         "title": "Bovada",
-        "last_update": "2024-06-30T00:56:50Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:50Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
-              { "name": "St George Illawarra Dragons", "price": 4.1 },
+              { "name": "St George Illawarra Dragons", "price": 4.05 },
               { "name": "Sydney Roosters", "price": 1.25 },
               { "name": "Draw", "price": 29.0 }
             ]
@@ -2328,13 +1410,13 @@
       {
         "key": "superbook",
         "title": "SuperBook",
-        "last_update": "2024-06-30T00:57:23Z",
+        "last_update": "2024-06-30T07:17:28Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:23Z",
+            "last_update": "2024-06-30T07:17:28Z",
             "outcomes": [
-              { "name": "St George Illawarra Dragons", "price": 4.5 },
+              { "name": "St George Illawarra Dragons", "price": 4.3 },
               { "name": "Sydney Roosters", "price": 1.2 }
             ]
           }
@@ -2343,30 +1425,15 @@
       {
         "key": "betclic",
         "title": "Betclic",
-        "last_update": "2024-06-30T00:57:01Z",
+        "last_update": "2024-06-30T07:16:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:01Z",
+            "last_update": "2024-06-30T07:16:37Z",
             "outcomes": [
-              { "name": "St George Illawarra Dragons", "price": 3.4 },
-              { "name": "Sydney Roosters", "price": 1.14 },
-              { "name": "Draw", "price": 20.0 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "tab",
-        "title": "TAB",
-        "last_update": "2024-06-30T00:57:24Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:24Z",
-            "outcomes": [
-              { "name": "St George Illawarra Dragons", "price": 4.5 },
-              { "name": "Sydney Roosters", "price": 1.2 }
+              { "name": "St George Illawarra Dragons", "price": 3.8 },
+              { "name": "Sydney Roosters", "price": 1.18 },
+              { "name": "Draw", "price": 22.0 }
             ]
           }
         ]
@@ -2374,11 +1441,11 @@
       {
         "key": "betus",
         "title": "BetUS",
-        "last_update": "2024-06-30T00:56:39Z",
+        "last_update": "2024-06-30T07:17:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:39Z",
+            "last_update": "2024-06-30T07:17:37Z",
             "outcomes": [
               { "name": "St George Illawarra Dragons", "price": 3.5 },
               { "name": "Sydney Roosters", "price": 1.25 }
@@ -2389,11 +1456,11 @@
       {
         "key": "pointsbetau",
         "title": "PointsBet (AU)",
-        "last_update": "2024-06-30T00:57:18Z",
+        "last_update": "2024-06-30T07:17:16Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:18Z",
+            "last_update": "2024-06-30T07:17:16Z",
             "outcomes": [
               { "name": "St George Illawarra Dragons", "price": 4.3 },
               { "name": "Sydney Roosters", "price": 1.22 }
@@ -2402,31 +1469,17 @@
         ]
       },
       {
-        "key": "neds",
-        "title": "Neds",
-        "last_update": "2024-06-30T00:57:16Z",
+        "key": "mybookieag",
+        "title": "MyBookie.ag",
+        "last_update": "2024-06-30T07:17:48Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
+            "last_update": "2024-06-30T07:17:48Z",
             "outcomes": [
-              { "name": "St George Illawarra Dragons", "price": 4.25 },
-              { "name": "Sydney Roosters", "price": 1.2 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "ladbrokes_au",
-        "title": "Ladbrokes",
-        "last_update": "2024-06-30T00:57:16Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
-            "outcomes": [
-              { "name": "St George Illawarra Dragons", "price": 4.25 },
-              { "name": "Sydney Roosters", "price": 1.2 }
+              { "name": "St George Illawarra Dragons", "price": 4.33 },
+              { "name": "Sydney Roosters", "price": 1.2 },
+              { "name": "Draw", "price": 26.69 }
             ]
           }
         ]
@@ -2444,11 +1497,11 @@
       {
         "key": "sportsbet",
         "title": "SportsBet",
-        "last_update": "2024-06-30T00:57:08Z",
+        "last_update": "2024-06-30T07:17:46Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:08Z",
+            "last_update": "2024-06-30T07:17:46Z",
             "outcomes": [
               { "name": "Canberra Raiders", "price": 1.91 },
               { "name": "Newcastle Knights", "price": 1.93 }
@@ -2459,15 +1512,15 @@
       {
         "key": "marathonbet",
         "title": "Marathon Bet",
-        "last_update": "2024-06-30T00:56:44Z",
+        "last_update": "2024-06-30T07:16:53Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:44Z",
+            "last_update": "2024-06-30T07:16:53Z",
             "outcomes": [
-              { "name": "Canberra Raiders", "price": 1.92 },
-              { "name": "Newcastle Knights", "price": 1.97 },
-              { "name": "Draw", "price": 21.0 }
+              { "name": "Canberra Raiders", "price": 1.9 },
+              { "name": "Newcastle Knights", "price": 1.98 },
+              { "name": "Draw", "price": 23.0 }
             ]
           }
         ]
@@ -2475,46 +1528,15 @@
       {
         "key": "bovada",
         "title": "Bovada",
-        "last_update": "2024-06-30T00:56:50Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:50Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
               { "name": "Canberra Raiders", "price": 1.81 },
               { "name": "Newcastle Knights", "price": 2.07 },
-              { "name": "Draw", "price": 24.0 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "superbook",
-        "title": "SuperBook",
-        "last_update": "2024-06-30T00:57:23Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:23Z",
-            "outcomes": [
-              { "name": "Canberra Raiders", "price": 1.91 },
-              { "name": "Newcastle Knights", "price": 1.87 }
-            ]
-          }
-        ]
-      },
-      {
-        "key": "betclic",
-        "title": "Betclic",
-        "last_update": "2024-06-30T00:57:01Z",
-        "markets": [
-          {
-            "key": "h2h",
-            "last_update": "2024-06-30T00:57:01Z",
-            "outcomes": [
-              { "name": "Canberra Raiders", "price": 1.75 },
-              { "name": "Newcastle Knights", "price": 1.7 },
-              { "name": "Draw", "price": 16.0 }
+              { "name": "Draw", "price": 25.0 }
             ]
           }
         ]
@@ -2522,11 +1544,11 @@
       {
         "key": "tab",
         "title": "TAB",
-        "last_update": "2024-06-30T00:57:24Z",
+        "last_update": "2024-06-30T07:17:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:24Z",
+            "last_update": "2024-06-30T07:17:37Z",
             "outcomes": [
               { "name": "Canberra Raiders", "price": 1.9 },
               { "name": "Newcastle Knights", "price": 1.9 }
@@ -2537,11 +1559,11 @@
       {
         "key": "betus",
         "title": "BetUS",
-        "last_update": "2024-06-30T00:56:39Z",
+        "last_update": "2024-06-30T07:17:37Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:39Z",
+            "last_update": "2024-06-30T07:17:37Z",
             "outcomes": [
               { "name": "Canberra Raiders", "price": 1.72 },
               { "name": "Newcastle Knights", "price": 1.99 }
@@ -2552,14 +1574,14 @@
       {
         "key": "pointsbetau",
         "title": "PointsBet (AU)",
-        "last_update": "2024-06-30T00:57:18Z",
+        "last_update": "2024-06-30T07:17:16Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:18Z",
+            "last_update": "2024-06-30T07:17:16Z",
             "outcomes": [
-              { "name": "Canberra Raiders", "price": 1.7 },
-              { "name": "Newcastle Knights", "price": 2.15 }
+              { "name": "Canberra Raiders", "price": 1.9 },
+              { "name": "Newcastle Knights", "price": 1.9 }
             ]
           }
         ]
@@ -2567,11 +1589,11 @@
       {
         "key": "neds",
         "title": "Neds",
-        "last_update": "2024-06-30T00:57:16Z",
+        "last_update": "2024-06-30T07:17:32Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
+            "last_update": "2024-06-30T07:17:32Z",
             "outcomes": [
               { "name": "Canberra Raiders", "price": 1.9 },
               { "name": "Newcastle Knights", "price": 1.9 }
@@ -2582,11 +1604,11 @@
       {
         "key": "ladbrokes_au",
         "title": "Ladbrokes",
-        "last_update": "2024-06-30T00:57:16Z",
+        "last_update": "2024-06-30T07:17:46Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:57:16Z",
+            "last_update": "2024-06-30T07:17:46Z",
             "outcomes": [
               { "name": "Canberra Raiders", "price": 1.9 },
               { "name": "Newcastle Knights", "price": 1.9 }
@@ -2597,22 +1619,37 @@
       {
         "key": "betfair_ex_au",
         "title": "Betfair",
-        "last_update": "2024-06-30T00:56:42Z",
+        "last_update": "2024-06-30T07:17:26Z",
         "markets": [
           {
             "key": "h2h",
-            "last_update": "2024-06-30T00:56:42Z",
+            "last_update": "2024-06-30T07:17:26Z",
             "outcomes": [
-              { "name": "Canberra Raiders", "price": 1.5 },
-              { "name": "Newcastle Knights", "price": 1.4 }
+              { "name": "Canberra Raiders", "price": 1.54 },
+              { "name": "Newcastle Knights", "price": 1.44 }
             ]
           },
           {
             "key": "h2h_lay",
-            "last_update": "2024-06-30T00:56:42Z",
+            "last_update": "2024-06-30T07:17:26Z",
             "outcomes": [
               { "name": "Canberra Raiders", "price": 4.0 },
               { "name": "Newcastle Knights", "price": 3.15 }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "bluebet",
+        "title": "BlueBet",
+        "last_update": "2024-06-30T07:17:32Z",
+        "markets": [
+          {
+            "key": "h2h",
+            "last_update": "2024-06-30T07:17:32Z",
+            "outcomes": [
+              { "name": "Canberra Raiders", "price": 1.9 },
+              { "name": "Newcastle Knights", "price": 1.9 }
             ]
           }
         ]
