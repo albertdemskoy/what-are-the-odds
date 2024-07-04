@@ -25,6 +25,15 @@ impl Event {
         return bookie_name_set;
     }
 
+    fn identify_opportunities(&self) {
+        for bookie in self.get_all_bookies() {
+            let odds = self.get_bookie_odds_for_outcome(bookie_key, outcome_key);
+            if (odds > self.get_true_odds_for_outcome(outcome_key)) {
+                println!("found one!!")
+            }
+        }
+    }
+
     fn get_true_odds_for_outcome(&self, outcome_key: &str) -> f64 {
         let all_bookie_keys = self.get_all_bookies();
         let outcome_avg_probability = self.get_average_probability(all_bookie_keys, outcome_key);
@@ -35,16 +44,16 @@ impl Event {
         // sharps vs nonsharps: 50-50 weighting
         return bookies
             .iter()
-            .filter(|bookie| self.get_bookie_probability(bookie, outcome_key).is_some())
+            .filter(|bookie| self.get_adjusted_probability(bookie, outcome_key).is_some())
             .fold(0.0, |sum, bookie_key| {
                 sum + self
-                    .get_bookie_probability(bookie_key, outcome_key)
+                    .get_adjusted_probability(bookie_key, outcome_key)
                     .unwrap()
             })
             / (bookies.len() as f64);
     }
 
-    fn get_bookie_probability(&self, bookie_key: &str, outcome: &str) -> Option<f64> {
+    fn get_adjusted_probability(&self, bookie_key: &str, outcome: &str) -> Option<f64> {
         let bookie_object = match self
             .bookmakers
             .iter()
