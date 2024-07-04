@@ -42,28 +42,6 @@ fn main() {
             let filename = format!("./src/example_responses/{sport_key}_odds.json");
 
             fs::write(filename, event_raw);
-        } else if operation_choice == "v" {
-            println!("Enter sport key:");
-            let sport_key = get_trimmed_input();
-
-            let filename = get_sport_key_json(&sport_key);
-            let events = get_example_odds_file(&filename);
-            
-            let bookie_names = get_bookie_keys(&events);
-            let mut bookie_stats = Vec::new();
-            for bookie_name in bookie_names {
-                let avg_vig = get_average_bookie_vig(&events, &bookie_name);
-                bookie_stats.push(avg_vig);
-            }
-
-            bookie_stats.sort_by(|a,b| a.vig.total_cmp(&b.vig));
-            let mut i = 1;
-            for bookie_stat in bookie_stats {
-                println!("{0}st place: {1} with vig {2}", i, bookie_stat.key, bookie_stat.vig);
-
-                i += 1;
-            }
-
         } else {
             println!("{operation_choice:#?} is not a valid choice!")
         }
