@@ -25,14 +25,20 @@ impl Event {
         return bookie_name_set;
     }
 
-    fn identify_opportunities(&self) {
+    fn identify_opportunities(&self, market_key) {
         for bookie in self.get_all_bookies() {
-            let odds = self.get_bookie_odds_for_outcome(bookie_key, outcome_key);
-            if (odds > self.get_true_odds_for_outcome(outcome_key)) {
-                println!("found one!!")
+            let bookie_odds = self.get_bookie_odds(bookie, outcome_key);
+            let true_odds = self.get_true_odds_for_outcome(outcome_key);
+            if (odds > true_odds) {
+                println!(
+                    "found one!! {0} offering {1} for {2} when true odds are {3}",
+                    bookie, bookie_odds, outcome_key, true_odds
+                );
             }
         }
     }
+
+    fn get_bookie_odds(&self, bookie_key: &str, outcome_key: &str) {}
 
     fn get_true_odds_for_outcome(&self, outcome_key: &str) -> f64 {
         let all_bookie_keys = self.get_all_bookies();
