@@ -1,5 +1,5 @@
+use odds_interface::api_requests::{get_key_usage, get_odds_for_sport_aus, get_sports};
 use std::{fs, io};
-use odds_interface::{api_requests::{get_example_odds_file, get_key_usage, get_odds_for_sport_aus, get_sports}, bookiestat::{get_average_bookie_vig, get_bookie_keys}};
 
 mod odds_interface;
 
@@ -10,9 +10,9 @@ fn get_sport_key_json(sport_key: &str) -> String {
 fn get_trimmed_input() -> String {
     let mut operation_choice = String::new();
     io::stdin()
-            .read_line(&mut operation_choice)
-            .expect("Failed to read line");
-    
+        .read_line(&mut operation_choice)
+        .expect("Failed to read line");
+
     operation_choice = operation_choice.trim().to_string();
     return operation_choice;
 }
@@ -26,13 +26,12 @@ fn main() {
         println!("o:   odds for a sport of your chosing");
         println!("v:   bookie vigs for event");
 
-        
-        let mut operation_choice = get_trimmed_input();
+        let operation_choice = get_trimmed_input();
 
         if operation_choice == "s" {
             let sports = get_sports().expect("Failed to get sports");
             println!("{sports:#?}")
-        }  else if operation_choice == "o" {
+        } else if operation_choice == "o" {
             println!("write your sport key of choice");
 
             let sport_key = get_trimmed_input();
@@ -49,7 +48,7 @@ fn main() {
         let key_usage = get_key_usage();
         match key_usage {
             Some(x) => println!("requests remaining: {0}", x.requests_remaining),
-            None => println!("")
+            None => println!(""),
         };
 
         num_inputs -= 1;

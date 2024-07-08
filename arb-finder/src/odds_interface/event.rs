@@ -1,4 +1,5 @@
 use std::collections::HashSet;
+use std::hash::Hash;
 
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
@@ -27,42 +28,73 @@ impl Event {
 
     fn identify_opportunities(&self, market: MarketType) {
         let all_outcomes = self.get_all_outcomes();
-        for bookie in self.bookmakers {
-            for outcome_key in all_outcomes {
-                let bookie_odds = bookie.get_odds(market, outcome_key);
-                let true_odds = self.get_true_odds_for_outcome(market, outcome_key);
+        for bookie in &self.bookmakers {
+            for outcome_key in &all_outcomes {
+                let maybe_bookie_odds = bookie.get_odds(&market, outcome_key.as_str());
+                let true_odds = self.get_true_odds_for_outcome(&market, outcome_key.as_str());
+
+                let bookie_odds = match maybe_bookie_odds {
+                    Some(x) => x,
+                    None => continue,
+                };
+
                 if (bookie_odds > true_odds) {
                     println!(
                         "found one!! {0} offering {1} for {2} when true odds are {3}",
-                        bookie.key, bookie_odds, outcome_key, true_odds
+                        bookie.key,
+                        bookie_odds.get_decimal(),
+                        outcome_key,
+                        true_odds.get_decimal()
                     );
                 }
             }
         }
     }
 
-    fn get_bookie_odds(&self, bookie_key: &str, market: MarketType, outcome_key: &str) -> f64 {}
+    fn get_all_outcomes(&self) -> HashSet<String> {
+        let mut outcome_set: HashSet<String> = HashSet::new();
 
-    fn get_true_odds_for_outcome(&self, market: MarketType, outcome_key: &str) -> f64 {
-        let all_bookie_keys = self.get_all_bookies();
-        let outcome_avg_probability = self.get_average_probability(all_bookie_keys, outcome_key);
-        return 1.0 / outcome_avg_probability;
+        for bookie in &self.bookmakers {
+            outcome_set.extend(bookie.get_offered_outcomes());
+        }
+
+        return outcome_set;
     }
 
-    fn get_average_probability(&self, bookies: HashSet<String>, outcome_key: &str) -> f64 {
+    fn get_true_odds_for_outcome(&self, market: &MarketType, outcome_key: &str) -> Odds {
+        let all_bookie_keys = self.get_all_bookies();
+        let outcome_avg_probability =
+            self.get_average_probability(all_bookie_keys, market, outcome_key);
+        return Odds::Decimal(1.0 / outcome_avg_probability);
+    }
+
+    fn get_average_probability(
+        &self,
+        bookies: HashSet<String>,
+        market: &MarketType,
+        outcome_key: &str,
+    ) -> f64 {
         // sharps vs nonsharps: 50-50 weighting
         return bookies
             .iter()
-            .filter(|bookie| self.get_adjusted_probability(bookie, outcome_key).is_some())
+            .filter(|bookie| {
+                self.get_adjusted_probability(bookie, market, outcome_key)
+                    .is_some()
+            })
             .fold(0.0, |sum, bookie_key| {
                 sum + self
-                    .get_adjusted_probability(bookie_key, outcome_key)
+                    .get_adjusted_probability(bookie_key, market, outcome_key)
                     .unwrap()
             })
             / (bookies.len() as f64);
     }
 
-    fn get_adjusted_probability(&self, bookie_key: &str, outcome: &str) -> Option<f64> {
+    fn get_adjusted_probability(
+        &self,
+        bookie_key: &str,
+        market: &MarketType,
+        outcome: &str,
+    ) -> Option<f64> {
         let bookie_object = match self
             .bookmakers
             .iter()
@@ -73,29 +105,26 @@ impl Event {
         };
 
         let markets = &bookie_object.markets;
-        let h2h_market_key = "h2h";
-        let h2h_market = match markets.iter().find(|&x| x.key == h2h_market_key) {
+        let market = match markets.iter().find(|&x| x.key == *market) {
             Some(x) => x,
             None => return None,
         };
 
-        return h2h_market.true_probability_for_outcome(outcome);
+        return market.true_probability_for_outcome(outcome);
     }
 
-    fn get_best_odds_for_outcome(&self, outcome_key: &str) -> (String, Odds) {
-        let h2h_market_key = "h2h";
-
+    fn get_best_odds_for_outcome(&self, market: &MarketType, outcome_key: &str) -> (String, Odds) {
         let mut best_odds = 0.0;
         let mut best_bookie_key = String::from("");
 
         for bookmaker in &self.bookmakers {
             let markets = &bookmaker.markets;
-            let h2h_market = match markets.iter().find(|&x| x.key == h2h_market_key) {
+            let market = match markets.iter().find(|&x| x.key == *market) {
                 Some(x) => x,
                 None => continue,
             };
 
-            let team_outcome = match h2h_market.outcomes.iter().find(|&x| x.name == outcome_key) {
+            let team_outcome = match market.outcomes.iter().find(|&x| x.name == outcome_key) {
                 Some(x) => x,
                 None => continue,
             };

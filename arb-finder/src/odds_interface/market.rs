@@ -15,13 +15,33 @@ pub struct Bookmaker {
 
 impl Bookmaker {
     pub fn get_enabled_markets(&self) -> Vec<Market> {
-        let to_exclude = "lay".to_string();
+        let to_exclude = [MarketType::OutrightsLay, MarketType::H2hLay];
         return self
             .markets
             .clone()
             .into_iter()
-            .filter(|x| !x.key.contains(&to_exclude))
+            .filter(|x| !to_exclude.contains(&x.key))
             .collect();
+    }
+
+    pub fn get_odds(&self, market_key: &MarketType, outcome_key: &str) -> Option<Odds> {
+        for market in &self.markets {
+            if (market.key == *market_key) {
+                return market.odds_for_outcome(outcome_key);
+            }
+        }
+
+        return None;
+    }
+
+    pub fn get_offered_outcomes(&self) -> HashSet<String> {
+        let mut outcome_set: HashSet<String> = HashSet::new();
+
+        for market in &self.markets {
+            outcome_set.extend(market.get_all_outcomes())
+        }
+
+        return outcome_set;
     }
 }
 
@@ -31,13 +51,15 @@ pub struct Market {
     pub outcomes: Vec<Outcome>,
 }
 
-#[derive(Deserialize, Debug, Clone)]
-#[serde(rename_all = "lowercase")]
+#[derive(Deserialize, Debug, Clone, PartialEq)]
+#[serde(rename_all = "snake_case")]
 pub enum MarketType {
     H2h,
+    H2hLay,
     Spreads,
     Totals,
     Outrights,
+    OutrightsLay,
 }
 
 impl Market {
@@ -53,6 +75,16 @@ impl Market {
             .iter()
             .map(|outcome| outcomes_set.insert(outcome.name.clone()));
         return outcomes_set;
+    }
+
+    pub fn odds_for_outcome(&self, outcome_key: &str) -> Option<Odds> {
+        for outcome in &self.outcomes {
+            if (outcome.name == outcome_key) {
+                return Some(outcome.price);
+            }
+        }
+
+        return None;
     }
 
     pub fn total_probability(&self) -> f64 {
