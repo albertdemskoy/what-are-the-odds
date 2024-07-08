@@ -3,7 +3,7 @@ use std::collections::HashSet;
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
 
-use super::market::Bookmaker;
+use super::market::{Bookmaker, Market, MarketType};
 use super::odds::Odds;
 
 #[derive(Deserialize, Debug, Clone)]
@@ -25,22 +25,25 @@ impl Event {
         return bookie_name_set;
     }
 
-    fn identify_opportunities(&self, market_key) {
-        for bookie in self.get_all_bookies() {
-            let bookie_odds = self.get_bookie_odds(bookie, outcome_key);
-            let true_odds = self.get_true_odds_for_outcome(outcome_key);
-            if (odds > true_odds) {
-                println!(
-                    "found one!! {0} offering {1} for {2} when true odds are {3}",
-                    bookie, bookie_odds, outcome_key, true_odds
-                );
+    fn identify_opportunities(&self, market: MarketType) {
+        let all_outcomes = self.get_all_outcomes();
+        for bookie in self.bookmakers {
+            for outcome_key in all_outcomes {
+                let bookie_odds = bookie.get_odds(market, outcome_key);
+                let true_odds = self.get_true_odds_for_outcome(market, outcome_key);
+                if (bookie_odds > true_odds) {
+                    println!(
+                        "found one!! {0} offering {1} for {2} when true odds are {3}",
+                        bookie.key, bookie_odds, outcome_key, true_odds
+                    );
+                }
             }
         }
     }
 
-    fn get_bookie_odds(&self, bookie_key: &str, outcome_key: &str) {}
+    fn get_bookie_odds(&self, bookie_key: &str, market: MarketType, outcome_key: &str) -> f64 {}
 
-    fn get_true_odds_for_outcome(&self, outcome_key: &str) -> f64 {
+    fn get_true_odds_for_outcome(&self, market: MarketType, outcome_key: &str) -> f64 {
         let all_bookie_keys = self.get_all_bookies();
         let outcome_avg_probability = self.get_average_probability(all_bookie_keys, outcome_key);
         return 1.0 / outcome_avg_probability;

@@ -1,3 +1,5 @@
+use std::{collections::HashSet, hash::Hash};
+
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
 
@@ -31,7 +33,7 @@ pub struct Market {
 
 #[derive(Deserialize, Debug, Clone)]
 #[serde(rename_all = "lowercase")]
-enum MarketType {
+pub enum MarketType {
     H2h,
     Spreads,
     Totals,
@@ -43,6 +45,14 @@ impl Market {
         let total_probability = self.total_probability();
         let overround = total_probability - 1.0;
         return overround / (1.0 + overround);
+    }
+
+    pub fn get_all_outcomes(&self) -> HashSet<String> {
+        let mut outcomes_set: HashSet<String> = HashSet::new();
+        self.outcomes
+            .iter()
+            .map(|outcome| outcomes_set.insert(outcome.name.clone()));
+        return outcomes_set;
     }
 
     pub fn total_probability(&self) -> f64 {
