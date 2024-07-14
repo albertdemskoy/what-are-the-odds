@@ -1,49 +1,7 @@
-use std::{collections::HashSet, hash::Hash};
-
-use chrono::{DateTime, Utc};
 use serde::Deserialize;
+use std::collections::HashSet;
 
 use super::odds::Odds;
-
-#[derive(Deserialize, Debug, Clone)]
-pub struct Bookmaker {
-    pub key: String,
-    title: String,
-    last_update: DateTime<Utc>,
-    pub markets: Vec<Market>,
-}
-
-impl Bookmaker {
-    pub fn get_enabled_markets(&self) -> Vec<Market> {
-        let to_exclude = [MarketType::OutrightsLay, MarketType::H2hLay];
-        return self
-            .markets
-            .clone()
-            .into_iter()
-            .filter(|x| !to_exclude.contains(&x.key))
-            .collect();
-    }
-
-    pub fn get_odds(&self, market_key: &MarketType, outcome_key: &str) -> Option<Odds> {
-        for market in &self.markets {
-            if (market.key == *market_key) {
-                return market.odds_for_outcome(outcome_key);
-            }
-        }
-
-        return None;
-    }
-
-    pub fn get_offered_outcomes(&self) -> HashSet<String> {
-        let mut outcome_set: HashSet<String> = HashSet::new();
-
-        for market in &self.markets {
-            outcome_set.extend(market.get_all_outcomes())
-        }
-
-        return outcome_set;
-    }
-}
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Market {
@@ -71,9 +29,9 @@ impl Market {
 
     pub fn get_all_outcomes(&self) -> HashSet<String> {
         let mut outcomes_set: HashSet<String> = HashSet::new();
-        self.outcomes
-            .iter()
-            .map(|outcome| outcomes_set.insert(outcome.name.clone()));
+        for outcome in &self.outcomes {
+            let _ = outcomes_set.insert(outcome.name.clone());
+        }
         return outcomes_set;
     }
 

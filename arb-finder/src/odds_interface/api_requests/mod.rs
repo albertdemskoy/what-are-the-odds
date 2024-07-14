@@ -1,6 +1,6 @@
 use std::fs;
 
-use reqwest::{Error, blocking::Response};
+use reqwest::{blocking::Response, Error};
 use util::{get_key_usage_from_headers, ApiKeyUsage};
 
 use super::{event::Event, sport::Sport};
@@ -9,22 +9,19 @@ use super::{API_KEY, ODDS_HOST_BASE};
 pub mod util;
 
 // todo: these should return the actual type
-pub fn get_odds_for_sport_aus(sport: &str) -> reqwest::Result<String> {
+pub fn get_odds_for_sport_aus(sport: &str) -> reqwest::Result<Vec<Event>> {
     let odds_endpoint = format!("/sports/{sport}/odds/");
-    let full_url =  ODDS_HOST_BASE.to_owned() + &odds_endpoint;
+    let full_url = ODDS_HOST_BASE.to_owned() + &odds_endpoint;
 
-    let params = [
-        ("apiKey", API_KEY),
-        ("regions", "au,us,eu")
-    ];
+    let params = [("apiKey", API_KEY), ("regions", "au,us,eu")];
 
     let url = reqwest::Url::parse_with_params(&full_url, &params).unwrap();
     let res = match reqwest::blocking::get(url) {
         Ok(x) => x,
-        Err(e) => return Err(e)
+        Err(e) => return Err(e),
     };
-    
-    return res.text();
+
+    return Ok(res.json::<Vec<Event>>().unwrap_or(Vec::new()));
 }
 
 pub fn get_example_odds_file(filepath: &str) -> Vec<Event> {
@@ -32,11 +29,10 @@ pub fn get_example_odds_file(filepath: &str) -> Vec<Event> {
     return serde_json::from_str::<Vec<Event>>(&file_str).expect("JSON was not well-formatted");
 }
 
-
 pub fn get_key_usage() -> Option<ApiKeyUsage> {
     let response = match get_sports_raw() {
         Ok(x) => x,
-        Err(e) => return None
+        Err(e) => return None,
     };
 
     let headers = response.headers();
@@ -45,10 +41,8 @@ pub fn get_key_usage() -> Option<ApiKeyUsage> {
 
 pub fn get_sports_raw() -> Result<Response, Error> {
     let sports_endpoint = "/sports/";
-    let full_url =  ODDS_HOST_BASE.to_owned() + sports_endpoint;
-    let params = [
-        ("apiKey", API_KEY),
-    ];
+    let full_url = ODDS_HOST_BASE.to_owned() + sports_endpoint;
+    let params = [("apiKey", API_KEY)];
 
     let url = reqwest::Url::parse_with_params(&full_url, &params).unwrap();
     return reqwest::blocking::get(url);
@@ -56,19 +50,16 @@ pub fn get_sports_raw() -> Result<Response, Error> {
 
 pub fn get_sports() -> Result<Vec<Sport>, Error> {
     let sports_endpoint = "/sports/";
-    let full_url =  ODDS_HOST_BASE.to_owned() + sports_endpoint;
-    let params = [
-        ("apiKey", API_KEY),
-    ];
+    let full_url = ODDS_HOST_BASE.to_owned() + sports_endpoint;
+    let params = [("apiKey", API_KEY)];
 
     let url = reqwest::Url::parse_with_params(&full_url, &params).unwrap();
     let res = match reqwest::blocking::get(url) {
         Ok(x) => x,
-        Err(e) => return Err(e)
-   };
+        Err(e) => return Err(e),
+    };
 
     let body = res.json::<Vec<Sport>>().unwrap_or(Vec::new());
 
     return Ok(body);
 }
-

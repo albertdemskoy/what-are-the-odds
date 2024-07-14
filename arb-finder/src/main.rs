@@ -1,5 +1,8 @@
-use odds_interface::api_requests::{get_key_usage, get_odds_for_sport_aus, get_sports};
-use std::{fs, io};
+use odds_interface::{
+    api_requests::{get_key_usage, get_odds_for_sport_aus, get_sports},
+    market::MarketType,
+};
+use std::io;
 
 mod odds_interface;
 
@@ -23,24 +26,21 @@ fn main() {
         println!("Available operations:");
         println!("==========================");
         println!("s:   print in-season sports");
-        println!("o:   odds for a sport of your chosing");
-        println!("v:   bookie vigs for event");
+        println!("e:   try to find +EV opportunities for sport of choosing");
 
         let operation_choice = get_trimmed_input();
 
         if operation_choice == "s" {
             let sports = get_sports().expect("Failed to get sports");
             println!("{sports:#?}")
-        } else if operation_choice == "o" {
+        } else if operation_choice == "e" {
             println!("write your sport key of choice");
 
             let sport_key = get_trimmed_input();
-            let event_raw = get_odds_for_sport_aus(&sport_key).expect("Failed to get odds for");
-            println!("{event_raw:?}");
-
-            let filename = format!("./src/example_responses/{sport_key}_odds.json");
-
-            fs::write(filename, event_raw);
+            let events_raw = get_odds_for_sport_aus(&sport_key).expect("Failed to get odds for");
+            for event in events_raw {
+                event.identify_opportunities(MarketType::H2h);
+            }
         } else {
             println!("{operation_choice:#?} is not a valid choice!")
         }
