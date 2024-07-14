@@ -1,10 +1,10 @@
 use std::collections::HashSet;
-use std::hash::Hash;
 
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
 
-use super::market::{Bookmaker, Market, MarketType};
+use super::bookmaker::Bookmaker;
+use super::market::MarketType;
 use super::odds::Odds;
 
 #[derive(Deserialize, Debug, Clone)]
@@ -26,7 +26,7 @@ impl Event {
         return bookie_name_set;
     }
 
-    fn identify_opportunities(&self, market: MarketType) {
+    pub fn identify_opportunities(&self, market: MarketType) {
         let all_outcomes = self.get_all_outcomes();
         for bookie in &self.bookmakers {
             for outcome_key in &all_outcomes {
