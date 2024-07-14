@@ -36,12 +36,18 @@ impl Market {
     }
 
     pub fn odds_for_outcome(&self, outcome_key: &str) -> Option<Odds> {
+        match self.find_outcome(outcome_key) {
+            Some(outcome) => return Some(outcome.price),
+            None => return None,
+        }
+    }
+
+    fn find_outcome(&self, outcome_key: &str) -> Option<&Outcome> {
         for outcome in &self.outcomes {
             if (outcome.name == outcome_key) {
-                return Some(outcome.price);
+                return Some(outcome);
             }
         }
-
         return None;
     }
 
@@ -53,18 +59,10 @@ impl Market {
     }
 
     pub fn true_probability_for_outcome(&self, outcome_key: &str) -> Option<f64> {
-        let found_outcome = self
-            .outcomes
-            .iter()
-            .find(|outcome| (*outcome).name == outcome_key);
-
-        let outcome = match found_outcome {
-            Some(x) => x,
+        match self.find_outcome(outcome_key) {
+            Some(outcome) => return Some(self.true_probability_estimate(&outcome.price)),
             None => return None,
-        };
-
-        let outcome_odds = outcome.price;
-        return Some(self.true_probability_estimate(&outcome_odds));
+        }
     }
 
     // https://cran.r-project.org/web/packages/implied/vignettes/introduction.html
@@ -74,16 +72,6 @@ impl Market {
         let raw_odds = odds.get_decimal();
 
         return (n - margin * raw_odds) / (n * raw_odds);
-    }
-
-    pub fn true_probability_estimates(&self) -> Vec<f64> {
-        let margin = self.total_probability() - 1.0;
-        let n = self.outcomes.len() as f64;
-        return self
-            .outcomes
-            .iter()
-            .map(|outcome| self.true_probability_estimate(&outcome.price))
-            .collect();
     }
 }
 

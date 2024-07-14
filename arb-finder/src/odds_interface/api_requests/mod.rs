@@ -32,7 +32,7 @@ pub fn get_example_odds_file(filepath: &str) -> Vec<Event> {
 pub fn get_key_usage() -> Option<ApiKeyUsage> {
     let response = match get_sports_raw() {
         Ok(x) => x,
-        Err(e) => return None,
+        Err(_) => return None,
     };
 
     let headers = response.headers();

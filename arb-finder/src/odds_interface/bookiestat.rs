@@ -19,7 +19,7 @@ pub fn get_average_bookie_vig(events: &Vec<Event>, bookie_name: &str) -> BookieS
     let mut all_markets: Vec<Market> = Vec::new();
     for event in events {
         for bookmaker in &event.bookmakers {
-            if (bookmaker.key == bookie_name) {
+            if bookmaker.key == bookie_name {
                 all_markets.append(&mut bookmaker.get_enabled_markets());
             }
         }
