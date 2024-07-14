@@ -10,5 +10,4 @@ pub struct Sport {
     description: String,
     active: bool,
     has_outrights: bool,
-    events: Vec<Event>
 }

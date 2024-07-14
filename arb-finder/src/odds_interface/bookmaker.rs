@@ -29,7 +29,7 @@ impl Bookmaker {
 
     pub fn get_odds(&self, market_key: &MarketType, outcome_key: &str) -> Option<Odds> {
         for market in &self.markets {
-            if (market.key == *market_key) {
+            if market.key == *market_key {
                 return market.odds_for_outcome(outcome_key);
             }
         }
