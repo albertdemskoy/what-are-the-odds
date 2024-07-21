@@ -1,9 +1,12 @@
+use messaging::send_message;
 use odds_interface::{
     api_requests::{get_key_usage, get_odds_for_sport_aus, get_sports},
     market::MarketType,
 };
 use std::io;
 
+mod local_env;
+mod messaging;
 mod odds_interface;
 
 fn get_sport_key_json(sport_key: &str) -> String {
@@ -27,6 +30,7 @@ fn main() {
         println!("==========================");
         println!("s:   print in-season sports");
         println!("e:   try to find +EV opportunities for sport of choosing");
+        println!("m:   send test message to discord server");
 
         let operation_choice = get_trimmed_input();
 
@@ -41,6 +45,9 @@ fn main() {
             for event in events_raw {
                 event.identify_opportunities(MarketType::H2h);
             }
+        } else if operation_choice == "m" {
+            println!("sending test message to discord server");
+            send_message("Hello World!!")
         } else {
             println!("{operation_choice:#?} is not a valid choice!")
         }

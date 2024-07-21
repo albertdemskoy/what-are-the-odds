@@ -1,3 +1,5 @@
+use crate::local_env::MY_ENV;
+
 pub mod api_requests;
 pub mod bookiestat;
 pub mod bookmaker;
@@ -10,4 +12,4 @@ pub mod sport;
 mod test;
 
 const ODDS_HOST_BASE: &str = "https://api.the-odds-api.com/v4";
-const API_KEY: &str = "74b4c29eb501524fc2d16ca5310de51c";
+const API_KEY: &str = MY_ENV.odds_api_key;
