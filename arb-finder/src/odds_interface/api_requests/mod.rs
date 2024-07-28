@@ -1,8 +1,6 @@
 use std::fs;
 
-use chrono::naive::serde::ts_microseconds::serialize;
 use reqwest::{blocking::Response, Error};
-use serde::Serialize;
 use util::{get_key_usage_from_headers, ApiKeyUsage};
 
 use super::bookmaker::Region;
@@ -13,7 +11,7 @@ use super::{API_KEY, ODDS_HOST_BASE};
 pub mod util;
 
 // todo: these should return the actual type
-pub fn get_odds_for_sport_aus(
+pub fn get_odds_for_sport(
     sport: &str,
     markets: &Vec<MarketType>,
     regions: &Vec<Region>,
@@ -47,7 +45,9 @@ pub fn get_odds_for_sport_aus(
         Err(e) => return Err(e),
     };
 
-    return Ok(res.json::<Vec<Event>>().unwrap_or(Vec::new()));
+    let events = res.json::<Vec<Event>>().unwrap_or(Vec::new());
+
+    return Ok(events);
 }
 
 pub fn get_example_odds_file(filepath: &str) -> Vec<Event> {
