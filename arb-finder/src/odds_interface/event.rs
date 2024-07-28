@@ -26,8 +26,12 @@ impl Event {
         return bookie_name_set;
     }
 
-    pub fn identify_opportunities(&self, market: MarketType) {
+    // TODO: convert to Opportunity struct
+    pub fn identify_opportunities(&self, market: MarketType) -> Vec<String> {
         let all_outcomes = self.get_all_outcomes();
+
+        let mut opportunities_vec: Vec<String> = Vec::new();
+
         for bookie in &self.bookmakers {
             for outcome_key in &all_outcomes {
                 let maybe_bookie_odds = bookie.get_odds(&market, outcome_key.as_str());
@@ -38,17 +42,26 @@ impl Event {
                     None => continue,
                 };
 
-                if (bookie_odds > true_odds) {
-                    println!(
-                        "found one!! {0} offering {1} for {2} when true odds are {3}",
+                let percent_ev_cutoff = 0.5;
+                let percent_ev = bookie_odds.ev_percentage(&true_odds);
+
+                if (bookie_odds > true_odds && percent_ev > percent_ev_cutoff) {
+                    let opportunity_string = format!(
+                        "found one!! {0} offering {1} for {2} when true odds are {3}, 
+                        represents {4}% +EV",
                         bookie.key,
                         bookie_odds.get_decimal(),
                         outcome_key,
-                        true_odds.get_decimal()
+                        true_odds.get_decimal(),
+                        percent_ev
                     );
+
+                    opportunities_vec.push(opportunity_string);
                 }
             }
         }
+
+        return opportunities_vec;
     }
 
     fn get_all_outcomes(&self) -> HashSet<String> {

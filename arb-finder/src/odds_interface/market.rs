@@ -1,5 +1,6 @@
-use serde::Deserialize;
-use std::collections::HashSet;
+use core::fmt;
+use serde::{Deserialize, Serialize};
+use std::{collections::HashSet, fmt::Display};
 
 use super::odds::Odds;
 
@@ -18,6 +19,19 @@ pub enum MarketType {
     Totals,
     Outrights,
     OutrightsLay,
+}
+
+impl fmt::Display for MarketType {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match *self {
+            MarketType::H2h => write!(f, "h2h"),
+            MarketType::H2hLay => write!(f, "h2h_lay"),
+            MarketType::Spreads => write!(f, "spreads"),
+            MarketType::Totals => write!(f, "totals"),
+            MarketType::Outrights => write!(f, "outrights"),
+            MarketType::OutrightsLay => write!(f, "outrights_lay"),
+        }
+    }
 }
 
 impl Market {
