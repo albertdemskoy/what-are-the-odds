@@ -1,5 +1,5 @@
-use serde::Deserialize;
-use std::collections::HashSet;
+use serde::{Deserialize, Serialize};
+use std::{collections::HashSet, fmt::Display};
 
 use super::odds::Odds;
 
@@ -9,7 +9,7 @@ pub struct Market {
     pub outcomes: Vec<Outcome>,
 }
 
-#[derive(Deserialize, Debug, Clone, PartialEq)]
+#[derive(Deserialize, Serialize, Debug, Clone, PartialEq)]
 #[serde(rename_all = "snake_case")]
 pub enum MarketType {
     H2h,

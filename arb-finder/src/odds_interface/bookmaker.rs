@@ -16,6 +16,16 @@ pub struct Bookmaker {
     pub markets: Vec<Market>,
 }
 
+#[derive(Deserialize, Debug, Clone, PartialEq)]
+#[serde(rename_all = "snake_case")]
+pub enum Region {
+    Us,
+    Us2,
+    Uk,
+    Au,
+    Eu,
+}
+
 impl Bookmaker {
     pub fn get_enabled_markets(&self) -> Vec<Market> {
         let to_exclude = [MarketType::OutrightsLay, MarketType::H2hLay];
