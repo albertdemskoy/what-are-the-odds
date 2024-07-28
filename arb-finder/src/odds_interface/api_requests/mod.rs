@@ -2,6 +2,7 @@ use std::fs;
 
 use chrono::naive::serde::ts_microseconds::serialize;
 use reqwest::{blocking::Response, Error};
+use serde::Serialize;
 use util::{get_key_usage_from_headers, ApiKeyUsage};
 
 use super::bookmaker::Region;
@@ -14,16 +15,30 @@ pub mod util;
 // todo: these should return the actual type
 pub fn get_odds_for_sport_aus(
     sport: &str,
-    markets: Vec<MarketType>,
-    regions: Vec<Region>,
+    markets: &Vec<MarketType>,
+    regions: &Vec<Region>,
 ) -> reqwest::Result<Vec<Event>> {
     let odds_endpoint = format!("/sports/{sport}/odds/");
     let full_url = ODDS_HOST_BASE.to_owned() + &odds_endpoint;
 
     let params = [
         ("apiKey", API_KEY),
-        ("regions", regions.iter().join(",")),
-        ("markets", markets.join(",")),
+        (
+            "regions",
+            &regions
+                .iter()
+                .map(|x| x.to_string())
+                .collect::<Vec<String>>()
+                .join(","),
+        ),
+        (
+            "markets",
+            &markets
+                .iter()
+                .map(|x| x.to_string())
+                .collect::<Vec<String>>()
+                .join(","),
+        ),
     ];
 
     let url = reqwest::Url::parse_with_params(&full_url, &params).unwrap();

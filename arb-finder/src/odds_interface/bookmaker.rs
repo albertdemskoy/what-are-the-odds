@@ -1,4 +1,4 @@
-use std::collections::HashSet;
+use std::{collections::HashSet, fmt};
 
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
@@ -26,6 +26,17 @@ pub enum Region {
     Eu,
 }
 
+impl fmt::Display for Region {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match *self {
+            Region::Us => write!(f, "us"),
+            Region::Us2 => write!(f, "us2"),
+            Region::Uk => write!(f, "uk"),
+            Region::Au => write!(f, "au"),
+            Region::Eu => write!(f, "eu"),
+        }
+    }
+}
 impl Bookmaker {
     pub fn get_enabled_markets(&self) -> Vec<Market> {
         let to_exclude = [MarketType::OutrightsLay, MarketType::H2hLay];

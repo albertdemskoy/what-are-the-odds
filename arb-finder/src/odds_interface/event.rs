@@ -38,7 +38,7 @@ impl Event {
                     None => continue,
                 };
 
-                let percent_ev_cutoff = 5.0;
+                let percent_ev_cutoff = 2.0;
                 let percent_ev = bookie_odds.ev_percentage(&true_odds);
 
                 if (bookie_odds > true_odds && percent_ev > percent_ev_cutoff) {
