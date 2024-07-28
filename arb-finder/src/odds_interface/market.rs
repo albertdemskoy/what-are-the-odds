@@ -1,6 +1,6 @@
 use core::fmt;
-use serde::{Deserialize, Serialize};
-use std::{collections::HashSet, fmt::Display};
+use serde::Deserialize;
+use std::collections::HashSet;
 
 use super::odds::Odds;
 
