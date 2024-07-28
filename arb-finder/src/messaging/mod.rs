@@ -4,7 +4,7 @@ use crate::local_env::MY_ENV;
 
 const BASE_ENDPOINT: &str = "https://discord.com/api/";
 const API_KEY: &str = MY_ENV.discord_api_key;
-const CHANNEL_ID: &str = MY_ENV.discord_channel_id
+const CHANNEL_ID: &str = MY_ENV.discord_channel_id;
 
 #[derive(Serialize)]
 struct DiscordMessage {

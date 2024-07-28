@@ -41,10 +41,12 @@ fn main() {
             println!("write your sport key of choice");
 
             let sport_key = get_trimmed_input();
-            let events_raw = get_odds_for_sport_aus(&sport_key).expect("Failed to get odds for");
-            for event in events_raw {
-                event.identify_opportunities(MarketType::H2h);
-            }
+
+            // what sports?
+            // let events_raw = get_odds_for_sport_aus(&sport_key).expect("Failed to get odds for");
+            // for event in events_raw {
+            //     event.identify_opportunities(MarketType::H2h);
+            // }
         } else if operation_choice == "m" {
             println!("sending test message to discord server");
             send_message("Hello World!!")
