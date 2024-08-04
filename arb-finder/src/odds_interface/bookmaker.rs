@@ -1,4 +1,4 @@
-use std::{collections::HashSet, fmt};
+use std::{collections::HashSet, fmt, marker};
 
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
@@ -57,13 +57,19 @@ impl Bookmaker {
         return None;
     }
 
-    pub fn get_offered_outcomes(&self) -> HashSet<String> {
+    pub fn get_offered_outcomes(&self, market: &MarketType) -> Option<HashSet<String>> {
         let mut outcome_set: HashSet<String> = HashSet::new();
 
-        for market in &self.markets {
-            outcome_set.extend(market.get_all_outcomes())
-        }
+        let specified_market = self.markets.iter().find(|x| x.key == *market);
 
-        return outcome_set;
+        let market_outcomes = match specified_market {
+            Some(x) => x.outcomes.clone(),
+            None => return None,
+        };
+
+        let outcome_names = market_outcomes.iter().map(|x| x.name.clone());
+        outcome_set.extend(outcome_names);
+
+        return Some(outcome_set);
     }
 }
