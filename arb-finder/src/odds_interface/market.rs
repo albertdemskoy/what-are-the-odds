@@ -93,6 +93,7 @@ impl Market {
 pub struct Outcome {
     pub name: String,
     pub price: Odds,
+    pub point: Option<f64>,
 }
 
 impl Outcome {
