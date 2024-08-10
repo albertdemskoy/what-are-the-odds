@@ -3,6 +3,9 @@ use std::fmt;
 
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
+use statrs::distribution::{ContinuousCDF, Normal};
+
+use super::market::{OVER_OUTCOME, UNDER_OUTCOME};
 
 use super::bookmaker::Bookmaker;
 use super::market::MarketType;
@@ -64,17 +67,87 @@ impl Event {
         return bookie_name_set;
     }
 
-    // TODO: convert to Opportunity struct with more info:
-    // - match
-    // - market
-    // - outcome
-    pub fn identify_opportunities(&self, market: &MarketType) -> Vec<Opportunity> {
-        let all_outcomes = self.get_all_outcomes(&market);
+    fn lambda_estimate(cumulative_prob: f64, offered_line: f64) -> f64 {
+        //TODO: Document
+        let standard_normal = Normal::standard();
+
+        let b =
+            2.0 * offered_line + Normal::inverse_cdf(&standard_normal, cumulative_prob).powf(2.0);
+        let term2 = b.powf(2.0) - 4.0 * offered_line.powf(2.0);
+
+        return (b + term2.sqrt()) / 2.0;
+    }
+
+    fn identify_totals_opportunities(&self) -> Vec<Opportunity> {
+        let mut opps: Vec<Opportunity> = Vec::new();
+        const MARKET_KEY: MarketType = MarketType::Totals;
+        let all_outcomes = [OVER_OUTCOME, UNDER_OUTCOME];
+
+        // estimate the true score distribution
+
+        let mut lamb_estimates: Vec<f64> = Vec::new();
+        for bookie in &self.bookmakers {
+            let outcomes = bookie.get_offered_outcomes(&MARKET_KEY);
+            let both_sides_odds: Vec<Odds> = outcomes.iter().map(|x| x.price).collect();
+            let under_outcome = outcomes.iter().find(|x| x.name == UNDER_OUTCOME).unwrap();
+
+            let price = under_outcome.price;
+            let point = under_outcome.point.unwrap();
+
+            let implied_prob = price.true_probability_estimate(&both_sides_odds);
+
+            let lamb_estimate = Self::lambda_estimate(implied_prob, point);
+            lamb_estimates.push(lamb_estimate);
+        }
+
+        let lamb_avg =
+            lamb_estimates.iter().fold(0.0, |acc, x| acc + x) / (lamb_estimates.len() as f64);
+
+        for bookie in &self.bookmakers {
+            let outcomes = bookie.get_offered_outcomes(&MARKET_KEY);
+            for outcome in outcomes {
+                let offered_line = outcome.point.unwrap();
+
+                let bookie_odds = outcome.price;
+
+                // get true odds of this line
+                let mut true_probability =
+                    Normal::standard().cdf((offered_line - lamb_avg) / lamb_avg.sqrt());
+                if (outcome.name == OVER_OUTCOME) {
+                    true_probability = 1.0 - true_probability;
+                }
+
+                let true_odds = Odds::Decimal(1.0 / true_probability);
+
+                let percent_ev = bookie_odds.ev_percentage(&true_odds);
+
+                if (bookie_odds > true_odds && percent_ev > PERCENT_EV_CUTOFF) {
+                    let opportunity = Opportunity {
+                        bookie_key: bookie.key.clone(),
+                        offered_odds: bookie_odds,
+                        outcome_key: outcome.name.clone(),
+                        market_key: MARKET_KEY.clone(),
+                        true_odds,
+                        event: self,
+                        percent_ev,
+                    };
+
+                    opps.push(opportunity);
+                }
+            }
+        }
+
+        return opps;
+    }
+
+    fn identify_h2h_opportunities(&self) -> Vec<Opportunity> {
+        const MARKET_KEY: MarketType = MarketType::H2h;
+        let all_outcomes = self.get_all_outcomes(&MARKET_KEY);
 
         let mut opportunities_vec: Vec<Opportunity> = Vec::new();
 
         for outcome_key in &all_outcomes {
-            let true_odds = self.get_true_odds_for_outcome(&market, outcome_key.as_str());
+            let true_odds = self.get_true_odds_for_outcome(&MARKET_KEY, outcome_key.as_str());
 
             if (true_odds.get_decimal() > MAX_ODDS_CUTOFF) {
                 // only want to consider likely outcomes
@@ -83,7 +156,7 @@ impl Event {
             }
 
             for bookie in &self.bookmakers {
-                let maybe_bookie_odds = bookie.get_odds(&market, outcome_key.as_str());
+                let maybe_bookie_odds = bookie.get_odds(&MARKET_KEY, outcome_key.as_str());
 
                 let bookie_odds = match maybe_bookie_odds {
                     Some(x) => x,
@@ -97,7 +170,7 @@ impl Event {
                         bookie_key: bookie.key.clone(),
                         offered_odds: bookie_odds,
                         outcome_key: outcome_key.clone(),
-                        market_key: market.clone(),
+                        market_key: MARKET_KEY.clone(),
                         true_odds,
                         event: self,
                         percent_ev,
@@ -107,8 +180,21 @@ impl Event {
                 }
             }
         }
-
         return opportunities_vec;
+    }
+
+    pub fn identify_opportunities(&self, market: &MarketType) -> Vec<Opportunity> {
+        if (*market == MarketType::H2h) {
+            return self.identify_h2h_opportunities();
+        } else if (*market == MarketType::Totals) {
+            return self.identify_totals_opportunities();
+        }
+
+        return Vec::new();
+        // for over under we want to do it differently:
+        // - different lines with different odds
+        // - find the estimate for true score distribution
+        // - go through the offerings and see if there is anything that isn't up to par
     }
 
     fn get_all_outcomes(&self, market: &MarketType) -> HashSet<String> {
@@ -116,10 +202,7 @@ impl Event {
 
         for bookie in &self.bookmakers {
             let bookie_outcomes = bookie.get_offered_outcomes(market);
-            match bookie_outcomes {
-                Some(x) => outcome_set.extend(x),
-                None => continue,
-            }
+            outcome_set.extend(bookie_outcomes.iter().map(|x| x.name.clone()));
         }
 
         return outcome_set;
@@ -175,31 +258,5 @@ impl Event {
         };
 
         return market.true_probability_for_outcome(outcome);
-    }
-
-    fn get_best_odds_for_outcome(&self, market: MarketType, outcome_key: &str) -> (String, Odds) {
-        let mut best_odds = 0.0;
-        let mut best_bookie_key = String::from("");
-
-        for bookmaker in &self.bookmakers {
-            let markets = &bookmaker.markets;
-            let market = match markets.iter().find(|&x| x.key == market) {
-                Some(x) => x,
-                None => continue,
-            };
-
-            let team_outcome = match market.outcomes.iter().find(|&x| x.name == outcome_key) {
-                Some(x) => x,
-                None => continue,
-            };
-
-            let bookie_odds = team_outcome.price.get_decimal();
-            if bookie_odds > best_odds {
-                best_odds = bookie_odds;
-                best_bookie_key = bookmaker.key.clone();
-            }
-        }
-
-        return (best_bookie_key, Odds::Decimal(best_odds));
     }
 }

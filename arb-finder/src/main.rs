@@ -1,8 +1,7 @@
 use messaging::send_message;
 use odds_interface::{
     api_requests::{get_key_usage, get_odds_for_sport, get_sports},
-    bookmaker::Region,
-    market::MarketType,
+    logic::{bookmaker::Region, market::MarketType},
 };
 use std::io;
 

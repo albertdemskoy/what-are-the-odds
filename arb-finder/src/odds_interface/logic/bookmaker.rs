@@ -4,7 +4,7 @@ use chrono::{DateTime, Utc};
 use serde::Deserialize;
 
 use super::{
-    market::{Market, MarketType},
+    market::{Market, MarketType, Outcome},
     odds::Odds,
 };
 
@@ -57,19 +57,12 @@ impl Bookmaker {
         return None;
     }
 
-    pub fn get_offered_outcomes(&self, market: &MarketType) -> Option<HashSet<String>> {
-        let mut outcome_set: HashSet<String> = HashSet::new();
-
+    pub fn get_offered_outcomes(&self, market: &MarketType) -> Vec<Outcome> {
         let specified_market = self.markets.iter().find(|x| x.key == *market);
 
-        let market_outcomes = match specified_market {
-            Some(x) => x.outcomes.clone(),
-            None => return None,
+        match specified_market {
+            Some(x) => return x.outcomes.clone(),
+            None => return Vec::new(),
         };
-
-        let outcome_names = market_outcomes.iter().map(|x| x.name.clone());
-        outcome_set.extend(outcome_names);
-
-        return Some(outcome_set);
     }
 }

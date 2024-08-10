@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use crate::odds_interface::{
+use crate::odds_interface::logic::{
     market::{Market, MarketType, Outcome},
     odds::Odds,
 };

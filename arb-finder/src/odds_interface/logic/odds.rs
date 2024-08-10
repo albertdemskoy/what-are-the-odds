@@ -42,6 +42,18 @@ impl Odds {
         return 1.0 / self.get_decimal();
     }
 
+    pub fn true_probability_estimate(&self, all_odds: &Vec<Odds>) -> f64 {
+        let total_probaility = all_odds
+            .iter()
+            .fold(0.0, |acc, x| acc + x.implied_probability());
+
+        let margin = total_probaility - 1.0;
+        let n = all_odds.len() as f64;
+        let raw_odds = self.get_decimal();
+
+        return (n - margin * raw_odds) / (n * raw_odds);
+    }
+
     pub fn ev_percentage(&self, true_odds: &Odds) -> f64 {
         return 100.0 * (self.get_decimal() * true_odds.implied_probability()) - 100.0;
     }

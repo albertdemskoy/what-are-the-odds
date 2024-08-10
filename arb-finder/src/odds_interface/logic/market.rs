@@ -81,13 +81,13 @@ impl Market {
 
     // https://cran.r-project.org/web/packages/implied/vignettes/introduction.html
     pub fn true_probability_estimate(&self, odds: &Odds) -> f64 {
-        let margin = self.total_probability() - 1.0;
-        let n = self.outcomes.len() as f64;
-        let raw_odds = odds.get_decimal();
-
-        return (n - margin * raw_odds) / (n * raw_odds);
+        let all_odds: Vec<Odds> = self.outcomes.iter().map(|x| x.price.clone()).collect();
+        return odds.true_probability_estimate(&all_odds);
     }
 }
+
+pub const OVER_OUTCOME: &str = "Over";
+pub const UNDER_OUTCOME: &str = "Under";
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Outcome {
