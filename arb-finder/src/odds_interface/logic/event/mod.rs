@@ -7,6 +7,8 @@ use statrs::distribution::{ContinuousCDF, Normal};
 
 use super::market::{OVER_OUTCOME, UNDER_OUTCOME};
 
+mod event_test;
+
 use super::bookmaker::Bookmaker;
 use super::market::MarketType;
 use super::odds::Odds;
@@ -21,7 +23,7 @@ pub struct Event {
     commence_time: DateTime<Utc>,
     home_team: String,
     away_team: String,
-    pub bookmakers: Vec<Bookmaker>,
+    bookmakers: Vec<Bookmaker>,
 }
 
 pub struct Opportunity<'a> {
@@ -81,8 +83,8 @@ impl Event {
     fn identify_totals_opportunities(&self) -> Vec<Opportunity> {
         let mut opps: Vec<Opportunity> = Vec::new();
         const MARKET_KEY: MarketType = MarketType::Totals;
-        let all_outcomes = [OVER_OUTCOME, UNDER_OUTCOME];
 
+        // SHOULD USE A POISSON DEPENDING ON LINE MAGNITUDE
         // estimate the true score distribution
 
         let mut lamb_estimates: Vec<f64> = Vec::new();
