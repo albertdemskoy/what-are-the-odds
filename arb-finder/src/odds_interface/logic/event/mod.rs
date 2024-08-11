@@ -4,6 +4,7 @@ use std::fmt;
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
 use statrs::distribution::{ContinuousCDF, Normal};
+use strum::IntoEnumIterator;
 
 use super::market::{OVER_OUTCOME, UNDER_OUTCOME};
 
@@ -20,40 +21,47 @@ const PERCENT_EV_CUTOFF: f64 = 2.0;
 pub struct Event {
     id: String,
     sport_key: String,
+    sport_title: String,
     commence_time: DateTime<Utc>,
     home_team: String,
     away_team: String,
     bookmakers: Vec<Bookmaker>,
 }
 
-pub struct Opportunity<'a> {
-    bookie_key: String,
+pub struct Opportunity {
+    bookie_name: String,
     offered_odds: Odds,
+    sport_title: String,
+    home_team: String,
+    away_team: String,
     true_odds: Odds,
-    event: &'a Event,
+    message: String,
     outcome_key: String,
     market_key: MarketType,
     percent_ev: f64,
 }
 
-impl fmt::Display for Opportunity<'_> {
+impl fmt::Display for Opportunity {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let markdown_str = format!(
-            "## {0:.2}%: {1} vs {2}
-    - Market: {8}
-    - {3}: Offering {4:.2} for {5}
-    - true odds: {6:.2}
-    - commence time: {7}
+            " ### Opportunity found on {0}
+    - {1:.2}%: {2} vs {3} at {4}
+    - Outcome: {5}
+    - Market: {6}
+    - Offered odds: {7}
+    - True odds: {8}
+    - Explanation: {9}
 ",
+            self.sport_title,
             self.percent_ev,
-            self.event.home_team,
-            self.event.away_team,
-            self.bookie_key,
-            self.offered_odds.get_decimal(),
+            self.home_team,
+            self.away_team,
+            self.bookie_name,
             self.outcome_key,
+            self.market_key,
+            self.offered_odds.get_decimal(),
             self.true_odds.get_decimal(),
-            self.event.commence_time,
-            self.market_key
+            self.message,
         );
 
         return write!(f, "{}", markdown_str);
@@ -125,13 +133,16 @@ impl Event {
 
                 if (bookie_odds > true_odds && percent_ev > PERCENT_EV_CUTOFF) {
                     let opportunity = Opportunity {
-                        bookie_key: bookie.key.clone(),
+                        bookie_name: bookie.title.clone(),
                         offered_odds: bookie_odds,
                         outcome_key: outcome.name.clone(),
                         market_key: MARKET_KEY.clone(),
                         true_odds,
-                        event: self,
                         percent_ev,
+                        sport_title: self.sport_title.clone(),
+                        home_team: self.home_team.clone(),
+                        away_team: self.away_team.clone(),
+                        message: String::from(""),
                     };
 
                     opps.push(opportunity);
@@ -169,12 +180,15 @@ impl Event {
 
                 if (bookie_odds > true_odds && percent_ev > PERCENT_EV_CUTOFF) {
                     let opportunity = Opportunity {
-                        bookie_key: bookie.key.clone(),
+                        bookie_name: bookie.title.clone(),
+                        sport_title: self.sport_title.clone(),
+                        home_team: self.home_team.clone(),
+                        away_team: self.away_team.clone(),
                         offered_odds: bookie_odds,
                         outcome_key: outcome_key.clone(),
                         market_key: MARKET_KEY.clone(),
+                        message: String::from(""),
                         true_odds,
-                        event: self,
                         percent_ev,
                     };
 
@@ -185,7 +199,7 @@ impl Event {
         return opportunities_vec;
     }
 
-    pub fn identify_opportunities(&self, market: &MarketType) -> Vec<Opportunity> {
+    pub fn identify_opportunities_in_market(&self, market: &MarketType) -> Vec<Opportunity> {
         if (*market == MarketType::H2h) {
             return self.identify_h2h_opportunities();
         } else if (*market == MarketType::Totals) {
@@ -197,6 +211,15 @@ impl Event {
         // - different lines with different odds
         // - find the estimate for true score distribution
         // - go through the offerings and see if there is anything that isn't up to par
+    }
+
+    pub fn identify_opportunities(&self) -> Vec<Opportunity> {
+        let mut all_opportunities = Vec::new();
+        for market_type in MarketType::iter() {
+            let mut market_opps = self.identify_opportunities_in_market(&market_type);
+            all_opportunities.append(&mut market_opps);
+        }
+        return all_opportunities;
     }
 
     fn get_all_outcomes(&self, market: &MarketType) -> HashSet<String> {

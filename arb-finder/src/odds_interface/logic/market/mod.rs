@@ -1,6 +1,7 @@
 use core::fmt;
 use serde::Deserialize;
 use std::collections::HashSet;
+use strum_macros::EnumIter;
 
 use super::odds::Odds;
 
@@ -10,7 +11,7 @@ pub struct Market {
     pub outcomes: Vec<Outcome>,
 }
 
-#[derive(Deserialize, Debug, Clone, PartialEq)]
+#[derive(Deserialize, Debug, Clone, PartialEq, EnumIter)]
 #[serde(rename_all = "snake_case")]
 pub enum MarketType {
     H2h,
@@ -99,5 +100,9 @@ pub struct Outcome {
 impl Outcome {
     fn implied_probability(&self) -> f64 {
         return self.price.implied_probability();
+    }
+
+    pub fn set_price(&mut self, new_price: &Odds) {
+        self.price = new_price.clone();
     }
 }

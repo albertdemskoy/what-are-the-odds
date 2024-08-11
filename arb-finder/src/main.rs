@@ -48,7 +48,7 @@ fn main() {
                 .expect("Failed to get odds for {sport_key:?}");
             for event in events_raw {
                 for market in &markets {
-                    let opportunities = event.identify_opportunities(market);
+                    let opportunities = event.identify_opportunities();
                     for opportunity in opportunities {
                         send_message(&opportunity.to_string());
                     }

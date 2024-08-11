@@ -11,7 +11,7 @@ use super::{
 #[derive(Deserialize, Debug, Clone)]
 pub struct Bookmaker {
     pub key: String,
-    title: String,
+    pub title: String,
     last_update: DateTime<Utc>,
     pub markets: Vec<Market>,
 }

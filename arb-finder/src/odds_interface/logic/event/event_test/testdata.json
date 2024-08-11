@@ -1,0 +1,169 @@
+{
+  "id": "132905fc8e35fe3551638c40c80fe9e6",
+  "sport_key": "aussierules_afl",
+  "sport_title": "AFL",
+  "commence_time": "2024-08-04T06:40:00Z",
+  "home_team": "St Kilda Saints",
+  "away_team": "Brisbane Lions",
+  "bookmakers": [
+    {
+      "key": "sportsbet",
+      "title": "SportsBet",
+      "last_update": "2024-08-04T05:15:36Z",
+      "markets": [
+        {
+          "key": "h2h",
+          "last_update": "2024-08-04T05:15:36Z",
+          "outcomes": [
+            {
+              "name": "Brisbane Lions",
+              "price": 1.62
+            },
+            {
+              "name": "St Kilda Saints",
+              "price": 2.3
+            }
+          ]
+        },
+        {
+          "key": "spreads",
+          "last_update": "2024-08-04T05:15:36Z",
+          "outcomes": [
+            {
+              "name": "Brisbane Lions",
+              "price": 1.9,
+              "point": -7.5
+            },
+            {
+              "name": "St Kilda Saints",
+              "price": 1.9,
+              "point": 7.5
+            }
+          ]
+        },
+        {
+          "key": "totals",
+          "last_update": "2024-08-04T05:15:36Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "price": 1.9,
+              "point": 166.5
+            },
+            {
+              "name": "Under",
+              "price": 1.9,
+              "point": 166.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "tab",
+      "title": "TAB",
+      "last_update": "2024-08-04T05:15:36Z",
+      "markets": [
+        {
+          "key": "h2h",
+          "last_update": "2024-08-04T05:15:36Z",
+          "outcomes": [
+            {
+              "name": "Brisbane Lions",
+              "price": 1.62
+            },
+            {
+              "name": "St Kilda Saints",
+              "price": 2.3
+            }
+          ]
+        },
+        {
+          "key": "spreads",
+          "last_update": "2024-08-04T05:15:36Z",
+          "outcomes": [
+            {
+              "name": "Brisbane Lions",
+              "price": 1.9,
+              "point": -7.5
+            },
+            {
+              "name": "St Kilda Saints",
+              "price": 1.9,
+              "point": 7.5
+            }
+          ]
+        },
+        {
+          "key": "totals",
+          "last_update": "2024-08-04T05:15:36Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "price": 1.9,
+              "point": 166.5
+            },
+            {
+              "name": "Under",
+              "price": 1.9,
+              "point": 166.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "unibet",
+      "title": "Unibet",
+      "last_update": "2024-08-04T05:15:35Z",
+      "markets": [
+        {
+          "key": "h2h",
+          "last_update": "2024-08-04T05:15:35Z",
+          "outcomes": [
+            {
+              "name": "Brisbane Lions",
+              "price": 1.62
+            },
+            {
+              "name": "St Kilda Saints",
+              "price": 2.3
+            }
+          ]
+        },
+        {
+          "key": "spreads",
+          "last_update": "2024-08-04T05:15:35Z",
+          "outcomes": [
+            {
+              "name": "Brisbane Lions",
+              "price": 1.9,
+              "point": -7.5
+            },
+            {
+              "name": "St Kilda Saints",
+              "price": 1.9,
+              "point": 7.5
+            }
+          ]
+        },
+        {
+          "key": "totals",
+          "last_update": "2024-08-04T05:15:35Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "price": 1.9,
+              "point": 166.5
+            },
+            {
+              "name": "Under",
+              "price": 1.9,
+              "point": 166.5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
