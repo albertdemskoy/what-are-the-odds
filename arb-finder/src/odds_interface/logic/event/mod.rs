@@ -1,9 +1,10 @@
-use std::collections::HashSet;
+use core::num;
+use std::collections::{HashMap, HashSet};
 use std::fmt;
 
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
-use statrs::distribution::{ContinuousCDF, Normal};
+use statrs::distribution::{ContinuousCDF, DiscreteCDF, Normal, Poisson};
 use strum::IntoEnumIterator;
 
 use super::market::{OVER_OUTCOME, UNDER_OUTCOME};
@@ -16,7 +17,7 @@ use super::odds::Odds;
 
 // TODO: pass these as parameters
 const MAX_ODDS_CUTOFF: f64 = 10.0;
-const PERCENT_EV_CUTOFF: f64 = 2.0;
+const PERCENT_EV_CUTOFF: f64 = 5.0;
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Event {
@@ -78,56 +79,85 @@ impl Event {
         return bookie_name_set;
     }
 
-    fn lambda_estimate(cumulative_prob: f64, offered_line: f64) -> f64 {
+    /// #
+    fn poisson_rate_estimate(cumulative_prob: f64, offered_line: f64) -> f64 {
         //TODO: Document
         let standard_normal = Normal::standard();
-
-        let b =
-            2.0 * offered_line + Normal::inverse_cdf(&standard_normal, cumulative_prob).powf(2.0);
-        let term2 = b.powf(2.0) - 4.0 * offered_line.powf(2.0);
+        let continuity_adjusted_line = offered_line + 0.5;
+        // TODO: continuity correction
+        // Wilson-Hilferty
+        let b = 2.0 * continuity_adjusted_line
+            + Normal::inverse_cdf(&standard_normal, cumulative_prob).powf(2.0);
+        let term2 = b.powf(2.0) - 4.0 * continuity_adjusted_line.powf(2.0);
 
         return (b + term2.sqrt()) / 2.0;
     }
 
+    fn implied_mean_score(&self, bookie: &Bookmaker) -> Option<f64> {
+        let outcomes = bookie.get_offered_outcomes(&MarketType::Totals);
+
+        let both_sides_odds: Vec<Odds> = outcomes.iter().map(|x| x.price).collect();
+        let under_outcome = outcomes.iter().find(|x| x.name == UNDER_OUTCOME).unwrap();
+
+        let price = under_outcome.price;
+        let point = under_outcome.point.unwrap();
+
+        let implied_prob = price.true_probability_estimate(&both_sides_odds);
+
+        let lamb_estimate = Self::poisson_rate_estimate(implied_prob, point);
+        return Some(lamb_estimate);
+    }
+
     fn identify_totals_opportunities(&self) -> Vec<Opportunity> {
         let mut opps: Vec<Opportunity> = Vec::new();
-        const MARKET_KEY: MarketType = MarketType::Totals;
 
         // SHOULD USE A POISSON DEPENDING ON LINE MAGNITUDE
         // estimate the true score distribution
+        let mut lamb_estimates_for_bookies = HashMap::new();
 
-        let mut lamb_estimates: Vec<f64> = Vec::new();
         for bookie in &self.bookmakers {
-            let outcomes = bookie.get_offered_outcomes(&MARKET_KEY);
-            if (outcomes.len() != 2) {
+            let lamb_estimate = self.implied_mean_score(bookie);
+            match lamb_estimate {
+                None => continue,
+                Some(x) => lamb_estimates_for_bookies.insert(bookie.key.clone(), x),
+            };
+        }
+
+        let sum_lambda = lamb_estimates_for_bookies
+            .iter()
+            .fold(0.0, |acc, (bookie_key, rate_estimate)| acc + rate_estimate);
+        let bookies_offering_totals: Vec<String> =
+            lamb_estimates_for_bookies.keys().cloned().collect();
+        let num_bookies_offering = bookies_offering_totals.len();
+        let avg_lambda = sum_lambda as f64 / num_bookies_offering as f64;
+
+        if (avg_lambda <= 0.0 || num_bookies_offering <= 1) {
+            return Vec::new();
+        }
+
+        for bookie in &self.bookmakers {
+            if (!bookies_offering_totals.contains(&bookie.key)) {
                 continue;
             }
 
-            let both_sides_odds: Vec<Odds> = outcomes.iter().map(|x| x.price).collect();
-            let under_outcome = outcomes.iter().find(|x| x.name == UNDER_OUTCOME).unwrap();
-
-            let price = under_outcome.price;
-            let point = under_outcome.point.unwrap();
-
-            let implied_prob = price.true_probability_estimate(&both_sides_odds);
-
-            let lamb_estimate = Self::lambda_estimate(implied_prob, point);
-            lamb_estimates.push(lamb_estimate);
-        }
-
-        let lamb_avg =
-            lamb_estimates.iter().fold(0.0, |acc, x| acc + x) / (lamb_estimates.len() as f64);
-
-        for bookie in &self.bookmakers {
-            let outcomes = bookie.get_offered_outcomes(&MARKET_KEY);
+            // Need to address all the unwrapping here
+            let outcomes = bookie.get_offered_outcomes(&MarketType::Totals);
             for outcome in outcomes {
                 let offered_line = outcome.point.unwrap();
-
                 let bookie_odds = outcome.price;
 
-                // get true odds of this line
-                let mut true_probability =
-                    Normal::standard().cdf((offered_line - lamb_avg) / lamb_avg.sqrt());
+                // // LEAVE ONE OUT -- so this one doesn't affect our odds .... for now
+                // let lambda_to_use = (sum_lambda
+                //     - lamb_estimates_for_bookies.get(&bookie.key).unwrap())
+                //     / (num_bookies_offering as f64 - 1.0);
+
+                // don't leave one out i don't reckon??
+                let lambda_to_use = sum_lambda / num_bookies_offering as f64;
+
+                // get true odds of this line -- use normal approximation to estimate lambda
+                // but use poisson cdf to calculate
+                let poisson_dist = Poisson::new(lambda_to_use).unwrap();
+                let mut true_probability = poisson_dist.cdf(offered_line.round() as u64);
                 if (outcome.name == OVER_OUTCOME) {
                     true_probability = 1.0 - true_probability;
                 }
@@ -136,12 +166,12 @@ impl Event {
 
                 let percent_ev = bookie_odds.ev_percentage(&true_odds);
 
-                if (bookie_odds > true_odds && percent_ev > PERCENT_EV_CUTOFF) {
+                if (percent_ev > PERCENT_EV_CUTOFF) {
                     let opportunity = Opportunity {
                         bookie_name: bookie.title.clone(),
                         offered_odds: bookie_odds,
                         outcome_key: outcome.name.clone(),
-                        market_key: MARKET_KEY.clone(),
+                        market_key: MarketType::Totals.clone(),
                         true_odds,
                         percent_ev,
                         sport_title: self.sport_title.clone(),

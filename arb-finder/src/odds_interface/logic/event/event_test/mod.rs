@@ -21,6 +21,21 @@ fn get_afl_event() -> Event {
             .expect("Unable to read file");
     return serde_json::from_str::<Event>(&raw_file_string).expect("JSON was not well-formatted");
 }
+/// ### Input data:
+/// - **Matchup**: *Doosan Bears* vs *Kiwoom Heroes*,
+/// - **Bookies**: *draftkings*, *fanduel*, *coolbet*, *bovada*
+///
+/// Each has the same odds, with
+/// - **h2h**: 1.5 Bears 2.6 Heroes
+/// - **totals**: 9.5, 1.9 each way
+/// - **spreads**: -1.5 to Bears, 1.9 each way
+///
+fn get_kbo_event() -> Event {
+    let raw_file_string =
+        fs::read_to_string("./src/odds_interface/logic/event/event_test/testdata_kbo.json")
+            .expect("Unable to read file");
+    return serde_json::from_str::<Event>(&raw_file_string).expect("JSON was not well-formatted");
+}
 
 impl Event {
     fn update_line(&mut self, bookie_key: &str, new_line: f64) {
@@ -87,14 +102,14 @@ fn test_get_h2h_opportunities() {
     assert_eq!(opportunities.len(), 0);
 
     // change all odds except sportsbet to suddenly favour the saints a bit more
-    event.update_odds("tab", &MarketType::H2h, "St Kilda Saints", 1.95);
-    event.update_odds("tab", &MarketType::H2h, "Brisbane Lions", 1.7);
+    event.update_odds("tab", &MarketType::H2h, "St Kilda Saints", 1.9);
+    event.update_odds("tab", &MarketType::H2h, "Brisbane Lions", 1.9);
 
-    event.update_odds("unibet", &MarketType::H2h, "St Kilda Saints", 1.95);
-    event.update_odds("unibet", &MarketType::H2h, "Brisbane Lions", 1.7);
+    event.update_odds("unibet", &MarketType::H2h, "St Kilda Saints", 1.9);
+    event.update_odds("unibet", &MarketType::H2h, "Brisbane Lions", 1.9);
 
-    event.update_odds("pointsbetau", &MarketType::H2h, "St Kilda Saints", 1.95);
-    event.update_odds("pointsbetau", &MarketType::H2h, "Brisbane Lions", 1.7);
+    event.update_odds("pointsbetau", &MarketType::H2h, "St Kilda Saints", 1.9);
+    event.update_odds("pointsbetau", &MarketType::H2h, "Brisbane Lions", 1.9);
 
     let opportunities = event.identify_opportunities();
 
@@ -106,6 +121,29 @@ fn test_get_h2h_opportunities() {
 
 #[test]
 fn test_get_totals_opportunities_high_score() {
+    let mut event = get_afl_event();
+    let opportunities = event.identify_opportunities();
+
+    // NO OPPORTUNITIES
+    assert_eq!(opportunities.len(), 0);
+
+    // change all odds except sportsbet to suddenly increase the total
+    // TODO: leave one out?? need to think about the approach to take
+    // as one outlier can mess with our true estimates
+    event.update_line("tab", 170.5);
+    event.update_line("unibet", 170.5);
+    event.update_line("pointsbetau", 170.5);
+
+    let opportunities = event.identify_opportunities();
+
+    assert_eq!(opportunities.len(), 1);
+    let first_opp = opportunities.first().unwrap();
+    assert_eq!(first_opp.bookie_name, "SportsBet");
+    assert_eq!(first_opp.outcome_key, "Over");
+}
+
+#[test]
+fn test_get_totals_opportunities_low_score() {
     let mut event = get_afl_event();
     let opportunities = event.identify_opportunities();
 
