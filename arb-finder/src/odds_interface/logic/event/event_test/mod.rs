@@ -61,16 +61,17 @@ fn test_get_h2h_opportunities() {
     // NO OPPORTUNITIES
     assert_eq!(opportunities.len(), 0);
 
-    // change all odds except sportsbet to suddenly favour the saints
-    event.update_odds("tab", &MarketType::H2h, "St Kilda Saints", 1.62);
-    event.update_odds("tab", &MarketType::H2h, "Brisbane Lions", 2.3);
+    // change all odds except sportsbet to suddenly favour the saints a bit more
+    event.update_odds("tab", &MarketType::H2h, "St Kilda Saints", 1.95);
+    event.update_odds("tab", &MarketType::H2h, "Brisbane Lions", 1.7);
 
-    event.update_odds("unibet", &MarketType::H2h, "St Kilda Saints", 1.62);
-    event.update_odds("unibet", &MarketType::H2h, "Brisbane Lions", 2.3);
+    event.update_odds("unibet", &MarketType::H2h, "St Kilda Saints", 1.95);
+    event.update_odds("unibet", &MarketType::H2h, "Brisbane Lions", 1.7);
 
     let opportunities = event.identify_opportunities();
 
     assert_eq!(opportunities.len(), 1);
     let first_opp = opportunities.first().unwrap();
     assert_eq!(first_opp.bookie_name, "SportsBet");
+    assert_eq!(first_opp.outcome_key, "St Kilda Saints");
 }
