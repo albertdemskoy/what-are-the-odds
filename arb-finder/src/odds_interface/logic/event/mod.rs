@@ -14,6 +14,7 @@ use super::bookmaker::Bookmaker;
 use super::market::MarketType;
 use super::odds::Odds;
 
+// TODO: pass these as parameters
 const MAX_ODDS_CUTOFF: f64 = 10.0;
 const PERCENT_EV_CUTOFF: f64 = 2.0;
 
