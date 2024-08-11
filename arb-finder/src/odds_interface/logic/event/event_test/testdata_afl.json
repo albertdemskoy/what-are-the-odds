@@ -164,6 +164,59 @@
           ]
         }
       ]
+    },
+    {
+      "key": "pointsbetau",
+      "title": "PointsBet (AU)",
+      "last_update": "2024-08-04T05:15:36Z",
+      "markets": [
+        {
+          "key": "h2h",
+          "last_update": "2024-08-04T05:15:36Z",
+          "outcomes": [
+            {
+              "name": "Brisbane Lions",
+              "price": 1.62
+            },
+            {
+              "name": "St Kilda Saints",
+              "price": 2.3
+            }
+          ]
+        },
+        {
+          "key": "spreads",
+          "last_update": "2024-08-04T05:15:36Z",
+          "outcomes": [
+            {
+              "name": "Brisbane Lions",
+              "price": 1.9,
+              "point": -7.5
+            },
+            {
+              "name": "St Kilda Saints",
+              "price": 1.9,
+              "point": 7.5
+            }
+          ]
+        },
+        {
+          "key": "totals",
+          "last_update": "2024-08-04T05:15:36Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "price": 1.9,
+              "point": 166.5
+            },
+            {
+              "name": "Under",
+              "price": 1.9,
+              "point": 166.5
+            }
+          ]
+        }
+      ]
     }
   ]
 }

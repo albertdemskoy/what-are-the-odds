@@ -98,6 +98,10 @@ impl Event {
         let mut lamb_estimates: Vec<f64> = Vec::new();
         for bookie in &self.bookmakers {
             let outcomes = bookie.get_offered_outcomes(&MARKET_KEY);
+            if (outcomes.len() != 2) {
+                continue;
+            }
+
             let both_sides_odds: Vec<Odds> = outcomes.iter().map(|x| x.price).collect();
             let under_outcome = outcomes.iter().find(|x| x.name == UNDER_OUTCOME).unwrap();
 
