@@ -94,7 +94,12 @@ impl Event {
         let outcomes = bookie.get_offered_outcomes(&MarketType::Totals);
 
         let both_sides_odds: Vec<Odds> = outcomes.iter().map(|x| x.price).collect();
-        let under_outcome = outcomes.iter().find(|x| x.name == UNDER_OUTCOME).unwrap();
+        let under_outcome_option = outcomes.iter().find(|x| x.name == UNDER_OUTCOME);
+
+        let under_outcome = match under_outcome_option {
+            Some(x) => x,
+            None => return None,
+        };
 
         let price = under_outcome.price;
         let point = under_outcome.point.unwrap();
@@ -278,7 +283,7 @@ impl Event {
         return bookies
             .iter()
             .filter(|bookie| {
-                self.get_adjusted_probability(bookie, &market, outcome_key)
+                self.get_adjusted_probability(bookie, market, outcome_key)
                     .is_some()
             })
             .fold(0.0, |sum, bookie_key| {
