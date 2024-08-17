@@ -79,16 +79,13 @@ impl Event {
         return bookie_name_set;
     }
 
-    /// #
     fn poisson_rate_estimate(cumulative_prob: f64, offered_line: f64) -> f64 {
-        //TODO: Document
         let standard_normal = Normal::standard();
-        let continuity_adjusted_line = offered_line + 0.5;
-        // TODO: continuity correction
-        // Wilson-Hilferty
-        let b = 2.0 * continuity_adjusted_line
-            + Normal::inverse_cdf(&standard_normal, cumulative_prob).powf(2.0);
-        let term2 = b.powf(2.0) - 4.0 * continuity_adjusted_line.powf(2.0);
+        // TODO: continuity correction -- not needed
+        // apparently Wilson-Hilferty is a better approximation
+        let b =
+            2.0 * offered_line + Normal::inverse_cdf(&standard_normal, cumulative_prob).powf(2.0);
+        let term2 = b.powf(2.0) - 4.0 * offered_line.powf(2.0);
 
         return (b + term2.sqrt()) / 2.0;
     }
@@ -146,18 +143,14 @@ impl Event {
                 let offered_line = outcome.point.unwrap();
                 let bookie_odds = outcome.price;
 
-                // // LEAVE ONE OUT -- so this one doesn't affect our odds .... for now
-                // let lambda_to_use = (sum_lambda
-                //     - lamb_estimates_for_bookies.get(&bookie.key).unwrap())
-                //     / (num_bookies_offering as f64 - 1.0);
-
-                // don't leave one out i don't reckon??
-                let lambda_to_use = sum_lambda / num_bookies_offering as f64;
-
                 // get true odds of this line -- use normal approximation to estimate lambda
                 // but use poisson cdf to calculate
-                let poisson_dist = Poisson::new(lambda_to_use).unwrap();
-                let mut true_probability = poisson_dist.cdf(offered_line.round() as u64);
+                let poisson_dist = Poisson::new(avg_lambda).unwrap();
+
+                // round down for under probability
+                let line_rounded = offered_line as u64;
+                let mut true_probability = poisson_dist.cdf(line_rounded);
+
                 if (outcome.name == OVER_OUTCOME) {
                     true_probability = 1.0 - true_probability;
                 }

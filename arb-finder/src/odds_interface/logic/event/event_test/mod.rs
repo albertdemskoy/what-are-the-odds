@@ -1,4 +1,4 @@
-use std::{borrow::BorrowMut, fs};
+use std::fs;
 
 use crate::odds_interface::logic::{
     event::Event,
@@ -144,21 +144,21 @@ fn test_get_totals_opportunities_high_score() {
 
 #[test]
 fn test_get_totals_opportunities_low_score() {
-    let mut event = get_afl_event();
+    let mut event = get_kbo_event();
     let opportunities = event.identify_opportunities();
 
     // NO OPPORTUNITIES
     assert_eq!(opportunities.len(), 0);
 
-    // change all odds except sportsbet to suddenly favour the saints a bit more
-    event.update_line("tab", 170.5);
-    event.update_line("unibet", 170.5);
-    event.update_line("pointsbetau", 170.5);
+    // change all odds except fanduel to suddenly move the line lower
+    event.update_line("draftkings", 7.5);
+    event.update_line("bovada", 7.5);
+    event.update_line("coolbet", 7.5);
 
     let opportunities = event.identify_opportunities();
 
     assert_eq!(opportunities.len(), 1);
     let first_opp = opportunities.first().unwrap();
-    assert_eq!(first_opp.bookie_name, "SportsBet");
-    assert_eq!(first_opp.outcome_key, "Over");
+    assert_eq!(first_opp.bookie_name, "FanDuel");
+    assert_eq!(first_opp.outcome_key, "Under");
 }
