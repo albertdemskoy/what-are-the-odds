@@ -23,4 +23,4 @@ const AU_BOOKS: [&str; 13] = [
     "unibet",
 ];
 
-const AUS_ONLY: bool = false;
+const AUS_ONLY: bool = true;

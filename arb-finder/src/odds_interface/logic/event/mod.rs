@@ -202,7 +202,10 @@ impl Event {
                         sport_title: self.sport_title.clone(),
                         home_team: self.home_team.clone(),
                         away_team: self.away_team.clone(),
-                        message: String::from(""),
+                        message: format!(
+                            "True line at {0}. Offered line {1}",
+                            avg_lambda, offered_line
+                        ),
                     };
 
                     opps.push(opportunity);
@@ -248,7 +251,7 @@ impl Event {
                         offered_odds: bookie_odds,
                         outcome_key: outcome_key.clone(),
                         market_key: market.clone(),
-                        message: String::from(""),
+                        message: format!("Hello"),
                         true_odds,
                         percent_ev,
                     };
