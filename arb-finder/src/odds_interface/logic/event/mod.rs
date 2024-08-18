@@ -9,6 +9,7 @@ use strum::IntoEnumIterator;
 
 use super::market::{OVER_OUTCOME, UNDER_OUTCOME};
 
+#[cfg(test)]
 mod event_test;
 
 use super::bookmaker::Bookmaker;

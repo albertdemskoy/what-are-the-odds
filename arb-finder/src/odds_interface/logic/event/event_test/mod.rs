@@ -1,7 +1,5 @@
 use std::fs;
 
-use serde::de::Unexpected;
-
 use crate::odds_interface::logic::{
     event::Event,
     market::{MarketType, Outcome, OVER_OUTCOME, UNDER_OUTCOME},
