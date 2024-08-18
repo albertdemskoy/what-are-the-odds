@@ -1,13 +1,12 @@
-use messaging::send_message;
-use odds_interface::{
-    api_requests::{get_key_usage, get_odds_for_sport, get_sports},
-    logic::{bookmaker::Region, market::MarketType},
-};
+use db::{establish_connection, models::create_sport};
+use odds_interface::odds_api::{get_key_usage, get_sports};
 use std::io;
 
+mod db;
 mod local_env;
 mod messaging;
 mod odds_interface;
+mod schema;
 
 fn get_sport_key_json(sport_key: &str) -> String {
     return format!("./src/example_responses/{sport_key}_odds.json");
@@ -28,37 +27,22 @@ fn main() {
     while num_inputs > 0 {
         println!("Available operations:");
         println!("==========================");
-        println!("s:   print in-season sports");
-        println!("e:   try to find +EV opportunities for sport of choosing");
-        println!("m:   send test message to discord server");
+        println!("s: write in-season sports to db");
 
         let operation_choice = get_trimmed_input();
 
         if operation_choice == "s" {
             let sports = get_sports().expect("Failed to get sports");
-            println!("{sports:#?}")
-        } else if operation_choice == "e" {
-            println!("write your sport key of choice");
 
-            let sport_key = get_trimmed_input();
-            let markets = [MarketType::H2h, MarketType::Spreads, MarketType::Totals].to_vec();
-            let regions = [Region::Us, Region::Uk, Region::Au, Region::Eu].to_vec();
-
-            let events_raw = get_odds_for_sport(&sport_key, &markets, &regions)
-                .expect("Failed to get odds for {sport_key:?}");
-            for event in events_raw {
-                for market in &markets {
-                    let opportunities = event.identify_opportunities();
-                    for opportunity in opportunities {
-                        send_message(&opportunity.to_string());
-                    }
-                }
+            let connection = &mut establish_connection();
+            for sport in sports {
+                create_sport(
+                    connection,
+                    sport.key.as_str(),
+                    sport.group.as_str(),
+                    sport.title.as_str(),
+                );
             }
-        } else if operation_choice == "m" {
-            println!("sending test message to discord server");
-            send_message("Hello World!!")
-        } else {
-            println!("{operation_choice:#?} is not a valid choice!")
         }
 
         let key_usage = get_key_usage();

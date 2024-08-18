@@ -1,17 +1,15 @@
 use std::fs;
 
 use reqwest::{blocking::Response, Error};
+use types::{Event, MarketType, Region, Sport};
 use util::{get_key_usage_from_headers, ApiKeyUsage};
 
 use crate::local_env::MY_ENV;
 
-use super::logic::bookmaker::Region;
-use super::logic::market::MarketType;
-use super::logic::{event::Event, sport::Sport};
-
 const ODDS_HOST_BASE: &str = "https://api.the-odds-api.com/v4";
 const API_KEY: &str = MY_ENV.odds_api_key;
 
+mod types;
 pub mod util;
 
 // todo: these should return the actual type
@@ -41,6 +39,7 @@ pub fn get_odds_for_sport(
                 .collect::<Vec<String>>()
                 .join(","),
         ),
+        ("oddsFormat", "decimal"),
     ];
 
     let url = reqwest::Url::parse_with_params(&full_url, &params).unwrap();
