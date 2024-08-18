@@ -1,6 +1,7 @@
 use core::fmt;
-use serde::{Deserialize, Serialize};
-use std::{collections::HashSet, fmt::Display};
+use serde::Deserialize;
+use std::collections::HashSet;
+use strum_macros::EnumIter;
 
 use super::odds::Odds;
 
@@ -10,7 +11,7 @@ pub struct Market {
     pub outcomes: Vec<Outcome>,
 }
 
-#[derive(Deserialize, Debug, Clone, PartialEq)]
+#[derive(Deserialize, Debug, Clone, PartialEq, EnumIter)]
 #[serde(rename_all = "snake_case")]
 pub enum MarketType {
     H2h,
@@ -81,22 +82,27 @@ impl Market {
 
     // https://cran.r-project.org/web/packages/implied/vignettes/introduction.html
     pub fn true_probability_estimate(&self, odds: &Odds) -> f64 {
-        let margin = self.total_probability() - 1.0;
-        let n = self.outcomes.len() as f64;
-        let raw_odds = odds.get_decimal();
-
-        return (n - margin * raw_odds) / (n * raw_odds);
+        let all_odds: Vec<Odds> = self.outcomes.iter().map(|x| x.price.clone()).collect();
+        return odds.true_probability_estimate(&all_odds);
     }
 }
+
+pub const OVER_OUTCOME: &str = "Over";
+pub const UNDER_OUTCOME: &str = "Under";
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Outcome {
     pub name: String,
     pub price: Odds,
+    pub point: Option<f64>,
 }
 
 impl Outcome {
     fn implied_probability(&self) -> f64 {
         return self.price.implied_probability();
+    }
+
+    pub fn set_price(&mut self, new_price: &Odds) {
+        self.price = new_price.clone();
     }
 }

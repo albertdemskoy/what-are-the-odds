@@ -1,17 +1,17 @@
-use std::{collections::HashSet, fmt};
+use std::{collections::HashSet, fmt, marker};
 
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
 
 use super::{
-    market::{Market, MarketType},
+    market::{Market, MarketType, Outcome},
     odds::Odds,
 };
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Bookmaker {
     pub key: String,
-    title: String,
+    pub title: String,
     last_update: DateTime<Utc>,
     pub markets: Vec<Market>,
 }
@@ -57,13 +57,26 @@ impl Bookmaker {
         return None;
     }
 
-    pub fn get_offered_outcomes(&self) -> HashSet<String> {
-        let mut outcome_set: HashSet<String> = HashSet::new();
-
+    pub fn get_over_under_line(&self) -> Option<f64> {
         for market in &self.markets {
-            outcome_set.extend(market.get_all_outcomes())
+            if market.key == MarketType::Totals {
+                let first_outcome_option = market.outcomes.first();
+                let first_outcome = match first_outcome_option {
+                    None => return None,
+                    Some(x) => x,
+                };
+                return first_outcome.point;
+            }
         }
+        return None;
+    }
 
-        return outcome_set;
+    pub fn get_offered_outcomes(&self, market: &MarketType) -> Vec<Outcome> {
+        let specified_market = self.markets.iter().find(|x| x.key == *market);
+
+        match specified_market {
+            Some(x) => return x.outcomes.clone(),
+            None => return Vec::new(),
+        };
     }
 }

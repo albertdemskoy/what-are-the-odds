@@ -1,8 +1,7 @@
 use messaging::send_message;
 use odds_interface::{
     api_requests::{get_key_usage, get_odds_for_sport, get_sports},
-    bookmaker::Region,
-    market::MarketType,
+    logic::{bookmaker::Region, market::MarketType},
 };
 use std::io;
 
@@ -48,9 +47,11 @@ fn main() {
             let events_raw = get_odds_for_sport(&sport_key, &markets, &regions)
                 .expect("Failed to get odds for {sport_key:?}");
             for event in events_raw {
-                let opportunities = event.identify_opportunities(MarketType::H2h);
-                for opportunity in opportunities {
-                    send_message(&opportunity);
+                for market in &markets {
+                    let opportunities = event.identify_opportunities();
+                    for opportunity in opportunities {
+                        send_message(&opportunity.to_string());
+                    }
                 }
             }
         } else if operation_choice == "m" {

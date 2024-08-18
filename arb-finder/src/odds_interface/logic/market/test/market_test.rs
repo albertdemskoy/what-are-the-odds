@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use crate::odds_interface::{
+use crate::odds_interface::logic::{
     market::{Market, MarketType, Outcome},
     odds::Odds,
 };
@@ -10,10 +10,12 @@ fn get_market(include_draw: bool) -> Market {
         Outcome {
             name: String::from("Sydney Roosters"),
             price: Odds::Decimal(1.2),
+            point: None,
         },
         Outcome {
             name: String::from("Wests Tigers"),
             price: Odds::Decimal(5.8),
+            point: None,
         },
     ]
     .to_vec();
@@ -21,6 +23,7 @@ fn get_market(include_draw: bool) -> Market {
     let draw_outcome = Outcome {
         name: String::from("Draw"),
         price: Odds::Decimal(10.2),
+        point: None,
     };
 
     let mut all_outcomes = no_draw_outcomes;

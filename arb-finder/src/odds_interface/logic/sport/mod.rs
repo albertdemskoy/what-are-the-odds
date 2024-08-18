@@ -1,7 +1,5 @@
 use serde::Deserialize;
 
-use super::event::Event;
-
 #[derive(Deserialize, Debug, Clone)]
 pub struct Sport {
     key: String,

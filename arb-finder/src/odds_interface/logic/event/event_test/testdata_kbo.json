@@ -1,0 +1,222 @@
+{
+  "id": "24d01d91a6e04ded7fd0a58dcadb3c5f",
+  "sport_key": "baseball_kbo",
+  "sport_title": "KBO",
+  "commence_time": "2024-08-04T08:00:00Z",
+  "home_team": "Doosan Bears",
+  "away_team": "Kiwoom Heroes",
+  "bookmakers": [
+    {
+      "key": "draftkings",
+      "title": "DraftKings",
+      "last_update": "2024-08-04T05:15:17Z",
+      "markets": [
+        {
+          "key": "h2h",
+          "last_update": "2024-08-04T05:15:17Z",
+          "outcomes": [
+            {
+              "name": "Doosan Bears",
+              "price": 1.5
+            },
+            {
+              "name": "Kiwoom Heroes",
+              "price": 2.6
+            }
+          ]
+        },
+        {
+          "key": "spreads",
+          "last_update": "2024-08-04T05:15:17Z",
+          "outcomes": [
+            {
+              "name": "Doosan Bears",
+              "price": 1.9,
+              "point": -1.5
+            },
+            {
+              "name": "Kiwoom Heroes",
+              "price": 1.9,
+              "point": 1.5
+            }
+          ]
+        },
+        {
+          "key": "totals",
+          "last_update": "2024-08-04T05:15:17Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "price": 1.9,
+              "point": 9.5
+            },
+            {
+              "name": "Under",
+              "price": 1.9,
+              "point": 9.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fanduel",
+      "title": "FanDuel",
+      "last_update": "2024-08-04T05:15:18Z",
+      "markets": [
+        {
+          "key": "h2h",
+          "last_update": "2024-08-04T05:15:18Z",
+          "outcomes": [
+            {
+              "name": "Doosan Bears",
+              "price": 1.5
+            },
+            {
+              "name": "Kiwoom Heroes",
+              "price": 2.6
+            }
+          ]
+        },
+        {
+          "key": "spreads",
+          "last_update": "2024-08-04T05:15:18Z",
+          "outcomes": [
+            {
+              "name": "Doosan Bears",
+              "price": 1.9,
+              "point": -1.5
+            },
+            {
+              "name": "Kiwoom Heroes",
+              "price": 1.9,
+              "point": 1.5
+            }
+          ]
+        },
+        {
+          "key": "totals",
+          "last_update": "2024-08-04T05:15:18Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "price": 1.9,
+              "point": 9.5
+            },
+            {
+              "name": "Under",
+              "price": 1.9,
+              "point": 9.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "coolbet",
+      "title": "Coolbet",
+      "last_update": "2024-08-04T05:14:51Z",
+      "markets": [
+        {
+          "key": "h2h",
+          "last_update": "2024-08-04T05:14:51Z",
+          "outcomes": [
+            {
+              "name": "Doosan Bears",
+              "price": 1.5
+            },
+            {
+              "name": "Kiwoom Heroes",
+              "price": 2.6
+            }
+          ]
+        },
+        {
+          "key": "spreads",
+          "last_update": "2024-08-04T05:14:51Z",
+          "outcomes": [
+            {
+              "name": "Doosan Bears",
+              "price": 1.9,
+              "point": -1.5
+            },
+            {
+              "name": "Kiwoom Heroes",
+              "price": 1.9,
+              "point": 1.5
+            }
+          ]
+        },
+        {
+          "key": "totals",
+          "last_update": "2024-08-04T05:14:51Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "price": 1.9,
+              "point": 9.5
+            },
+            {
+              "name": "Under",
+              "price": 1.9,
+              "point": 9.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "bovada",
+      "title": "Bovada",
+      "last_update": "2024-08-04T05:15:18Z",
+      "markets": [
+        {
+          "key": "h2h",
+          "last_update": "2024-08-04T05:15:18Z",
+          "outcomes": [
+            {
+              "name": "Doosan Bears",
+              "price": 1.5
+            },
+            {
+              "name": "Kiwoom Heroes",
+              "price": 2.6
+            }
+          ]
+        },
+        {
+          "key": "spreads",
+          "last_update": "2024-08-04T05:15:18Z",
+          "outcomes": [
+            {
+              "name": "Doosan Bears",
+              "price": 1.9,
+              "point": -1.5
+            },
+            {
+              "name": "Kiwoom Heroes",
+              "price": 1.9,
+              "point": 1.5
+            }
+          ]
+        },
+        {
+          "key": "totals",
+          "last_update": "2024-08-04T05:15:18Z",
+          "outcomes": [
+            {
+              "name": "Over",
+              "price": 1.9,
+              "point": 9.5
+            },
+            {
+              "name": "Under",
+              "price": 1.9,
+              "point": 9.5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
