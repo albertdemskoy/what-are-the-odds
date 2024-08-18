@@ -92,3 +92,19 @@ pub fn get_sports() -> Result<Vec<Sport>, Error> {
 
     return Ok(body);
 }
+
+pub fn get_events(sport_key: &str) -> Result<Vec<Event>, Error> {
+    let events_endpoint = format!("/sports/{sport_key}/events");
+    let full_url = ODDS_HOST_BASE.to_owned() + &events_endpoint;
+    let params = [("apiKey", API_KEY)];
+
+    let url = reqwest::Url::parse_with_params(&full_url, &params).unwrap();
+    let res = match reqwest::blocking::get(url) {
+        Ok(x) => x,
+        Err(e) => return Err(e),
+    };
+
+    let body = res.json::<Vec<Event>>().unwrap_or(Vec::new());
+
+    return Ok(body);
+}

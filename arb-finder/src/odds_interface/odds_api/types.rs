@@ -7,12 +7,12 @@ use strum_macros::EnumIter;
 #[derive(Deserialize, Debug, Clone)]
 pub struct Event {
     id: String,
-    sport_key: String,
+    pub sport_key: String,
     sport_title: String,
-    commence_time: DateTime<Utc>,
-    home_team: String,
-    away_team: String,
-    bookmakers: Vec<Bookmaker>,
+    pub commence_time: DateTime<Utc>,
+    pub home_team: String,
+    pub away_team: String,
+    bookmakers: Option<Vec<Bookmaker>>,
 }
 
 #[derive(Deserialize, Debug, Clone)]

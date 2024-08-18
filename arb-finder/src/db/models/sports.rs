@@ -1,3 +1,4 @@
+use chrono::NaiveDateTime;
 use diesel::prelude::*;
 
 #[derive(Queryable, Selectable)]
@@ -22,18 +23,18 @@ pub struct NewSport<'a> {
 
 pub fn create_sport(
     conn: &mut PgConnection,
-    sport_key: &str,
+    new_sport_key: &str,
     category: &str,
     title: &str,
 ) -> Sport {
-    let new_post = NewSport {
-        sport_key,
+    let new_sport = NewSport {
+        sport_key: new_sport_key,
         category,
         title,
     };
 
     diesel::insert_into(sports::table)
-        .values(&new_post)
+        .values(&new_sport)
         .returning(Sport::as_returning())
         .get_result(conn)
         .expect("Error saving new post")

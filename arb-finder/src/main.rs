@@ -1,5 +1,11 @@
-use db::{establish_connection, models::create_sport};
-use odds_interface::odds_api::{get_key_usage, get_sports};
+use db::{
+    establish_connection,
+    models::{
+        events::{self, create_event},
+        sports::create_sport,
+    },
+};
+use odds_interface::odds_api::{get_events, get_key_usage, get_sports};
 use std::io;
 
 mod db;
@@ -28,6 +34,7 @@ fn main() {
         println!("Available operations:");
         println!("==========================");
         println!("s: write in-season sports to db");
+        println!("e: write events for sport key to db");
 
         let operation_choice = get_trimmed_input();
 
@@ -41,6 +48,22 @@ fn main() {
                     sport.key.as_str(),
                     sport.group.as_str(),
                     sport.title.as_str(),
+                );
+            }
+        } else if operation_choice == "e" {
+            let sport_key = get_trimmed_input();
+
+            let sport_events = get_events(&sport_key).expect("Failed to get events");
+
+            let connection = &mut establish_connection();
+
+            for event in sport_events {
+                create_event(
+                    connection,
+                    sport_key.as_str(),
+                    event.home_team.as_str(),
+                    &event.away_team.as_str(),
+                    event.commence_time.naive_utc(),
                 );
             }
         }
