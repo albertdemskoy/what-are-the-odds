@@ -57,6 +57,20 @@ impl Bookmaker {
         return None;
     }
 
+    pub fn get_over_under_line(&self) -> Option<f64> {
+        for market in &self.markets {
+            if market.key == MarketType::Totals {
+                let first_outcome_option = market.outcomes.first();
+                let first_outcome = match first_outcome_option {
+                    None => return None,
+                    Some(x) => x,
+                };
+                return first_outcome.point;
+            }
+        }
+        return None;
+    }
+
     pub fn get_offered_outcomes(&self, market: &MarketType) -> Vec<Outcome> {
         let specified_market = self.markets.iter().find(|x| x.key == *market);
 

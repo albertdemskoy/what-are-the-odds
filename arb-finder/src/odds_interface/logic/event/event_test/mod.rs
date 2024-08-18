@@ -1,8 +1,10 @@
 use std::fs;
 
+use serde::de::Unexpected;
+
 use crate::odds_interface::logic::{
     event::Event,
-    market::{MarketType, Outcome},
+    market::{MarketType, Outcome, OVER_OUTCOME, UNDER_OUTCOME},
     odds::Odds,
 };
 
@@ -143,6 +145,26 @@ fn test_get_totals_opportunities_high_score() {
 }
 
 #[test]
+fn test_get_totals_opportunities_simple() {
+    let mut event = get_kbo_event();
+    let opportunities = event.identify_opportunities();
+
+    // NO OPPORTUNITIES
+    assert_eq!(opportunities.len(), 0);
+
+    // change all odds except fanduel to suddenly move the line lower
+    event.update_odds("fanduel", &MarketType::Totals, OVER_OUTCOME, 1.6);
+    event.update_odds("fanduel", &MarketType::Totals, UNDER_OUTCOME, 2.2);
+
+    let opportunities = event.identify_opportunities();
+
+    assert_eq!(opportunities.len(), 1);
+    let first_opp = opportunities.first().unwrap();
+    assert_eq!(first_opp.bookie_name, "FanDuel");
+    assert_eq!(first_opp.outcome_key, UNDER_OUTCOME);
+}
+
+#[test]
 fn test_get_totals_opportunities_low_score() {
     let mut event = get_kbo_event();
     let opportunities = event.identify_opportunities();
@@ -160,5 +182,16 @@ fn test_get_totals_opportunities_low_score() {
     assert_eq!(opportunities.len(), 1);
     let first_opp = opportunities.first().unwrap();
     assert_eq!(first_opp.bookie_name, "FanDuel");
-    assert_eq!(first_opp.outcome_key, "Under");
+    assert_eq!(first_opp.outcome_key, UNDER_OUTCOME);
+
+    event.update_line("draftkings", 10.5);
+    event.update_line("bovada", 10.5);
+    event.update_line("coolbet", 10.5);
+
+    let opportunities = event.identify_opportunities();
+
+    assert_eq!(opportunities.len(), 1);
+    let first_opp = opportunities.first().unwrap();
+    assert_eq!(first_opp.bookie_name, "FanDuel");
+    assert_eq!(first_opp.outcome_key, OVER_OUTCOME);
 }

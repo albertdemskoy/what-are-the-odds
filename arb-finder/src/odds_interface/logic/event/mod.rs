@@ -14,6 +14,7 @@ mod event_test;
 use super::bookmaker::Bookmaker;
 use super::market::MarketType;
 use super::odds::Odds;
+use super::{AUS_ONLY, AU_BOOKS};
 
 // TODO: pass these as parameters
 const MAX_ODDS_CUTOFF: f64 = 10.0;
@@ -110,12 +111,36 @@ impl Event {
         return Some(lamb_estimate);
     }
 
+    fn get_relevant_bookies(&self) -> Vec<Bookmaker> {
+        if (!AUS_ONLY) {
+            return self.bookmakers.clone();
+        }
+
+        return self
+            .bookmakers
+            .clone()
+            .into_iter()
+            .filter(|x| AU_BOOKS.contains(&x.key.as_str()))
+            .collect();
+    }
+
     fn identify_totals_opportunities(&self) -> Vec<Opportunity> {
         let mut opps: Vec<Opportunity> = Vec::new();
 
-        // SHOULD USE A POISSON DEPENDING ON LINE MAGNITUDE
-        // estimate the true score distribution
         let mut lamb_estimates_for_bookies = HashMap::new();
+
+        let mut lines_set: HashSet<i32> = HashSet::new();
+        for bookie in &self.bookmakers {
+            let maybe_line = bookie.get_over_under_line();
+            if let Some(line) = maybe_line {
+                lines_set.insert(line as i32);
+            }
+        }
+
+        // if every line is the same then no need to worry
+        if (lines_set.len() < 2) {
+            return self.identify_opportunities_naive(&MarketType::Totals);
+        }
 
         for bookie in &self.bookmakers {
             let lamb_estimate = self.implied_mean_score(bookie);
@@ -137,7 +162,9 @@ impl Event {
             return Vec::new();
         }
 
-        for bookie in &self.bookmakers {
+        let event_au_books: Vec<Bookmaker> = self.get_relevant_bookies();
+
+        for bookie in event_au_books {
             if (!bookies_offering_totals.contains(&bookie.key)) {
                 continue;
             }
@@ -186,14 +213,13 @@ impl Event {
         return opps;
     }
 
-    fn identify_h2h_opportunities(&self) -> Vec<Opportunity> {
-        const MARKET_KEY: MarketType = MarketType::H2h;
-        let all_outcomes = self.get_all_outcomes(&MARKET_KEY);
+    fn identify_opportunities_naive(&self, market: &MarketType) -> Vec<Opportunity> {
+        let all_outcomes = self.get_all_outcomes(market);
 
         let mut opportunities_vec: Vec<Opportunity> = Vec::new();
 
         for outcome_key in &all_outcomes {
-            let true_odds = self.get_true_odds_for_outcome(&MARKET_KEY, outcome_key.as_str());
+            let true_odds = self.get_true_odds_for_outcome(market, outcome_key.as_str());
 
             if (true_odds.get_decimal() > MAX_ODDS_CUTOFF) {
                 // only want to consider likely outcomes
@@ -201,8 +227,10 @@ impl Event {
                 continue;
             }
 
-            for bookie in &self.bookmakers {
-                let maybe_bookie_odds = bookie.get_odds(&MARKET_KEY, outcome_key.as_str());
+            let event_au_books: Vec<Bookmaker> = self.get_relevant_bookies();
+
+            for bookie in event_au_books {
+                let maybe_bookie_odds = bookie.get_odds(market, outcome_key.as_str());
 
                 let bookie_odds = match maybe_bookie_odds {
                     Some(x) => x,
@@ -219,7 +247,7 @@ impl Event {
                         away_team: self.away_team.clone(),
                         offered_odds: bookie_odds,
                         outcome_key: outcome_key.clone(),
-                        market_key: MARKET_KEY.clone(),
+                        market_key: market.clone(),
                         message: String::from(""),
                         true_odds,
                         percent_ev,
@@ -232,6 +260,11 @@ impl Event {
         return opportunities_vec;
     }
 
+    fn identify_h2h_opportunities(&self) -> Vec<Opportunity> {
+        const MARKET_KEY: MarketType = MarketType::H2h;
+        return self.identify_opportunities_naive(&MARKET_KEY);
+    }
+
     pub fn identify_opportunities_in_market(&self, market: &MarketType) -> Vec<Opportunity> {
         if (*market == MarketType::H2h) {
             return self.identify_h2h_opportunities();
@@ -240,10 +273,6 @@ impl Event {
         }
 
         return Vec::new();
-        // for over under we want to do it differently:
-        // - different lines with different odds
-        // - find the estimate for true score distribution
-        // - go through the offerings and see if there is anything that isn't up to par
     }
 
     pub fn identify_opportunities(&self) -> Vec<Opportunity> {
