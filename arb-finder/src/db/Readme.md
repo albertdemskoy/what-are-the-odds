@@ -1,3 +1,4 @@
+```mermaid
 classDiagram
 OddsOffering : market_type
 OddsOffering : price
@@ -24,3 +25,4 @@ Book : UNIQUE(key)
 Book : region
 Book : is_exchange
 Book --> OddsOffering : has many
+```
