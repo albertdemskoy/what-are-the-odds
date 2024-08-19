@@ -26,7 +26,7 @@ pub fn create_sport(
     new_sport_key: &str,
     category: &str,
     title: &str,
-) -> Sport {
+) -> Option<Sport> {
     let new_sport = NewSport {
         sport_key: new_sport_key,
         category,
@@ -35,7 +35,9 @@ pub fn create_sport(
 
     diesel::insert_into(sports::table)
         .values(&new_sport)
+        .on_conflict_do_nothing()
         .returning(Sport::as_returning())
         .get_result(conn)
-        .expect("Error saving new post")
+        .optional()
+        .expect("Error saving new sport")
 }

@@ -32,7 +32,7 @@ pub fn create_event(
     new_home_team: &str,
     new_away_team: &str,
     new_commence_time: NaiveDateTime,
-) -> Event {
+) -> Option<Event> {
     use crate::schema::sports::dsl::sports;
 
     let sport = sports
@@ -50,7 +50,9 @@ pub fn create_event(
 
     diesel::insert_into(events::table)
         .values(&new_event)
+        .on_conflict_do_nothing()
         .returning(Event::as_returning())
         .get_result(conn)
+        .optional()
         .expect("Error saving new post")
 }
