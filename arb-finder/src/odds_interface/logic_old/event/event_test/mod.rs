@@ -1,6 +1,6 @@
 use std::fs;
 
-use crate::odds_interface::logic::{
+use crate::odds_interface::logic_old::{
     event::Event,
     market::{MarketType, Outcome, OVER_OUTCOME, UNDER_OUTCOME},
     odds::Odds,

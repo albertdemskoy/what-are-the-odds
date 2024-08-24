@@ -1,22 +1,17 @@
 use db::{
     establish_connection,
-    models::{
-        events::{self, create_event},
-        sports::create_sport,
-    },
+    models::{events::create_event, sports::create_sport},
 };
 use odds_interface::odds_api::{get_events, get_key_usage, get_sports};
 use std::io;
 
+mod common;
 mod db;
+mod discord;
+mod discover_odds;
 mod local_env;
-mod messaging;
 mod odds_interface;
 mod schema;
-
-fn get_sport_key_json(sport_key: &str) -> String {
-    return format!("./src/example_responses/{sport_key}_odds.json");
-}
 
 fn get_trimmed_input() -> String {
     let mut operation_choice = String::new();
@@ -35,12 +30,12 @@ fn main() {
         println!("==========================");
         println!("s: write in-season sports to db");
         println!("e: write events for sport key to db");
+        println!("o: write odds for sport to db, and update bookies");
 
         let operation_choice = get_trimmed_input();
 
         if operation_choice == "s" {
             let sports = get_sports().expect("Failed to get sports");
-
             let connection = &mut establish_connection();
             for sport in sports {
                 create_sport(
@@ -52,18 +47,16 @@ fn main() {
             }
         } else if operation_choice == "e" {
             let sport_key = get_trimmed_input();
-
             let sport_events = get_events(&sport_key).expect("Failed to get events");
-
             let connection = &mut establish_connection();
 
             for event in sport_events {
-                create_event(
+                let event = create_event(
                     connection,
                     sport_key.as_str(),
                     event.home_team.as_str(),
                     &event.away_team.as_str(),
-                    event.commence_time.naive_utc(),
+                    event.commence_time,
                 );
             }
         }

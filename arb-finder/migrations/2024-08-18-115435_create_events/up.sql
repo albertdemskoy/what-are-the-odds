@@ -4,7 +4,7 @@ CREATE TABLE events (
   sport_id INT NOT NULL,
   home_team TEXT NOT NULL,
   away_team TEXT NOT NULL,
-  commence_time TIMESTAMP NOT NULL,
+  commence_time TIMESTAMPTZ NOT NULL,
   UNIQUE (sport_id, home_team, away_team, commence_time),
   CONSTRAINT fk_sport FOREIGN KEY(sport_id) REFERENCES sports(id)
 )

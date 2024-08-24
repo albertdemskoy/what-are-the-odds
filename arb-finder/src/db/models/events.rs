@@ -1,4 +1,4 @@
-use chrono::NaiveDateTime;
+use chrono::{DateTime, NaiveDateTime, Utc};
 use diesel::prelude::*;
 
 use crate::{
@@ -23,7 +23,7 @@ pub struct NewEvent<'a> {
     pub sport_id: i32,
     pub home_team: &'a str,
     pub away_team: &'a str,
-    pub commence_time: NaiveDateTime,
+    pub commence_time: DateTime<Utc>,
 }
 
 pub fn create_event(
@@ -31,7 +31,7 @@ pub fn create_event(
     given_sport_key: &str,
     new_home_team: &str,
     new_away_team: &str,
-    new_commence_time: NaiveDateTime,
+    new_commence_time: DateTime<Utc>,
 ) -> Option<Event> {
     use crate::schema::sports::dsl::sports;
 
