@@ -2,7 +2,7 @@ use bigdecimal::BigDecimal;
 use chrono::{DateTime, Utc};
 use diesel::prelude::*;
 
-use crate::odds_interface::logic_old::market::MarketType;
+use crate::common::MarketType;
 
 #[derive(Queryable, Selectable)]
 #[diesel(table_name = crate::schema::odds_offering)]
@@ -47,7 +47,7 @@ pub fn create_offering(
         .filter(book_key.eq(assoc_book_key))
         .select(Book::as_select())
         .first(conn)
-        .expect("Error loading sport");
+        .expect("Error loading book");
 
     let market_type_string = assoc_market_type.to_string();
 

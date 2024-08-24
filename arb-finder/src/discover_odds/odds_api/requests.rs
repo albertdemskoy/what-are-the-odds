@@ -2,11 +2,11 @@ use std::fs;
 
 use super::util::{get_key_usage_from_headers, ApiKeyUsage};
 use super::{Event, MarketType, Region, Sport};
+use diesel::PgConnection;
 use reqwest::{blocking::Response, Error};
 
 use crate::db::models::odds::OddsOffering;
 use crate::local_env::MY_ENV;
-use crate::schema::odds_offering::event_id;
 
 const ODDS_HOST_BASE: &str = "https://api.the-odds-api.com/v4";
 const API_KEY: &str = MY_ENV.odds_api_key;
@@ -14,21 +14,14 @@ const API_KEY: &str = MY_ENV.odds_api_key;
 pub fn get_odds_for_sport(
     sport: &str,
     markets: &Vec<MarketType>,
-    regions: &Vec<Region>,
+    region: &Region,
 ) -> reqwest::Result<Vec<Event>> {
     let odds_endpoint = format!("/sports/{sport}/odds/");
     let full_url = ODDS_HOST_BASE.to_owned() + &odds_endpoint;
 
     let params = [
         ("apiKey", API_KEY),
-        (
-            "regions",
-            &regions
-                .iter()
-                .map(|x| x.to_string())
-                .collect::<Vec<String>>()
-                .join(","),
-        ),
+        ("regions", &region.to_string()),
         (
             "markets",
             &markets
@@ -105,8 +98,4 @@ pub fn get_events(sport_key: &str) -> Result<Vec<Event>, Error> {
     let body = res.json::<Vec<Event>>().unwrap_or(Vec::new());
 
     return Ok(body);
-}
-
-pub fn get_odds_for_event(event_id) -> Vec<OddsOffering> {
-
 }

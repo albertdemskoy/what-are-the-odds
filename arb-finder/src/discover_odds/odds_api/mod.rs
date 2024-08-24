@@ -1,15 +1,18 @@
 use std::fmt;
 
+pub mod db;
 pub mod requests;
 pub mod util;
 
+use bigdecimal::BigDecimal;
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
+use strum_macros::EnumIter;
 
 use crate::common::MarketType;
 
 #[derive(Deserialize, Debug, Clone)]
-struct Event {
+pub struct Event {
     id: String,
     pub sport_key: String,
     sport_title: String,
@@ -25,6 +28,13 @@ struct Bookmaker {
     pub title: String,
     last_update: DateTime<Utc>,
     pub markets: Vec<Market>,
+}
+
+impl Bookmaker {
+    pub fn is_exchange(&self) -> bool {
+        let lower_title = self.title.to_lowercase();
+        return lower_title.contains("betfair") || lower_title.contains("matchbook");
+    }
 }
 
 #[derive(Deserialize, Debug, Clone)]
@@ -46,11 +56,11 @@ pub struct Sport {
 #[derive(Deserialize, Debug, Clone)]
 pub struct Outcome {
     pub name: String,
-    pub price: f64,
-    pub point: Option<f64>,
+    pub price: BigDecimal,
+    pub point: Option<BigDecimal>,
 }
 
-#[derive(Deserialize, Debug, Clone, PartialEq)]
+#[derive(Deserialize, Debug, Clone, PartialEq, EnumIter)]
 #[serde(rename_all = "snake_case")]
 pub enum Region {
     Us,
@@ -58,19 +68,6 @@ pub enum Region {
     Uk,
     Au,
     Eu,
-}
-
-impl fmt::Display for MarketType {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match *self {
-            MarketType::H2h => write!(f, "h2h"),
-            MarketType::H2hLay => write!(f, "h2h_lay"),
-            MarketType::Spreads => write!(f, "spreads"),
-            MarketType::Totals => write!(f, "totals"),
-            MarketType::Outrights => write!(f, "outrights"),
-            MarketType::OutrightsLay => write!(f, "outrights_lay"),
-        }
-    }
 }
 
 impl fmt::Display for Region {
@@ -81,6 +78,20 @@ impl fmt::Display for Region {
             Region::Uk => write!(f, "uk"),
             Region::Au => write!(f, "au"),
             Region::Eu => write!(f, "eu"),
+        }
+    }
+}
+
+impl Region {
+    fn to_common_region(&self) -> crate::common::Region {
+        use crate::common::Region as CommonRegion;
+
+        match *self {
+            Region::Us => CommonRegion::Us,
+            Region::Us2 => CommonRegion::Us,
+            Region::Uk => CommonRegion::Uk,
+            Region::Au => CommonRegion::Au,
+            Region::Eu => CommonRegion::Eu,
         }
     }
 }

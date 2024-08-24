@@ -3,7 +3,10 @@ use diesel::prelude::*;
 
 use crate::{
     db::models::sports::Sport,
-    schema::{events, sports::sport_key},
+    schema::{
+        events::{self, away_team, commence_time, home_team},
+        sports::sport_key,
+    },
 };
 
 #[derive(Queryable, Selectable)]
@@ -14,7 +17,7 @@ pub struct Event {
     pub sport_id: i32,
     pub home_team: String,
     pub away_team: String,
-    pub commence_time: NaiveDateTime,
+    pub commence_time: DateTime<Utc>,
 }
 
 #[derive(Insertable)]
@@ -24,6 +27,27 @@ pub struct NewEvent<'a> {
     pub home_team: &'a str,
     pub away_team: &'a str,
     pub commence_time: DateTime<Utc>,
+}
+
+pub fn get_event(
+    conn: &mut PgConnection,
+    search_home_team: &str,
+    search_away_team: &str,
+    search_commence_time: DateTime<Utc>,
+) -> Option<Event> {
+    use crate::schema::events::dsl::events;
+
+    let maybe_event = events
+        .filter(home_team.eq(search_home_team))
+        .filter(away_team.eq(search_away_team))
+        .filter(commence_time.eq(search_commence_time))
+        .select(Event::as_select())
+        .first(conn);
+
+    return match maybe_event {
+        Ok(event) => Some(event),
+        Err(_x) => None,
+    };
 }
 
 pub fn create_event(

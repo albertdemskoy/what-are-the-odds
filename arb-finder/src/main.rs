@@ -1,9 +1,12 @@
+use common::MarketType;
 use db::{
     establish_connection,
     models::{events::create_event, sports::create_sport},
 };
+use discover_odds::odds_api::{db::save_odds_to_db, requests::get_odds_for_sport, Region};
 use odds_interface::odds_api::{get_events, get_key_usage, get_sports};
 use std::io;
+use strum::IntoEnumIterator;
 
 mod common;
 mod db;
@@ -58,6 +61,18 @@ fn main() {
                     &event.away_team.as_str(),
                     event.commence_time,
                 );
+            }
+        } else if operation_choice == "o" {
+            let sport_key = get_trimmed_input();
+            let enabled_markets = [MarketType::H2h, MarketType::Totals];
+
+            let conn = &mut establish_connection();
+            for region in Region::iter() {
+                let sport_events =
+                    get_odds_for_sport(&sport_key, &enabled_markets.to_vec(), &region)
+                        .expect("Failed to get events");
+
+                save_odds_to_db(conn, sport_key.as_str(), &sport_events, &region);
             }
         }
 
