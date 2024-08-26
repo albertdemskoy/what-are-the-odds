@@ -34,6 +34,7 @@ fn main() {
         println!("s: write in-season sports to db");
         println!("e: write events for sport key to db");
         println!("o: write odds for sport to db, and update bookies");
+        println!("z: FIND OPPORTUNITIES");
 
         let operation_choice = get_trimmed_input();
 
@@ -74,6 +75,8 @@ fn main() {
 
                 save_odds_to_db(conn, sport_key.as_str(), &sport_events, &region);
             }
+        } else if operation_choice == "z" {
+        
         }
 
         let key_usage = get_key_usage();

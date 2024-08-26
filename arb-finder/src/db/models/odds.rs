@@ -1,10 +1,14 @@
-use bigdecimal::BigDecimal;
+use bigdecimal::{BigDecimal, ToPrimitive};
 use chrono::{DateTime, Utc};
-use diesel::prelude::*;
+use diesel::{prelude::*, result::Error};
+use serde::Serialize;
 
-use crate::common::MarketType;
+use super::{bookies::Book, events::Event};
+use crate::common::{bookie_odds::BookieWithOdds, MarketType};
 
-#[derive(Queryable, Selectable)]
+#[derive(Queryable, Selectable, Associations, Identifiable, Debug, PartialEq, Serialize, Clone)]
+#[diesel(belongs_to(Book))]
+#[diesel(belongs_to(Event))]
 #[diesel(table_name = crate::schema::odds_offering)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct OddsOffering {
@@ -18,6 +22,20 @@ pub struct OddsOffering {
     pub offered_odds: BigDecimal,
 }
 
+impl OddsOffering {
+    pub fn is_for_market(&self, market_type: &MarketType) -> bool {
+        return MarketType::from_str(self.market_type.as_str()).is_some_and(|x| x == *market_type);
+    }
+
+    pub fn implied_probability(&self) -> f64 {
+        return 1.0 / self.float_odds();
+    }
+
+    pub fn float_odds(&self) -> f64 {
+        return self.offered_odds.to_f64().unwrap();
+    }
+}
+
 #[derive(Insertable)]
 #[diesel(table_name = crate::schema::odds_offering)]
 pub struct NewOddsOffering<'a> {
@@ -28,6 +46,36 @@ pub struct NewOddsOffering<'a> {
     pub market_type: &'a str,
     pub offered_line: Option<&'a BigDecimal>,
     pub offered_odds: &'a BigDecimal,
+}
+
+// TODO: implement https://diesel.rs/guides/composing-applications.html
+pub fn get_odds_for_event(
+    conn: &mut PgConnection,
+    event: &Event,
+    market: &MarketType,
+) -> Result<Vec<BookieWithOdds>, Error> {
+    use crate::schema::books;
+    use crate::schema::odds_offering::{event_id, market_type};
+
+    let all_bookies = books::table.select(Book::as_select()).load(conn)?;
+
+    let odds = OddsOffering::belonging_to(&all_bookies)
+        .filter(market_type.eq(market.to_string()))
+        .filter(event_id.eq(event.id))
+        .select(OddsOffering::as_select())
+        .load(conn)?;
+
+    let odds_per_bookie = odds
+        .grouped_by(&all_bookies)
+        .into_iter()
+        .zip(all_bookies)
+        .map(|(odds_offerings, bookie)| BookieWithOdds {
+            bookie,
+            odds_offerings,
+        })
+        .collect::<Vec<BookieWithOdds>>();
+
+    return Ok(odds_per_bookie);
 }
 
 pub fn create_offering(

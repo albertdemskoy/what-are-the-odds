@@ -1,5 +1,6 @@
 use chrono::{DateTime, NaiveDateTime, Utc};
 use diesel::prelude::*;
+use serde::Serialize;
 
 use crate::{
     db::models::sports::Sport,
@@ -9,9 +10,10 @@ use crate::{
     },
 };
 
-#[derive(Queryable, Selectable)]
+#[derive(Queryable, Selectable, Identifiable, Debug, PartialEq, Associations, Serialize, Clone)]
 #[diesel(table_name = crate::schema::events)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
+#[diesel(belongs_to(Sport))]
 pub struct Event {
     pub id: i32,
     pub sport_id: i32,

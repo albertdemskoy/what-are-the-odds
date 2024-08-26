@@ -1,9 +1,14 @@
 use std::fmt;
 
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
+use strum::IntoEnumIterator;
 use strum_macros::EnumIter;
 
-#[derive(Deserialize, Debug, Clone, PartialEq, EnumIter)]
+pub mod bookie_odds;
+pub mod market_info;
+pub mod util;
+
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, EnumIter, Hash, Eq)]
 #[serde(rename_all = "snake_case")]
 pub enum MarketType {
     H2h,
@@ -33,6 +38,17 @@ impl fmt::Display for MarketType {
             MarketType::Outrights => write!(f, "outrights"),
             MarketType::OutrightsLay => write!(f, "outrights_lay"),
         }
+    }
+}
+
+impl MarketType {
+    pub fn from_str(arg: &str) -> Option<MarketType> {
+        for market_type in MarketType::iter() {
+            if (market_type.to_string() == arg.to_string()) {
+                return Some(market_type);
+            }
+        }
+        return None;
     }
 }
 

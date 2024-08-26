@@ -1,8 +1,9 @@
 use diesel::prelude::*;
+use serde::Serialize;
 
 use crate::common::Region;
 
-#[derive(Queryable, Selectable)]
+#[derive(Queryable, Selectable, Serialize, Identifiable, Debug, PartialEq)]
 #[diesel(table_name = crate::schema::books)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct Book {
