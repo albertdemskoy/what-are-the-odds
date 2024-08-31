@@ -52,6 +52,17 @@ impl MarketType {
     }
 }
 
+impl Region {
+    pub fn from_str(arg: &str) -> Option<Region> {
+        for region in Region::iter() {
+            if (region.to_string() == arg.to_string()) {
+                return Some(region);
+            }
+        }
+        return None;
+    }
+}
+
 impl fmt::Display for Region {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match *self {

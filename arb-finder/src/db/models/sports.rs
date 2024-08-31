@@ -1,5 +1,7 @@
 use diesel::prelude::*;
 
+use crate::schema::sports;
+
 #[derive(Queryable, Selectable)]
 #[diesel(table_name = crate::schema::sports)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
@@ -10,8 +12,6 @@ pub struct Sport {
     pub title: String,
 }
 
-use crate::schema::sports::{self, sport_key};
-
 #[derive(Insertable)]
 #[diesel(table_name = sports)]
 pub struct NewSport<'a> {
@@ -20,8 +20,9 @@ pub struct NewSport<'a> {
     pub title: &'a str,
 }
 
-pub fn get_sport(conn: &mut PgConnection, given_sport_key: &str) -> Option<Sport> {
+fn get_sport(conn: &mut PgConnection, given_sport_key: &str) -> Option<Sport> {
     use crate::schema::sports::dsl::sports;
+    use crate::schema::sports::sport_key;
 
     let maybe_sport = sports
         .filter(sport_key.eq(given_sport_key))
@@ -34,12 +35,26 @@ pub fn get_sport(conn: &mut PgConnection, given_sport_key: &str) -> Option<Sport
     };
 }
 
+pub fn get_or_create_sport(
+    conn: &mut PgConnection,
+    sport_key: &str,
+    category: &str,
+    title: &str,
+) -> Option<Sport> {
+    match get_sport(conn, sport_key) {
+        Some(x) => return Some(x),
+        None => return create_sport(conn, sport_key, category, title),
+    }
+}
+
 pub fn create_sport(
     conn: &mut PgConnection,
     new_sport_key: &str,
     category: &str,
     title: &str,
 ) -> Option<Sport> {
+    use crate::schema::sports;
+
     let new_sport = NewSport {
         sport_key: new_sport_key,
         category,

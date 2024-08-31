@@ -22,21 +22,21 @@ pub struct NewBook<'a> {
     pub region: &'a str,
     pub is_exchange: bool,
 }
-pub fn book_exists(conn: &mut PgConnection, search_book_key: &str, search_region: &str) -> bool {
+fn book_exists(conn: &mut PgConnection, search_book_key: &str, search_region: &Region) -> bool {
     return get_book(conn, search_book_key, search_region).is_some();
 }
 
-pub fn get_book(
+fn get_book(
     conn: &mut PgConnection,
     search_book_key: &str,
-    search_region: &str,
+    search_region: &Region,
 ) -> Option<Book> {
     use crate::schema::books::dsl::books;
     use crate::schema::books::{book_key, region};
 
     let maybe_book = books
         .filter(book_key.eq(search_book_key))
-        .filter(region.eq(search_region))
+        .filter(region.eq(&search_region.to_string()))
         .select(Book::as_select())
         .first(conn);
 
@@ -46,7 +46,20 @@ pub fn get_book(
     };
 }
 
-pub fn create_book_if_not_exists(
+pub fn get_or_create_book(
+    conn: &mut PgConnection,
+    book_key: &str,
+    book_title: &str,
+    region: &Region,
+    is_exchange: bool,
+) -> Option<Book> {
+    match get_book(conn, book_key, region) {
+        Some(x) => return Some(x),
+        None => return create_book_if_not_exists(conn, book_key, book_title, region, is_exchange),
+    };
+}
+
+fn create_book_if_not_exists(
     conn: &mut PgConnection,
     book_key: &str,
     book_title: &str,

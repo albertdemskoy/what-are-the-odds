@@ -3,6 +3,8 @@ use serde::Serialize;
 
 use crate::db::models::{bookies::Book, odds::OddsOffering};
 
+use super::Region;
+
 #[derive(Serialize)]
 pub struct BookieWithOdds {
     #[serde(flatten)]
@@ -20,7 +22,12 @@ impl BookieWithOdds {
         let margin = self.total_probability() - 1.0;
         let n = self.odds_offerings.len() as f64;
 
-        return Some((n - margin * odds) / (n * odds));
+        return Some((n * odds) / (n - margin * odds));
+    }
+
+    pub fn get_region_of_offerings(&self) -> Region {
+        return (Region::from_str(self.bookie.region.as_str()))
+            .expect("Bookie has malformed region");
     }
 
     pub fn get_odds_for_outcome(&self, outcome: &String) -> Option<BigDecimal> {

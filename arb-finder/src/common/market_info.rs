@@ -2,7 +2,7 @@ use bigdecimal::{BigDecimal, ToPrimitive};
 
 use crate::db::models::odds::OddsOffering;
 
-use super::{bookie_odds::BookieWithOdds, util::calculate_ev_percentage, MarketType};
+use super::{bookie_odds::BookieWithOdds, util::calculate_ev_percentage, MarketType, Region};
 
 pub struct Outcome {
     pub name: String,
@@ -17,6 +17,7 @@ pub struct MarketInfo {
 
 pub struct OpportunityConfig {
     pub minimum_ev: i32,
+    pub accepted_region: Region,
 }
 
 pub struct Opportunity {
@@ -39,7 +40,8 @@ impl MarketInfo {
                     };
 
                     if (calculate_ev_percentage(offered_odds.to_f64().unwrap(), true_prob)
-                        > config.minimum_ev as f64)
+                        > config.minimum_ev as f64
+                        && bookie_offerings.get_region_of_offerings() == config.accepted_region)
                     {
                         opps_vec.push(Opportunity {
                             true_prob,

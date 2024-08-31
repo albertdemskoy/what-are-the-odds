@@ -1,12 +1,12 @@
-use chrono::{DateTime, NaiveDateTime, Utc};
-use diesel::prelude::*;
+use chrono::{DateTime, Utc};
+use diesel::{prelude::*, result::Error};
 use serde::Serialize;
 
 use crate::{
     db::models::sports::Sport,
     schema::{
-        events::{self, away_team, commence_time, home_team},
-        sports::sport_key,
+        events,
+        sports::{self, category},
     },
 };
 
@@ -31,15 +31,38 @@ pub struct NewEvent<'a> {
     pub commence_time: DateTime<Utc>,
 }
 
+impl Event {
+    pub fn upcoming_for_sport(
+        conn: &mut PgConnection,
+        sport_category: &str,
+        after_time: DateTime<Utc>,
+        until_time: DateTime<Utc>,
+    ) -> Result<Vec<Event>, Error> {
+        use crate::schema::events::commence_time;
+        use crate::schema::events::dsl::events;
+
+        return events
+            .left_join(sports::table)
+            .filter(commence_time.lt(until_time))
+            .filter(commence_time.gt(after_time))
+            .filter(category.eq(sport_category))
+            .select(Event::as_select())
+            .load(conn);
+    }
+}
+
 pub fn get_event(
     conn: &mut PgConnection,
+    search_sport_id: &i32,
     search_home_team: &str,
     search_away_team: &str,
     search_commence_time: DateTime<Utc>,
 ) -> Option<Event> {
     use crate::schema::events::dsl::events;
+    use crate::schema::events::{away_team, commence_time, home_team, sport_id};
 
     let maybe_event = events
+        .filter(sport_id.eq(search_sport_id))
         .filter(home_team.eq(search_home_team))
         .filter(away_team.eq(search_away_team))
         .filter(commence_time.eq(search_commence_time))
@@ -52,23 +75,42 @@ pub fn get_event(
     };
 }
 
-pub fn create_event(
+pub fn get_or_create_event(
     conn: &mut PgConnection,
-    given_sport_key: &str,
+    sport_id: &i32,
     new_home_team: &str,
     new_away_team: &str,
     new_commence_time: DateTime<Utc>,
 ) -> Option<Event> {
-    use crate::schema::sports::dsl::sports;
+    match get_event(
+        conn,
+        sport_id,
+        new_home_team,
+        new_away_team,
+        new_commence_time,
+    ) {
+        Some(x) => return Some(x),
+        None => {
+            return create_event(
+                conn,
+                sport_id,
+                new_home_team,
+                new_away_team,
+                new_commence_time,
+            )
+        }
+    };
+}
 
-    let sport = sports
-        .filter(sport_key.eq(given_sport_key))
-        .select(Sport::as_select())
-        .first(conn)
-        .expect("Error loading sport");
-
+pub fn create_event(
+    conn: &mut PgConnection,
+    sport_id: &i32,
+    new_home_team: &str,
+    new_away_team: &str,
+    new_commence_time: DateTime<Utc>,
+) -> Option<Event> {
     let new_event = NewEvent {
-        sport_id: sport.id,
+        sport_id: sport_id.clone(),
         home_team: new_home_team,
         away_team: new_away_team,
         commence_time: new_commence_time,

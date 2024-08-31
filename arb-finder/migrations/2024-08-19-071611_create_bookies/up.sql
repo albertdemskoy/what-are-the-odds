@@ -5,5 +5,5 @@ CREATE TABLE books (
   book_title TEXT NOT NULL,
   region TEXT NOT NULL,
   is_exchange BOOLEAN NOT NULL DEFAULT FALSE,
-  UNIQUE (book_key)
+  UNIQUE (book_key, region)
 )
