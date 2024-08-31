@@ -1,35 +1,45 @@
-use std::fs;
-
 use super::util::{get_key_usage_from_headers, ApiKeyUsage};
 use super::{Event, MarketType, Region, Sport};
-use diesel::PgConnection;
+
 use reqwest::{blocking::Response, Error};
 
-use crate::db::models::odds::OddsOffering;
 use crate::local_env::MY_ENV;
 
 const ODDS_HOST_BASE: &str = "https://api.the-odds-api.com/v4";
 const API_KEY: &str = MY_ENV.odds_api_key;
+
+fn print_markets(markets: &Vec<MarketType>) -> String {
+    return markets
+        .iter()
+        .map(|x| x.to_string())
+        .collect::<Vec<String>>()
+        .join(",");
+}
 
 pub fn get_odds_for_sport(
     sport: &str,
     markets: &Vec<MarketType>,
     region: &Region,
 ) -> reqwest::Result<Vec<Event>> {
+    println!(
+        "getting odds for sport {0} in region {1}, markets: {2}",
+        sport,
+        region,
+        print_markets(markets)
+    );
+    let key_usage = get_key_usage();
+    match key_usage {
+        Some(x) => println!("requests remaining: {0}", x.requests_remaining),
+        None => println!(""),
+    };
+
     let odds_endpoint = format!("/sports/{sport}/odds/");
     let full_url = ODDS_HOST_BASE.to_owned() + &odds_endpoint;
 
     let params = [
         ("apiKey", API_KEY),
         ("regions", &region.to_string()),
-        (
-            "markets",
-            &markets
-                .iter()
-                .map(|x| x.to_string())
-                .collect::<Vec<String>>()
-                .join(","),
-        ),
+        ("markets", &print_markets(markets)),
         ("oddsFormat", "decimal"),
     ];
 
@@ -41,12 +51,13 @@ pub fn get_odds_for_sport(
 
     let events = res.json::<Vec<Event>>().unwrap_or(Vec::new());
 
-    return Ok(events);
-}
+    let key_usage = get_key_usage();
+    match key_usage {
+        Some(x) => println!("requests remaining: {0}", x.requests_remaining),
+        None => println!(""),
+    };
 
-pub fn get_example_odds_file(filepath: &str) -> Vec<Event> {
-    let file_str = fs::read_to_string(filepath).expect("Unable to read file");
-    return serde_json::from_str::<Vec<Event>>(&file_str).expect("JSON was not well-formatted");
+    return Ok(events);
 }
 
 pub fn get_key_usage() -> Option<ApiKeyUsage> {
